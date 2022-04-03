@@ -1,0 +1,80 @@
+# BTS
+ALTER TABLE `bts` DROP `kode_bts`;
+ALTER TABLE `bts` CHANGE `updated_by` `edited_by` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL, CHANGE `updated_at` `edited_at` TIMESTAMP NULL DEFAULT NULL;
+
+# FOTO
+ALTER TABLE `foto` DROP `filename`;
+ALTER TABLE `foto` CHANGE `updated_by` `edited_by` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL, CHANGE `updated_at` `edited_at` TIMESTAMP NULL DEFAULT NULL;
+ALTER TABLE `foto` CHANGE `id_foto` `id` INT(11) NOT NULL AUTO_INCREMENT;
+
+# JENIS
+ALTER TABLE `jenis` CHANGE `updated_by` `edited_by` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL, CHANGE `updated_at` `edited_at` TIMESTAMP NULL DEFAULT NULL;
+
+# KONDISI
+ALTER TABLE `kondisi` CHANGE `updated_by` `edited_by` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL, CHANGE `updated_at` `edited_at` TIMESTAMP NULL DEFAULT NULL;
+
+# MONITORING 
+ALTER TABLE `monitoring`
+  DROP `penjelasan`,
+  DROP `nama_monitoring`,
+  DROP `jam_kunjungan`;
+ALTER TABLE `monitoring` CHANGE `updated_by` `edited_by` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL, CHANGE `updated_at` `edited_at` TIMESTAMP NULL DEFAULT NULL;
+ALTER TABLE `monitoring` ADD `id_user_surveyor` BIGINT UNSIGNED NULL AFTER `id_kondisi_bts`;
+ALTER TABLE `monitoring` ADD CONSTRAINT `FK_monitoring_users` FOREIGN KEY (`id_user_surveyor`) REFERENCES `users`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `monitoring` CHANGE `id_monitoring` `id` INT(11) NOT NULL AUTO_INCREMENT;
+
+# PEMILIK
+ALTER TABLE `pemilik` CHANGE `updated_by` `edited_by` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL, CHANGE `updated_at` `edited_at` TIMESTAMP NULL DEFAULT NULL;
+
+# WILAYAH
+ALTER TABLE `wilayah` CHANGE `updated_by` `edited_by` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL, CHANGE `updated_at` `edited_at` TIMESTAMP NULL DEFAULT NULL;
+
+# CHANGE ID BTS
+ALTER TABLE db_bts.monitoring DROP FOREIGN KEY FK_monitoring_bts`;`
+ALTER TABLE db_bts.foto DROP FOREIGN KEY FK_foto_bts`;`
+ALTER TABLE `bts` CHANGE `id_bts` `id` INT(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `monitoring` ADD CONSTRAINT `FK_monitoring_bts` FOREIGN KEY (`id_bts`) REFERENCES `bts`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `foto` ADD CONSTRAINT `FK_foto_bts` FOREIGN KEY (`id_bts`) REFERENCES `bts`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+# CHANGE ID WILAYAH
+ALTER TABLE db_bts.bts DROP FOREIGN KEY FK_bts_wilayah`;`
+ALTER TABLE db_bts.wilayah DROP FOREIGN KEY FK_wilayah_parent`;`
+ALTER TABLE `wilayah` CHANGE `id_wilayah` `id` BIGINT(20) NOT NULL;
+ALTER TABLE `wilayah` ADD CONSTRAINT `FK_wilayah_parent` FOREIGN KEY (`id_parent`) REFERENCES `wilayah`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `bts` ADD CONSTRAINT `FK_bts_wilayah` FOREIGN KEY (`id_wilayah`) REFERENCES `wilayah`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+# CHANGE ID PEMILIK
+ALTER TABLE db_bts.bts DROP FOREIGN KEY FK_bts_pemilik`;`
+ALTER TABLE `pemilik` CHANGE `id_pemilik` `id` INT(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `bts` ADD CONSTRAINT `FK_bts_pemilik` FOREIGN KEY (`id_pemilik`) REFERENCES `pemilik`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+# CHANGE ID JENIS
+ALTER TABLE db_bts.bts DROP FOREIGN KEY FK_bts_jenis`;`
+ALTER TABLE `jenis` CHANGE `id_jenis` `id` INT(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `bts` ADD CONSTRAINT `FK_bts_jenis` FOREIGN KEY (`id_jenis_bts`) REFERENCES `jenis`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+# CHANGE ID KONDISI
+ALTER TABLE db_bts.monitoring DROP FOREIGN KEY FK_monitoring_kondisi`;`
+ALTER TABLE `kondisi` CHANGE `id_kondisi` `id` INT(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `monitoring` ADD CONSTRAINT `FK_monitoring_kondisi` FOREIGN KEY (`id_kondisi_bts`) REFERENCES `kondisi`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+# USERS
+ALTER TABLE `users` ADD `role` TINYINT NULL AFTER `remember_token`;
+ALTER TABLE `users` CHANGE `updated_at` `edited_at` TIMESTAMP NULL DEFAULT NULL;
+ALTER TABLE `users` ADD `deleted_at` TIMESTAMP NULL DEFAULT NULL AFTER `edited_at`;
+
+
+# KUESIONER JAWABAN
+CREATE TABLE kuesioner_jawaban (
+	id int(11) NOT NULL AUTO_INCREMENT,
+	id_monitoring int(11) NOT NULL,
+	id_kuesioner int(11) NOT NULL,
+	jawaban text NOT NULL,
+	created_by varchar(100) DEFAULT NULL,
+	created_at timestamp NOT NULL DEFAULT current_timestamp(),
+	edited_by varchar(100) DEFAULT NULL,
+	edited_at timestamp NULL DEFAULT NULL,
+	deleted_at timestamp NULL DEFAULT NULL,
+	PRIMARY KEY(id)
+);
+ALTER TABLE `kuesioner_jawaban` ADD CONSTRAINT `FK_kuesioner_jawaban_monitor` FOREIGN KEY (`id_monitoring`) REFERENCES `monitoring`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
