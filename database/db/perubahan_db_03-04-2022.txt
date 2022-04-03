@@ -63,6 +63,17 @@ ALTER TABLE `users` ADD `role` TINYINT NULL AFTER `remember_token`;
 ALTER TABLE `users` CHANGE `updated_at` `edited_at` TIMESTAMP NULL DEFAULT NULL;
 ALTER TABLE `users` ADD `deleted_at` TIMESTAMP NULL DEFAULT NULL AFTER `edited_at`;
 
+# KUESIONER
+CREATE TABLE kuesioner (
+	id int(11) NOT NULL AUTO_INCREMENT,
+	jawaban text NOT NULL,
+	created_by varchar(100) DEFAULT NULL,
+	created_at timestamp NOT NULL DEFAULT current_timestamp(),
+	edited_by varchar(100) DEFAULT NULL,
+	edited_at timestamp NULL DEFAULT NULL,
+	deleted_at timestamp NULL DEFAULT NULL,
+	PRIMARY KEY(id)
+);
 
 # KUESIONER JAWABAN
 CREATE TABLE kuesioner_jawaban (
@@ -78,3 +89,21 @@ CREATE TABLE kuesioner_jawaban (
 	PRIMARY KEY(id)
 );
 ALTER TABLE `kuesioner_jawaban` ADD CONSTRAINT `FK_kuesioner_jawaban_monitor` FOREIGN KEY (`id_monitoring`) REFERENCES `monitoring`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `kuesioner_jawaban` ADD CONSTRAINT `FK_kuesioner_jawaban_kuesioner` FOREIGN KEY (`id_kuesioner`) REFERENCES `kuesioner`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+# KUESIONER PILIHAN
+CREATE TABLE `db_bts`.`kuesioner_pilihan` ( `id` INT NOT NULL AUTO_INCREMENT , `id_kuesioner` INT NOT NULL , `pilihan_jawaban` TEXT NOT NULL , `created_by` VARCHAR(100) NULL DEFAULT NULL , `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , `edited_by` VARCHAR(100) NULL DEFAULT NULL , `edited_at` TIMESTAMP NULL DEFAULT NULL , `deleted_at` TIMESTAMP NULL DEFAULT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+ALTER TABLE `kuesioner_pilihan` ADD CONSTRAINT `FK_kuesioner_pilihan_kuesioner` FOREIGN KEY (`id_kuesioner`) REFERENCES `kuesioner_pilihan`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+# KONFIGURASI 
+CREATE TABLE konfigurasi(
+	id int (11) NOT NULL,
+	name varchar (20) NOT NULL,
+	value varchar (20) NOT NULL,
+	created_by varchar(100) DEFAULT NULL,
+	created_at timestamp NOT NULL DEFAULT current_timestamp(),
+	edited_by varchar(100) DEFAULT NULL,
+	edited_at timestamp NULL DEFAULT NULL,
+	deleted_at timestamp NULL DEFAULT NULL,
+	PRIMARY KEY(id)
+);
