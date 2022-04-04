@@ -107,3 +107,41 @@ CREATE TABLE konfigurasi(
 	deleted_at timestamp NULL DEFAULT NULL,
 	PRIMARY KEY(id)
 );
+
+
+# 04-04-2022
+# BTS 
+ALTER TABLE `bts` CHANGE `nama` `nama` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL, CHANGE `created_by` `created_by` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL, CHANGE `edited_by` `edited_by` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+
+# FOTO
+ALTER TABLE `foto` CHANGE `created_by` `created_by` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL, CHANGE `edited_by` `edited_by` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+
+# JENIS
+ALTER TABLE `jenis` CHANGE `nama` `nama` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL, CHANGE `created_by` `created_by` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL, CHANGE `edited_by` `edited_by` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+
+# KONDISI
+ALTER TABLE `kondisi` CHANGE `nama` `nama` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL, CHANGE `created_by` `created_by` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL, CHANGE `edited_by` `edited_by` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+
+# KONFIGURASI
+ALTER TABLE `konfigurasi` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `konfigurasi` CHANGE `name` `name` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL, CHANGE `value` `value` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL, CHANGE `created_by` `created_by` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL, CHANGE `edited_by` `edited_by` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+
+# KUESIONER
+ALTER TABLE `kuesioner` CHANGE `created_by` `created_by` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL, CHANGE `edited_by` `edited_by` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+
+# KUESIONER JAWABAN
+ALTER TABLE `kuesioner_jawaban` CHANGE `jawaban` `jawaban` INT NOT NULL;
+ALTER TABLE `kuesioner_jawaban` ADD CONSTRAINT `FK_kuesioner_jawaban_kuesioner_pilihan` FOREIGN KEY (`jawaban`) REFERENCES `kuesioner_pilihan`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `kuesioner_jawaban` CHANGE `created_by` `created_by` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL, CHANGE `edited_by` `edited_by` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+
+# KUESIONER PILIHAN 
+ALTER TABLE `kuesioner_pilihan` CHANGE `created_by` `created_by` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL, CHANGE `edited_by` `edited_by` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+
+# MONITORING
+ALTER TABLE `monitoring` CHANGE `created_by` `created_by` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL, CHANGE `edited_by` `edited_by` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+
+# PEMILIK
+ALTER TABLE `pemilik` CHANGE `nama` `nama` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL, CHANGE `created_by` `created_by` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL, CHANGE `edited_by` `edited_by` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+
+# WILAYAH
+ALTER TABLE `wilayah` CHANGE `created_by` `created_by` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL, CHANGE `edited_by` `edited_by` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
