@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * Class Jenis
  * @package App\Models
- * @version April 15, 2022, 1:30 pm UTC
+ * @version April 15, 2022, 1:54 pm UTC
  *
  * @property \Illuminate\Database\Eloquent\Collection $bts
  * @property string $nama

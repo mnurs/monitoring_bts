@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\JenisDataTable;
+use App\Http\Requests;
 use App\Http\Requests\CreateJenisRequest;
 use App\Http\Requests\UpdateJenisRequest;
 use App\Repositories\JenisRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
+use App\Http\Controllers\AppBaseController;
 use Response;
 
 class JenisController extends AppBaseController
@@ -23,16 +24,13 @@ class JenisController extends AppBaseController
     /**
      * Display a listing of the Jenis.
      *
-     * @param Request $request
+     * @param JenisDataTable $jenisDataTable
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index(JenisDataTable $jenisDataTable)
     {
-        $jenis = $this->jenisRepository->all();
-
-        return view('jenis.index')
-            ->with('jenis', $jenis);
+        return $jenisDataTable->render('jenis.index');
     }
 
     /**
@@ -132,8 +130,6 @@ class JenisController extends AppBaseController
      * Remove the specified Jenis from storage.
      *
      * @param int $id
-     *
-     * @throws \Exception
      *
      * @return Response
      */
