@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * Class Kondisi
  * @package App\Models
- * @version April 15, 2022, 1:31 pm UTC
+ * @version April 15, 2022, 1:55 pm UTC
  *
  * @property \Illuminate\Database\Eloquent\Collection $monitorings
  * @property string $nama

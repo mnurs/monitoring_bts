@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\KondisiDataTable;
+use App\Http\Requests;
 use App\Http\Requests\CreateKondisiRequest;
 use App\Http\Requests\UpdateKondisiRequest;
 use App\Repositories\KondisiRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
+use App\Http\Controllers\AppBaseController;
 use Response;
 
 class KondisiController extends AppBaseController
@@ -23,16 +24,13 @@ class KondisiController extends AppBaseController
     /**
      * Display a listing of the Kondisi.
      *
-     * @param Request $request
+     * @param KondisiDataTable $kondisiDataTable
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index(KondisiDataTable $kondisiDataTable)
     {
-        $kondisis = $this->kondisiRepository->all();
-
-        return view('kondisis.index')
-            ->with('kondisis', $kondisis);
+        return $kondisiDataTable->render('kondisis.index');
     }
 
     /**
@@ -132,8 +130,6 @@ class KondisiController extends AppBaseController
      * Remove the specified Kondisi from storage.
      *
      * @param int $id
-     *
-     * @throws \Exception
      *
      * @return Response
      */
