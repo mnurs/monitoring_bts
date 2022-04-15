@@ -29,3 +29,6 @@ Route::resource('fotos', App\Http\Controllers\FotoController::class);
 
 
 Route::resource('jenis', App\Http\Controllers\JenisController::class);
+
+
+Route::resource('kondisis', App\Http\Controllers\KondisiController::class);

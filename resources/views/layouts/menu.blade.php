@@ -22,3 +22,11 @@
 </li>
 
 
+<li class="nav-item">
+    <a href="{{ route('kondisis.index') }}"
+       class="nav-link {{ Request::is('kondisis*') ? 'active' : '' }}">
+        <p>Kondisis</p>
+    </a>
+</li>
+
+
