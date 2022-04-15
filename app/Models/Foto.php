@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * Class Foto
  * @package App\Models
- * @version April 15, 2022, 1:30 pm UTC
+ * @version April 15, 2022, 1:53 pm UTC
  *
  * @property \App\Models\Bt $idBts
  * @property integer $id_bts

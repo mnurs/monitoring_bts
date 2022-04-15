@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\FotoDataTable;
+use App\Http\Requests;
 use App\Http\Requests\CreateFotoRequest;
 use App\Http\Requests\UpdateFotoRequest;
 use App\Repositories\FotoRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
+use App\Http\Controllers\AppBaseController;
 use Response;
 
 class FotoController extends AppBaseController
@@ -23,16 +24,13 @@ class FotoController extends AppBaseController
     /**
      * Display a listing of the Foto.
      *
-     * @param Request $request
+     * @param FotoDataTable $fotoDataTable
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index(FotoDataTable $fotoDataTable)
     {
-        $fotos = $this->fotoRepository->all();
-
-        return view('fotos.index')
-            ->with('fotos', $fotos);
+        return $fotoDataTable->render('fotos.index');
     }
 
     /**
@@ -132,8 +130,6 @@ class FotoController extends AppBaseController
      * Remove the specified Foto from storage.
      *
      * @param int $id
-     *
-     * @throws \Exception
      *
      * @return Response
      */
