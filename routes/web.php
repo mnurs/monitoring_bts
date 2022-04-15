@@ -32,3 +32,6 @@ Route::resource('jenis', App\Http\Controllers\JenisController::class);
 
 
 Route::resource('kondisis', App\Http\Controllers\KondisiController::class);
+
+
+Route::resource('konfigurasis', App\Http\Controllers\KonfigurasiController::class);

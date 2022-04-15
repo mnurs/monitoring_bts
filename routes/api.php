@@ -29,3 +29,6 @@ Route::resource('jenis', App\Http\Controllers\API\JenisAPIController::class);
 
 
 Route::resource('kondisis', App\Http\Controllers\API\KondisiAPIController::class);
+
+
+Route::resource('konfigurasis', App\Http\Controllers\API\KonfigurasiAPIController::class);

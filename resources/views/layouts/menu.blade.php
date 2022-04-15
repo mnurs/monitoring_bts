@@ -30,3 +30,11 @@
 </li>
 
 
+<li class="nav-item">
+    <a href="{{ route('konfigurasis.index') }}"
+       class="nav-link {{ Request::is('konfigurasis*') ? 'active' : '' }}">
+        <p>Konfigurasis</p>
+    </a>
+</li>
+
+
