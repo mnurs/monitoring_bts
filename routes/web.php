@@ -26,3 +26,6 @@ Route::resource('bts', App\Http\Controllers\BtsController::class);
 
 
 Route::resource('fotos', App\Http\Controllers\FotoController::class);
+
+
+Route::resource('jenis', App\Http\Controllers\JenisController::class);

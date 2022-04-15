@@ -14,3 +14,11 @@
 </li>
 
 
+<li class="nav-item">
+    <a href="{{ route('jenis.index') }}"
+       class="nav-link {{ Request::is('jenis*') ? 'active' : '' }}">
+        <p>Jenis</p>
+    </a>
+</li>
+
+

@@ -23,3 +23,6 @@ Route::resource('bts', BtsAPIController::class);
 
 
 Route::resource('fotos', App\Http\Controllers\API\FotoAPIController::class);
+
+
+Route::resource('jenis', App\Http\Controllers\API\JenisAPIController::class);
