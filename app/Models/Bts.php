@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * Class Bts
  * @package App\Models
- * @version April 15, 2022, 1:28 pm UTC
+ * @version April 15, 2022, 1:47 pm UTC
  *
  * @property \App\Models\Jeni $idJenisBts
  * @property \App\Models\Pemilik $idPemilik

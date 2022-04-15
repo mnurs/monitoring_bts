@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\BtsDataTable;
+use App\Http\Requests;
 use App\Http\Requests\CreateBtsRequest;
 use App\Http\Requests\UpdateBtsRequest;
 use App\Repositories\BtsRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
+use App\Http\Controllers\AppBaseController;
 use Response;
 
 class BtsController extends AppBaseController
@@ -23,16 +24,13 @@ class BtsController extends AppBaseController
     /**
      * Display a listing of the Bts.
      *
-     * @param Request $request
+     * @param BtsDataTable $btsDataTable
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index(BtsDataTable $btsDataTable)
     {
-        $bts = $this->btsRepository->all();
-
-        return view('bts.index')
-            ->with('bts', $bts);
+        return $btsDataTable->render('bts.index');
     }
 
     /**
@@ -132,8 +130,6 @@ class BtsController extends AppBaseController
      * Remove the specified Bts from storage.
      *
      * @param int $id
-     *
-     * @throws \Exception
      *
      * @return Response
      */
