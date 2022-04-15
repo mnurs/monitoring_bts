@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * Class Kuesioner
  * @package App\Models
- * @version April 15, 2022, 1:32 pm UTC
+ * @version April 15, 2022, 1:56 pm UTC
  *
  * @property \Illuminate\Database\Eloquent\Collection $kuesionerJawabans
  * @property string $jawaban

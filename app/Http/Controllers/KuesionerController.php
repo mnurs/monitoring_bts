@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\KuesionerDataTable;
+use App\Http\Requests;
 use App\Http\Requests\CreateKuesionerRequest;
 use App\Http\Requests\UpdateKuesionerRequest;
 use App\Repositories\KuesionerRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
+use App\Http\Controllers\AppBaseController;
 use Response;
 
 class KuesionerController extends AppBaseController
@@ -23,16 +24,13 @@ class KuesionerController extends AppBaseController
     /**
      * Display a listing of the Kuesioner.
      *
-     * @param Request $request
+     * @param KuesionerDataTable $kuesionerDataTable
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index(KuesionerDataTable $kuesionerDataTable)
     {
-        $kuesioners = $this->kuesionerRepository->all();
-
-        return view('kuesioners.index')
-            ->with('kuesioners', $kuesioners);
+        return $kuesionerDataTable->render('kuesioners.index');
     }
 
     /**
@@ -132,8 +130,6 @@ class KuesionerController extends AppBaseController
      * Remove the specified Kuesioner from storage.
      *
      * @param int $id
-     *
-     * @throws \Exception
      *
      * @return Response
      */
