@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\PemilikDataTable;
+use App\Http\Requests;
 use App\Http\Requests\CreatePemilikRequest;
 use App\Http\Requests\UpdatePemilikRequest;
 use App\Repositories\PemilikRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
+use App\Http\Controllers\AppBaseController;
 use Response;
 
 class PemilikController extends AppBaseController
@@ -23,16 +24,13 @@ class PemilikController extends AppBaseController
     /**
      * Display a listing of the Pemilik.
      *
-     * @param Request $request
+     * @param PemilikDataTable $pemilikDataTable
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index(PemilikDataTable $pemilikDataTable)
     {
-        $pemiliks = $this->pemilikRepository->all();
-
-        return view('pemiliks.index')
-            ->with('pemiliks', $pemiliks);
+        return $pemilikDataTable->render('pemiliks.index');
     }
 
     /**
@@ -132,8 +130,6 @@ class PemilikController extends AppBaseController
      * Remove the specified Pemilik from storage.
      *
      * @param int $id
-     *
-     * @throws \Exception
      *
      * @return Response
      */
