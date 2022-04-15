@@ -44,3 +44,6 @@ Route::resource('kuesioner_pilihans', App\Http\Controllers\API\KuesionerPilihanA
 
 
 Route::resource('monitorings', App\Http\Controllers\API\MonitoringAPIController::class);
+
+
+Route::resource('pemiliks', App\Http\Controllers\API\PemilikAPIController::class);

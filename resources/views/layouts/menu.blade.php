@@ -70,3 +70,11 @@
 </li>
 
 
+<li class="nav-item">
+    <a href="{{ route('pemiliks.index') }}"
+       class="nav-link {{ Request::is('pemiliks*') ? 'active' : '' }}">
+        <p>Pemiliks</p>
+    </a>
+</li>
+
+

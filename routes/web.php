@@ -47,3 +47,6 @@ Route::resource('kuesionerPilihans', App\Http\Controllers\KuesionerPilihanContro
 
 
 Route::resource('monitorings', App\Http\Controllers\MonitoringController::class);
+
+
+Route::resource('pemiliks', App\Http\Controllers\PemilikController::class);
