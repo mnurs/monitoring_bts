@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * Class Monitoring
  * @package App\Models
- * @version April 15, 2022, 1:33 pm UTC
+ * @version April 15, 2022, 1:57 pm UTC
  *
  * @property \App\Models\Bt $idBts
  * @property \App\Models\Kondisi $idKondisiBts

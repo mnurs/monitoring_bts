@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\MonitoringDataTable;
+use App\Http\Requests;
 use App\Http\Requests\CreateMonitoringRequest;
 use App\Http\Requests\UpdateMonitoringRequest;
 use App\Repositories\MonitoringRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
+use App\Http\Controllers\AppBaseController;
 use Response;
 
 class MonitoringController extends AppBaseController
@@ -23,16 +24,13 @@ class MonitoringController extends AppBaseController
     /**
      * Display a listing of the Monitoring.
      *
-     * @param Request $request
+     * @param MonitoringDataTable $monitoringDataTable
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index(MonitoringDataTable $monitoringDataTable)
     {
-        $monitorings = $this->monitoringRepository->all();
-
-        return view('monitorings.index')
-            ->with('monitorings', $monitorings);
+        return $monitoringDataTable->render('monitorings.index');
     }
 
     /**
@@ -132,8 +130,6 @@ class MonitoringController extends AppBaseController
      * Remove the specified Monitoring from storage.
      *
      * @param int $id
-     *
-     * @throws \Exception
      *
      * @return Response
      */
