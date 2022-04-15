@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\KuesionerPilihanDataTable;
+use App\Http\Requests;
 use App\Http\Requests\CreateKuesionerPilihanRequest;
 use App\Http\Requests\UpdateKuesionerPilihanRequest;
 use App\Repositories\KuesionerPilihanRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
+use App\Http\Controllers\AppBaseController;
 use Response;
 
 class KuesionerPilihanController extends AppBaseController
@@ -23,16 +24,13 @@ class KuesionerPilihanController extends AppBaseController
     /**
      * Display a listing of the KuesionerPilihan.
      *
-     * @param Request $request
+     * @param KuesionerPilihanDataTable $kuesionerPilihanDataTable
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index(KuesionerPilihanDataTable $kuesionerPilihanDataTable)
     {
-        $kuesionerPilihans = $this->kuesionerPilihanRepository->all();
-
-        return view('kuesioner_pilihans.index')
-            ->with('kuesionerPilihans', $kuesionerPilihans);
+        return $kuesionerPilihanDataTable->render('kuesioner_pilihans.index');
     }
 
     /**
@@ -132,8 +130,6 @@ class KuesionerPilihanController extends AppBaseController
      * Remove the specified KuesionerPilihan from storage.
      *
      * @param int $id
-     *
-     * @throws \Exception
      *
      * @return Response
      */
