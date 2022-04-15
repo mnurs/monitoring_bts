@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\KonfigurasiDataTable;
+use App\Http\Requests;
 use App\Http\Requests\CreateKonfigurasiRequest;
 use App\Http\Requests\UpdateKonfigurasiRequest;
 use App\Repositories\KonfigurasiRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
+use App\Http\Controllers\AppBaseController;
 use Response;
 
 class KonfigurasiController extends AppBaseController
@@ -23,16 +24,13 @@ class KonfigurasiController extends AppBaseController
     /**
      * Display a listing of the Konfigurasi.
      *
-     * @param Request $request
+     * @param KonfigurasiDataTable $konfigurasiDataTable
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index(KonfigurasiDataTable $konfigurasiDataTable)
     {
-        $konfigurasis = $this->konfigurasiRepository->all();
-
-        return view('konfigurasis.index')
-            ->with('konfigurasis', $konfigurasis);
+        return $konfigurasiDataTable->render('konfigurasis.index');
     }
 
     /**
@@ -132,8 +130,6 @@ class KonfigurasiController extends AppBaseController
      * Remove the specified Konfigurasi from storage.
      *
      * @param int $id
-     *
-     * @throws \Exception
      *
      * @return Response
      */

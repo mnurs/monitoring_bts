@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * Class Konfigurasi
  * @package App\Models
- * @version April 15, 2022, 1:31 pm UTC
+ * @version April 15, 2022, 1:55 pm UTC
  *
  * @property string $name
  * @property string $value

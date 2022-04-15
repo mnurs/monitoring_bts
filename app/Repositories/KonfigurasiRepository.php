@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class KonfigurasiRepository
  * @package App\Repositories
- * @version April 15, 2022, 1:31 pm UTC
+ * @version April 15, 2022, 1:55 pm UTC
 */
 
 class KonfigurasiRepository extends BaseRepository
