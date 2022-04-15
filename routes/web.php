@@ -55,10 +55,4 @@ Route::resource('pemiliks', PemilikController::class);
 Route::resource('wilayahs', WilayahController::class);
 
 
-Route::resource('users', App\Http\Controllers\UserController::class);
-
-
-Route::resource('kuesionerJawabans', App\Http\Controllers\KuesionerJawabanController::class);
-
-
-Route::resource('kuesionerPilihans', App\Http\Controllers\KuesionerPilihanController::class);
+Route::resource('users', UserController::class);

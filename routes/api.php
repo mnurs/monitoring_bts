@@ -52,4 +52,4 @@ Route::resource('pemiliks', PemilikAPIController::class);
 Route::resource('wilayahs', WilayahAPIController::class);
 
 
-Route::resource('users', App\Http\Controllers\API\UserAPIController::class);
+Route::resource('users', UserAPIController::class);

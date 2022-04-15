@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\UserDataTable;
+use App\Http\Requests;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Repositories\UserRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
+use App\Http\Controllers\AppBaseController;
 use Response;
 
 class UserController extends AppBaseController
@@ -23,16 +24,13 @@ class UserController extends AppBaseController
     /**
      * Display a listing of the User.
      *
-     * @param Request $request
+     * @param UserDataTable $userDataTable
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index(UserDataTable $userDataTable)
     {
-        $users = $this->userRepository->all();
-
-        return view('users.index')
-            ->with('users', $users);
+        return $userDataTable->render('users.index');
     }
 
     /**
@@ -132,8 +130,6 @@ class UserController extends AppBaseController
      * Remove the specified User from storage.
      *
      * @param int $id
-     *
-     * @throws \Exception
      *
      * @return Response
      */
