@@ -38,3 +38,11 @@
 </li>
 
 
+<li class="nav-item">
+    <a href="{{ route('kuesioners.index') }}"
+       class="nav-link {{ Request::is('kuesioners*') ? 'active' : '' }}">
+        <p>Kuesioners</p>
+    </a>
+</li>
+
+

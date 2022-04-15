@@ -32,3 +32,6 @@ Route::resource('kondisis', App\Http\Controllers\API\KondisiAPIController::class
 
 
 Route::resource('konfigurasis', App\Http\Controllers\API\KonfigurasiAPIController::class);
+
+
+Route::resource('kuesioners', App\Http\Controllers\API\KuesionerAPIController::class);

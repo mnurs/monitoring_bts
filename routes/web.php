@@ -35,3 +35,6 @@ Route::resource('kondisis', App\Http\Controllers\KondisiController::class);
 
 
 Route::resource('konfigurasis', App\Http\Controllers\KonfigurasiController::class);
+
+
+Route::resource('kuesioners', App\Http\Controllers\KuesionerController::class);
