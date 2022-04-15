@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class WilayahRepository
  * @package App\Repositories
- * @version April 15, 2022, 1:35 pm UTC
+ * @version April 15, 2022, 1:57 pm UTC
 */
 
 class WilayahRepository extends BaseRepository

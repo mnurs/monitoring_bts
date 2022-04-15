@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\WilayahDataTable;
+use App\Http\Requests;
 use App\Http\Requests\CreateWilayahRequest;
 use App\Http\Requests\UpdateWilayahRequest;
 use App\Repositories\WilayahRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
+use App\Http\Controllers\AppBaseController;
 use Response;
 
 class WilayahController extends AppBaseController
@@ -23,16 +24,13 @@ class WilayahController extends AppBaseController
     /**
      * Display a listing of the Wilayah.
      *
-     * @param Request $request
+     * @param WilayahDataTable $wilayahDataTable
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index(WilayahDataTable $wilayahDataTable)
     {
-        $wilayahs = $this->wilayahRepository->all();
-
-        return view('wilayahs.index')
-            ->with('wilayahs', $wilayahs);
+        return $wilayahDataTable->render('wilayahs.index');
     }
 
     /**
@@ -132,8 +130,6 @@ class WilayahController extends AppBaseController
      * Remove the specified Wilayah from storage.
      *
      * @param int $id
-     *
-     * @throws \Exception
      *
      * @return Response
      */
