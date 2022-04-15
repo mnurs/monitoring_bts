@@ -23,3 +23,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::resource('bts', App\Http\Controllers\BtsController::class);
+
+
+Route::resource('fotos', App\Http\Controllers\FotoController::class);

@@ -20,3 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::resource('bts', BtsAPIController::class);
+
+
+Route::resource('fotos', App\Http\Controllers\API\FotoAPIController::class);
