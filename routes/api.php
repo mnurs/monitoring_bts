@@ -35,3 +35,6 @@ Route::resource('konfigurasis', App\Http\Controllers\API\KonfigurasiAPIControlle
 
 
 Route::resource('kuesioners', App\Http\Controllers\API\KuesionerAPIController::class);
+
+
+Route::resource('kuesioner_jawabans', App\Http\Controllers\API\KuesionerJawabanAPIController::class);

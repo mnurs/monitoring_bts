@@ -38,3 +38,6 @@ Route::resource('konfigurasis', App\Http\Controllers\KonfigurasiController::clas
 
 
 Route::resource('kuesioners', App\Http\Controllers\KuesionerController::class);
+
+
+Route::resource('kuesionerJawabans', App\Http\Controllers\KuesionerJawabanController::class);
