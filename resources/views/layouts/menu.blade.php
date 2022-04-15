@@ -62,3 +62,11 @@
 </li>
 
 
+<li class="nav-item">
+    <a href="{{ route('monitorings.index') }}"
+       class="nav-link {{ Request::is('monitorings*') ? 'active' : '' }}">
+        <p>Monitorings</p>
+    </a>
+</li>
+
+

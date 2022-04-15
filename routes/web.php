@@ -44,3 +44,6 @@ Route::resource('kuesionerJawabans', App\Http\Controllers\KuesionerJawabanContro
 
 
 Route::resource('kuesionerPilihans', App\Http\Controllers\KuesionerPilihanController::class);
+
+
+Route::resource('monitorings', App\Http\Controllers\MonitoringController::class);
