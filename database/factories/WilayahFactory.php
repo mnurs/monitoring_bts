@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
+use App\Models\Wilayah;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class UserFactory extends Factory
+class WilayahFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = User::class;
+    protected $model = Wilayah::class;
 
     /**
      * Define the model's default state.
@@ -22,13 +22,12 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->word,
-        'email' => $this->faker->word,
-        'email_verified_at' => $this->faker->date('Y-m-d H:i:s'),
-        'password' => $this->faker->word,
-        'remember_token' => $this->faker->word,
-        'role' => $this->faker->word,
+            'nama' => $this->faker->word,
+        'level' => $this->faker->word,
+        'id_parent' => $this->faker->word,
+        'created_by' => $this->faker->word,
         'created_at' => $this->faker->date('Y-m-d H:i:s'),
+        'edited_by' => $this->faker->word,
         'edited_at' => $this->faker->date('Y-m-d H:i:s'),
         'deleted_at' => $this->faker->date('Y-m-d H:i:s')
         ];

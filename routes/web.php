@@ -22,31 +22,37 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::resource('bts', App\Http\Controllers\BtsController::class);
+Route::resource('bts', BtsController::class);
 
 
-Route::resource('fotos', App\Http\Controllers\FotoController::class);
+Route::resource('fotos', FotoController::class);
 
 
-Route::resource('jenis', App\Http\Controllers\JenisController::class);
+Route::resource('jenis', JenisController::class);
 
 
-Route::resource('kondisis', App\Http\Controllers\KondisiController::class);
+Route::resource('kondisis', KondisiController::class);
 
 
-Route::resource('konfigurasis', App\Http\Controllers\KonfigurasiController::class);
+Route::resource('konfigurasis', KonfigurasiController::class);
 
 
-Route::resource('kuesioners', App\Http\Controllers\KuesionerController::class);
+Route::resource('kuesioners', KuesionerController::class);
 
 
-Route::resource('kuesionerJawabans', App\Http\Controllers\KuesionerJawabanController::class);
+Route::resource('kuesionerJawabans', KuesionerJawabanController::class);
 
 
-Route::resource('kuesionerPilihans', App\Http\Controllers\KuesionerPilihanController::class);
+Route::resource('kuesionerPilihans', KuesionerPilihanController::class);
 
 
-Route::resource('monitorings', App\Http\Controllers\MonitoringController::class);
+Route::resource('monitorings', MonitoringController::class);
 
 
-Route::resource('pemiliks', App\Http\Controllers\PemilikController::class);
+Route::resource('pemiliks', PemilikController::class);
+
+
+Route::resource('wilayahs', WilayahController::class);
+
+
+Route::resource('users', App\Http\Controllers\UserController::class);

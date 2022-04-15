@@ -78,3 +78,19 @@
 </li>
 
 
+<li class="nav-item">
+    <a href="{{ route('wilayahs.index') }}"
+       class="nav-link {{ Request::is('wilayahs*') ? 'active' : '' }}">
+        <p>Wilayahs</p>
+    </a>
+</li>
+
+
+<li class="nav-item">
+    <a href="{{ route('users.index') }}"
+       class="nav-link {{ Request::is('users*') ? 'active' : '' }}">
+        <p>Users</p>
+    </a>
+</li>
+
+

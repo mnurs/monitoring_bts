@@ -22,28 +22,34 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::resource('bts', BtsAPIController::class);
 
 
-Route::resource('fotos', App\Http\Controllers\API\FotoAPIController::class);
+Route::resource('fotos', FotoAPIController::class);
 
 
-Route::resource('jenis', App\Http\Controllers\API\JenisAPIController::class);
+Route::resource('jenis', JenisAPIController::class);
 
 
-Route::resource('kondisis', App\Http\Controllers\API\KondisiAPIController::class);
+Route::resource('kondisis', KondisiAPIController::class);
 
 
-Route::resource('konfigurasis', App\Http\Controllers\API\KonfigurasiAPIController::class);
+Route::resource('konfigurasis', KonfigurasiAPIController::class);
 
 
-Route::resource('kuesioners', App\Http\Controllers\API\KuesionerAPIController::class);
+Route::resource('kuesioners', KuesionerAPIController::class);
 
 
-Route::resource('kuesioner_jawabans', App\Http\Controllers\API\KuesionerJawabanAPIController::class);
+Route::resource('kuesioner_jawabans', KuesionerJawabanAPIController::class);
 
 
-Route::resource('kuesioner_pilihans', App\Http\Controllers\API\KuesionerPilihanAPIController::class);
+Route::resource('kuesioner_pilihans', KuesionerPilihanAPIController::class);
 
 
-Route::resource('monitorings', App\Http\Controllers\API\MonitoringAPIController::class);
+Route::resource('monitorings', MonitoringAPIController::class);
 
 
-Route::resource('pemiliks', App\Http\Controllers\API\PemilikAPIController::class);
+Route::resource('pemiliks', PemilikAPIController::class);
+
+
+Route::resource('wilayahs', WilayahAPIController::class);
+
+
+Route::resource('users', App\Http\Controllers\API\UserAPIController::class);
