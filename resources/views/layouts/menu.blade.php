@@ -54,3 +54,11 @@
 </li>
 
 
+<li class="nav-item">
+    <a href="{{ route('kuesionerPilihans.index') }}"
+       class="nav-link {{ Request::is('kuesionerPilihans*') ? 'active' : '' }}">
+        <p>Kuesioner Pilihans</p>
+    </a>
+</li>
+
+

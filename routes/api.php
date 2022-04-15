@@ -38,3 +38,6 @@ Route::resource('kuesioners', App\Http\Controllers\API\KuesionerAPIController::c
 
 
 Route::resource('kuesioner_jawabans', App\Http\Controllers\API\KuesionerJawabanAPIController::class);
+
+
+Route::resource('kuesioner_pilihans', App\Http\Controllers\API\KuesionerPilihanAPIController::class);
