@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\KuesionerJawabanDataTable;
+use App\Http\Requests;
 use App\Http\Requests\CreateKuesionerJawabanRequest;
 use App\Http\Requests\UpdateKuesionerJawabanRequest;
 use App\Repositories\KuesionerJawabanRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
+use App\Http\Controllers\AppBaseController;
 use Response;
 
 class KuesionerJawabanController extends AppBaseController
@@ -23,16 +24,13 @@ class KuesionerJawabanController extends AppBaseController
     /**
      * Display a listing of the KuesionerJawaban.
      *
-     * @param Request $request
+     * @param KuesionerJawabanDataTable $kuesionerJawabanDataTable
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index(KuesionerJawabanDataTable $kuesionerJawabanDataTable)
     {
-        $kuesionerJawabans = $this->kuesionerJawabanRepository->all();
-
-        return view('kuesioner_jawabans.index')
-            ->with('kuesionerJawabans', $kuesionerJawabans);
+        return $kuesionerJawabanDataTable->render('kuesioner_jawabans.index');
     }
 
     /**
@@ -132,8 +130,6 @@ class KuesionerJawabanController extends AppBaseController
      * Remove the specified KuesionerJawaban from storage.
      *
      * @param int $id
-     *
-     * @throws \Exception
      *
      * @return Response
      */

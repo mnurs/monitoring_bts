@@ -56,3 +56,6 @@ Route::resource('wilayahs', WilayahController::class);
 
 
 Route::resource('users', App\Http\Controllers\UserController::class);
+
+
+Route::resource('kuesionerJawabans', App\Http\Controllers\KuesionerJawabanController::class);

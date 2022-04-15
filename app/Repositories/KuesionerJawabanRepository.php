@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class KuesionerJawabanRepository
  * @package App\Repositories
- * @version April 15, 2022, 1:32 pm UTC
+ * @version April 15, 2022, 1:56 pm UTC
 */
 
 class KuesionerJawabanRepository extends BaseRepository
