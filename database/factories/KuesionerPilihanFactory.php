@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\KuesionerPilihan;
+use App\Models\Kuesioner;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class KuesionerPilihanFactory extends Factory
@@ -21,14 +22,14 @@ class KuesionerPilihanFactory extends Factory
      */
     public function definition()
     {
+        $kuesioner = Kuesioner::select('id')->inRandomOrder()->first(); 
         return [
-            'id_kuesioner' => $this->faker->randomDigitNotNull,
-        'pilihan_jawaban' => $this->faker->text,
-        'created_by' => $this->faker->word,
-        'created_at' => $this->faker->date('Y-m-d H:i:s'),
-        'edited_by' => $this->faker->word,
-        'edited_at' => $this->faker->date('Y-m-d H:i:s'),
-        'deleted_at' => $this->faker->date('Y-m-d H:i:s')
+            'id_kuesioner' => $kuesioner->id,
+            'pilihan_jawaban' => $this->faker->text,
+            'created_by' => $this->faker->word,
+            'created_at' => $this->faker->date('Y-m-d H:i:s'),
+            'edited_by' => $this->faker->word,
+            'edited_at' => $this->faker->date('Y-m-d H:i:s') 
         ];
     }
 }

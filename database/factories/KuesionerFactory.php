@@ -22,12 +22,11 @@ class KuesionerFactory extends Factory
     public function definition()
     {
         return [
-            'jawaban' => $this->faker->text,
-        'created_by' => $this->faker->word,
-        'created_at' => $this->faker->date('Y-m-d H:i:s'),
-        'edited_by' => $this->faker->word,
-        'edited_at' => $this->faker->date('Y-m-d H:i:s'),
-        'deleted_at' => $this->faker->date('Y-m-d H:i:s')
+            'pertanyaan' => $this->faker->text,
+            'created_by' => $this->faker->word,
+            'created_at' => $this->faker->date('Y-m-d H:i:s'),
+            'edited_by' => $this->faker->word,
+            'edited_at' => $this->faker->date('Y-m-d H:i:s') 
         ];
     }
 }

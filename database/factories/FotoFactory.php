@@ -23,12 +23,11 @@ class FotoFactory extends Factory
     {
         return [
             'id_bts' => $this->faker->randomDigitNotNull,
-        'path_foto' => $this->faker->text,
-        'created_by' => $this->faker->word,
-        'created_at' => $this->faker->date('Y-m-d H:i:s'),
-        'edited_by' => $this->faker->word,
-        'edited_at' => $this->faker->date('Y-m-d H:i:s'),
-        'deleted_at' => $this->faker->date('Y-m-d H:i:s')
+            'path_foto' => $this->faker->text,
+            'created_by' => $this->faker->word,
+            'created_at' => $this->faker->date('Y-m-d H:i:s'),
+            'edited_by' => $this->faker->word,
+            'edited_at' => $this->faker->date('Y-m-d H:i:s') 
         ];
     }
 }

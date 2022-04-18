@@ -3,6 +3,10 @@
 namespace Database\Factories;
 
 use App\Models\Bts;
+use App\Models\Wilayah;
+use App\Models\User;
+use App\Models\Pemilik;
+use App\Models\Jenis;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BtsFactory extends Factory
@@ -21,25 +25,28 @@ class BtsFactory extends Factory
      */
     public function definition()
     {
+        $wilayah = Wilayah::select('id')->inRandomOrder()->first();
+        $user = User::select('id')->inRandomOrder()->first();
+        $pemilik = Pemilik::select('id')->inRandomOrder()->first();
+        $jenis = Jenis::select('id')->inRandomOrder()->first();
         return [
-            'id_user_pic' => $this->faker->word,
-        'id_pemilik' => $this->faker->randomDigitNotNull,
-        'id_wilayah' => $this->faker->word,
-        'id_jenis_bts' => $this->faker->randomDigitNotNull,
-        'nama' => $this->faker->word,
-        'alamat' => $this->faker->text,
-        'latitude' => $this->faker->word,
-        'longitude' => $this->faker->word,
-        'tinggi_tower' => $this->faker->randomDigitNotNull,
-        'panjang_tanah' => $this->faker->randomDigitNotNull,
-        'lebar_tanah' => $this->faker->randomDigitNotNull,
-        'ada_genset' => $this->faker->word,
-        'ada_tembok_batas' => $this->faker->word,
-        'created_by' => $this->faker->word,
-        'created_at' => $this->faker->date('Y-m-d H:i:s'),
-        'edited_by' => $this->faker->word,
-        'edited_at' => $this->faker->date('Y-m-d H:i:s'),
-        'deleted_at' => $this->faker->date('Y-m-d H:i:s')
+            'id_user_pic' => $user->id,
+            'id_pemilik' => $pemilik->id,
+            'id_wilayah' => $wilayah->id,
+            'id_jenis_bts' => $jenis->id,
+            'nama' => $this->faker->word,
+            'alamat' => $this->faker->text,
+            'latitude' => $this->faker->randomDigitNotNull,
+            'longitude' => $this->faker->randomDigitNotNull,
+            'tinggi_tower' => $this->faker->randomDigitNotNull,
+            'panjang_tanah' => $this->faker->randomDigitNotNull,
+            'lebar_tanah' => $this->faker->randomDigitNotNull,
+            'ada_genset' => $this->faker->boolean(),
+            'ada_tembok_batas' => $this->faker->boolean(),
+            'created_by' => $this->faker->word,
+            'created_at' => $this->faker->date('Y-m-d H:i:s'),
+            'edited_by' => $this->faker->word,
+            'edited_at' => $this->faker->date('Y-m-d H:i:s')
         ];
     }
 }
