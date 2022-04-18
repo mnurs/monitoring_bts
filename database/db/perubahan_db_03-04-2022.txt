@@ -145,3 +145,6 @@ ALTER TABLE `pemilik` CHANGE `nama` `nama` VARCHAR(255) CHARACTER SET utf8mb4 CO
 
 # WILAYAH
 ALTER TABLE `wilayah` CHANGE `created_by` `created_by` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL, CHANGE `edited_by` `edited_by` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+
+#KUESIONER
+ALTER TABLE `kuesioner` CHANGE `jawaban` `pertanyaan` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;
