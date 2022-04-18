@@ -26,7 +26,7 @@ class Kuesioner extends Model
     public $table = 'kuesioner';
     
     const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
+    const UPDATED_AT = 'edited_at';
 
 
     protected $dates = ['deleted_at'];

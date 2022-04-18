@@ -28,7 +28,7 @@ class Pemilik extends Model
     public $table = 'pemilik';
     
     const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
+    const UPDATED_AT = 'edited_at';
 
 
     protected $dates = ['deleted_at'];

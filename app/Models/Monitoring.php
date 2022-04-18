@@ -34,7 +34,7 @@ class Monitoring extends Model
     public $table = 'monitoring';
     
     const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
+    const UPDATED_AT = 'edited_at';
 
 
     protected $dates = ['deleted_at'];
@@ -95,7 +95,7 @@ class Monitoring extends Model
      **/
     public function idBts()
     {
-        return $this->belongsTo(\App\Models\Bt::class, 'id_bts');
+        return $this->belongsTo(\App\Models\Bts::class, 'id_bts');
     }
 
     /**
