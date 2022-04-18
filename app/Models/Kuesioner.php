@@ -34,7 +34,7 @@ class Kuesioner extends Model
 
 
     public $fillable = [
-        'jawaban',
+        'pertanyaan',
         'created_by',
         'edited_by',
         'edited_at'
@@ -47,7 +47,7 @@ class Kuesioner extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'jawaban' => 'string',
+        'pertanyaan' => 'string',
         'created_by' => 'string',
         'edited_by' => 'string',
         'edited_at' => 'datetime'

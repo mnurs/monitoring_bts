@@ -65,7 +65,7 @@ class KuesionerDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'jawaban',
+            'pertanyaan',
             'created_by',
             'edited_by',
             'edited_at'
