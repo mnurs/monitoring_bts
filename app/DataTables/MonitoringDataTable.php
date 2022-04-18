@@ -18,7 +18,34 @@ class MonitoringDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'monitorings.datatables_actions');
+        return $dataTable
+        ->addColumn('action', 'monitorings.datatables_actions')
+        ->editColumn('tgl_generate', function ($data) 
+        {
+            //change over here
+            return date('d-m-Y', strtotime($data->tgl_generate) );
+        })
+        ->editColumn('edited_at', function ($data) 
+        {
+            //change over here
+            return date('d-m-Y', strtotime($data->edited_at) );
+        })
+
+        ->editColumn('id_bts', function ($data) 
+        {
+            //change over here
+            return $data->idBts->nama;
+        })
+        ->editColumn('id_kondisi_bts', function ($data) 
+        {
+            //change over here
+            return $data->idKondisiBts->nama;
+        })
+         ->editColumn('id_user_surveyor', function ($data) 
+        {
+            //change over here
+            return $data->idUserSurveyor->name;
+        });
     }
 
     /**
@@ -65,9 +92,9 @@ class MonitoringDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id_bts',
-            'id_kondisi_bts',
-            'id_user_surveyor',
+            'bts' => ['name' => 'id_bts', 'data' => 'id_bts'], 
+            'kondisi_bts' => ['name' => 'id_kondisi_bts', 'data' => 'id_kondisi_bts'], 
+            'user_surveyor' => ['name' => 'id_user_surveyor', 'data' => 'id_user_surveyor'],  
             'tgl_generate',
             'tgl_kunjungan',
             'tahun',
