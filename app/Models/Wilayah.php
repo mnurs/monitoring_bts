@@ -52,7 +52,7 @@ class Wilayah extends Model
     protected $casts = [
         'id' => 'integer',
         'nama' => 'string',
-        'level' => 'boolean',
+        'level' => 'integer',
         'id_parent' => 'integer',
         'created_by' => 'string',
         'edited_by' => 'string',
@@ -66,7 +66,7 @@ class Wilayah extends Model
      */
     public static $rules = [
         'nama' => 'required|string|max:255',
-        'level' => 'required|boolean',
+        'level' => 'required|integer',
         'id_parent' => 'nullable',
         'created_by' => 'nullable|string|max:255',
         'created_at' => 'required',

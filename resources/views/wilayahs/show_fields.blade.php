@@ -12,7 +12,7 @@
 
 <!-- Id Parent Field -->
 <div class="col-sm-12">
-    {!! Form::label('id_parent', 'Id Parent:') !!}
+    {!! Form::label('id_parent', 'Parent:') !!}
     <p>{{ $wilayah->id_parent }}</p>
 </div>
 

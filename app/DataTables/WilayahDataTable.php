@@ -18,7 +18,24 @@ class WilayahDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'wilayahs.datatables_actions');
+        return $dataTable
+        ->addColumn('action', 'wilayahs.datatables_actions')
+        ->editColumn('level', function ($data) 
+        {   
+            if($data->level == 1){
+                return "Negara";
+            }else if($data->level == 2){
+                return "Provinsi"; 
+            }else if($data->level == 3){
+                return "Kabupaten/Kota";  
+            }else if($data->level == 4){
+                return "Kecamatan";   
+            }else if($data->level == 5){
+                return "Kelurahan";    
+            }
+            //change over here
+           
+        });
     }
 
     /**
