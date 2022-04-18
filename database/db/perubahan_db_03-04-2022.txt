@@ -148,3 +148,6 @@ ALTER TABLE `wilayah` CHANGE `created_by` `created_by` VARCHAR(255) CHARACTER SE
 
 #KUESIONER
 ALTER TABLE `kuesioner` CHANGE `jawaban` `pertanyaan` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;
+
+#KUESIONERPILIHAN
+ALTER TABLE `kuesioner_pilihan` DROP FOREIGN KEY `FK_kuesioner_pilihan_kuesioner`; ALTER TABLE `kuesioner_pilihan` ADD CONSTRAINT `FK_kuesioner_pilihan_kuesioner` FOREIGN KEY (`id_kuesioner`) REFERENCES `kuesioner`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
