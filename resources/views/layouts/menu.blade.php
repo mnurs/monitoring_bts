@@ -9,7 +9,7 @@
 <li class="nav-item">
     <a href="{{ route('fotos.index') }}"
        class="nav-link {{ Request::is('fotos*') ? 'active' : '' }}">
-        <p>Fotos</p>
+        <p>Foto</p>
     </a>
 </li>
 
@@ -25,7 +25,7 @@
 <li class="nav-item">
     <a href="{{ route('kondisis.index') }}"
        class="nav-link {{ Request::is('kondisis*') ? 'active' : '' }}">
-        <p>Kondisis</p>
+        <p>Kondisi</p>
     </a>
 </li>
 
@@ -33,7 +33,7 @@
 <li class="nav-item">
     <a href="{{ route('konfigurasis.index') }}"
        class="nav-link {{ Request::is('konfigurasis*') ? 'active' : '' }}">
-        <p>Konfigurasis</p>
+        <p>Konfigurasi</p>
     </a>
 </li>
 
@@ -41,7 +41,7 @@
 <li class="nav-item">
     <a href="{{ route('kuesioners.index') }}"
        class="nav-link {{ Request::is('kuesioners*') ? 'active' : '' }}">
-        <p>Kuesioners</p>
+        <p>Kuesioner</p>
     </a>
 </li>
 
@@ -49,7 +49,7 @@
 <li class="nav-item">
     <a href="{{ route('kuesionerJawabans.index') }}"
        class="nav-link {{ Request::is('kuesionerJawabans*') ? 'active' : '' }}">
-        <p>Kuesioner Jawabans</p>
+        <p>Kuesioner Jawaban</p>
     </a>
 </li>
 
@@ -57,7 +57,7 @@
 <li class="nav-item">
     <a href="{{ route('kuesionerPilihans.index') }}"
        class="nav-link {{ Request::is('kuesionerPilihans*') ? 'active' : '' }}">
-        <p>Kuesioner Pilihans</p>
+        <p>Kuesioner Pilihan</p>
     </a>
 </li>
 
@@ -65,7 +65,7 @@
 <li class="nav-item">
     <a href="{{ route('monitorings.index') }}"
        class="nav-link {{ Request::is('monitorings*') ? 'active' : '' }}">
-        <p>Monitorings</p>
+        <p>Monitoring</p>
     </a>
 </li>
 
@@ -73,7 +73,7 @@
 <li class="nav-item">
     <a href="{{ route('pemiliks.index') }}"
        class="nav-link {{ Request::is('pemiliks*') ? 'active' : '' }}">
-        <p>Pemiliks</p>
+        <p>Pemilik</p>
     </a>
 </li>
 
@@ -81,7 +81,7 @@
 <li class="nav-item">
     <a href="{{ route('wilayahs.index') }}"
        class="nav-link {{ Request::is('wilayahs*') ? 'active' : '' }}">
-        <p>Wilayahs</p>
+        <p>Wilayah</p>
     </a>
 </li>
 
@@ -89,7 +89,7 @@
 <li class="nav-item">
     <a href="{{ route('users.index') }}"
        class="nav-link {{ Request::is('users*') ? 'active' : '' }}">
-        <p>Users</p>
+        <p>User</p>
     </a>
 </li>
 
