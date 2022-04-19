@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Requests\CreateMonitoringRequest;
 use App\Http\Requests\UpdateMonitoringRequest;
 use App\Repositories\MonitoringRepository;
+use App\Repositories\KuesionerRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
@@ -15,10 +16,12 @@ class MonitoringController extends AppBaseController
 {
     /** @var MonitoringRepository $monitoringRepository*/
     private $monitoringRepository;
+    private $kuesionerRepository;
 
-    public function __construct(MonitoringRepository $monitoringRepo)
+    public function __construct(MonitoringRepository $monitoringRepo,KuesionerRepository $kuesionerRepo)
     {
         $this->monitoringRepository = $monitoringRepo;
+        $this->kuesionerRepository = $kuesionerRepo;
     }
 
     /**
@@ -41,6 +44,23 @@ class MonitoringController extends AppBaseController
     public function create()
     {
         return view('monitorings.create');
+    }
+
+    public function createSurvey($id)
+    {
+        $monitoring = $this->monitoringRepository->find($id);
+        $kuesioner = $this->kuesionerRepository->all();
+
+        if (empty($monitoring)) {
+            Flash::error('Monitoring not found');
+
+            return redirect(route('monitorings.index'));
+        }
+
+        return view('monitorings.survey')
+        ->with('monitoring', $monitoring)
+        ->with('kuesioner', $kuesioner)
+        ->with('flag', true);
     }
 
     /**

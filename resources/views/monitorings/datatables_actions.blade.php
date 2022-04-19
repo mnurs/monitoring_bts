@@ -1,5 +1,8 @@
 {!! Form::open(['route' => ['monitorings.destroy', $id], 'method' => 'delete']) !!}
 <div class='btn-group'>
+    <a href="{{ url('/monitoring/survey', $id) }}" class='btn btn-default btn-xs' title="Survey">
+        <i class="fa fa-poll"></i>
+    </a>
     <a href="{{ route('monitorings.show', $id) }}" class='btn btn-default btn-xs'>
         <i class="fa fa-eye"></i>
     </a>
