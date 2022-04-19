@@ -74,4 +74,9 @@ class Kuesioner extends Model
     {
         return $this->hasMany(\App\Models\KuesionerJawaban::class, 'id_kuesioner');
     }
+
+    public function kuesionerPilihans()
+    {
+        return $this->hasMany(\App\Models\KuesionerPilihan::class, 'id_kuesioner');
+    }
 }

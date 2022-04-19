@@ -80,6 +80,11 @@ class Wilayah extends Model
      **/
     public function bts()
     {
-        return $this->hasMany(\App\Models\Bt::class, 'id_wilayah');
+        return $this->hasMany(\App\Models\Bts::class, 'id_wilayah');
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(\App\Models\Wilayah::class, 'id_parent');
     }
 }

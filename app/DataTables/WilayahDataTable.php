@@ -35,6 +35,12 @@ class WilayahDataTable extends DataTable
             }
             //change over here
            
+        })
+        ->editColumn('id_parent', function ($data) 
+        {
+            //change over here
+            if(isset($data->parent->nama)) return $data->parent->nama; 
+            else return "";
         });
     }
 
@@ -84,7 +90,7 @@ class WilayahDataTable extends DataTable
         return [
             'nama',
             'level',
-            'id_parent',
+            'parent' => ['name' => 'id_parent', 'data' => 'id_parent'], 
             'created_by',
             'edited_by',
             'edited_at'
