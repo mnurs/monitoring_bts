@@ -21,30 +21,30 @@ class MonitoringDataTable extends DataTable
         return $dataTable
         ->addColumn('action', 'monitorings.datatables_actions')
         ->editColumn('tgl_generate', function ($data) 
-        {
-            //change over here
-            return date('d-m-Y', strtotime($data->tgl_generate) );
+        { 
+            if(isset($data->tgl_generate)) return date('d-m-Y', strtotime($data->tgl_generate) );
+            else return "";
         })
         ->editColumn('edited_at', function ($data) 
-        {
-            //change over here
-            return date('d-m-Y', strtotime($data->edited_at) );
+        {   
+            if(isset($data->edited_at)) return date('d-m-Y', strtotime($data->edited_at) );
+            else return "";
         })
 
         ->editColumn('id_bts', function ($data) 
-        {
-            //change over here
-            return $data->idBts->nama;
+        { 
+            if(isset($data->idBts->nama)) return $data->idBts->nama;
+            else return  "";
         })
         ->editColumn('id_kondisi_bts', function ($data) 
-        {
-            //change over here
-            return $data->idKondisiBts->nama;
+        { 
+            if(isset($data->idKondisiBts->nama)) return $data->idKondisiBts->nama;
+            else return "";
         })
          ->editColumn('id_user_surveyor', function ($data) 
-        {
-            //change over here
-            return $data->idUserSurveyor->name;
+        { 
+            if(isset($data->idUserSurveyor->name)) return $data->idUserSurveyor->name;
+            else return "";
         });
     }
 
