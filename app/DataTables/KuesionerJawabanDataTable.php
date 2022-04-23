@@ -18,7 +18,28 @@ class KuesionerJawabanDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'kuesioner_jawabans.datatables_actions');
+        return $dataTable
+        ->addColumn('action', 'kuesioner_jawabans.datatables_actions')
+        ->editColumn('edited_at', function ($data) 
+        {   
+            if(isset($data->edited_at)) return date('d-m-Y', strtotime($data->edited_at) );
+            else return "";
+        })
+        ->editColumn('id_monitoring', function ($data) 
+        { 
+            if(isset($data->idMonitoring->idUserSurveyor->name)) return $data->idMonitoring->idUserSurveyor->name;
+            else return  "";
+        })
+        ->editColumn('id_kuesioner', function ($data) 
+        { 
+            if(isset($data->idKuesioner->pertanyaan)) return $data->idKuesioner->pertanyaan;
+            else return  "";
+        })
+        ->editColumn('jawaban', function ($data) 
+        { 
+            if(isset($data->jawabanSoal->pilihan_jawaban)) return $data->jawabanSoal->pilihan_jawaban;
+            else return  "";
+        });
     }
 
     /**
@@ -65,9 +86,9 @@ class KuesionerJawabanDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id_monitoring',
-            'id_kuesioner',
-            'jawaban',
+            'user_monitoring' => ['name' => 'id_monitoring', 'data' => 'id_monitoring'],  
+            'kuesioner' => ['name' => 'id_kuesioner', 'data' => 'id_kuesioner'],   
+            'jawaban' => ['name' => 'jawaban', 'data' => 'jawaban'],    
             'created_by',
             'edited_by',
             'edited_at'

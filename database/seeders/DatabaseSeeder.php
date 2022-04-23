@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Kuesioner;
 use App\Models\KuesionerPilihan;
+use App\Models\KuesionerJawaban;
 use App\Models\Pemilik;
 use App\Models\Jenis;
 use App\Models\Bts;
@@ -27,7 +28,8 @@ class DatabaseSeeder extends Seeder
         // Jenis::factory(5)->create();
         // Bts::factory(5)->create();
         // Monitoring::factory(5)->create();
-        KuesionerPilihan::factory(25)->create();
+        // KuesionerPilihan::factory(25)->create();
         // Kuesioner::factory(5)->create();
+         KuesionerJawaban::factory(10)->create();
     }
 }

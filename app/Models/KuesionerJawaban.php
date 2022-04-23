@@ -88,7 +88,7 @@ class KuesionerJawaban extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function jawaban()
+    public function jawabanSoal()
     {
         return $this->belongsTo(\App\Models\KuesionerPilihan::class, 'jawaban');
     }
