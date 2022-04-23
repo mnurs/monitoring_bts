@@ -18,7 +18,22 @@ class UserDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'users.datatables_actions');
+        return $dataTable
+        ->addColumn('action', 'users.datatables_actions')
+        ->editColumn('role', function ($data) 
+        {   
+           if($data->role == 1){
+                return "Admin";
+            }else if($data->role == 2){
+                return "Surveyor"; 
+            } 
+            else return "";
+        })
+        ->editColumn('edited_at', function ($data) 
+        {   
+            if(isset($data->edited_at)) return date('d-m-Y', strtotime($data->edited_at) );
+            else return "";
+        });
     }
 
     /**
