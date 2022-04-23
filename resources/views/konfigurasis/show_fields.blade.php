@@ -1,30 +1,30 @@
 <!-- Name Field -->
-<div class="col-sm-12">
+<div class="col-sm-6">
     {!! Form::label('name', 'Name:') !!}
-    <p>{{ $konfigurasi->name }}</p>
+    <input type="text" name="name" class="form-control" value="@if(isset($konfigurasi->name)){{ $konfigurasi->name }}@endif" disabled>  
 </div>
 
 <!-- Value Field -->
-<div class="col-sm-12">
+<div class="col-sm-6">
     {!! Form::label('value', 'Value:') !!}
-    <p>{{ $konfigurasi->value }}</p>
+    <input type="text" name="value" class="form-control" value="@if(isset($konfigurasi->value)){{ $konfigurasi->value }}@endif" disabled>  
 </div>
 
 <!-- Created By Field -->
-<div class="col-sm-12">
+<div class="col-sm-6">
     {!! Form::label('created_by', 'Created By:') !!}
-    <p>{{ $konfigurasi->created_by }}</p>
+    <input type="text" name="created_by" class="form-control" value="@if(isset($konfigurasi->created_by)){{ $konfigurasi->created_by }}@endif" disabled>  
 </div>
 
 <!-- Edited By Field -->
-<div class="col-sm-12">
+<div class="col-sm-6">
     {!! Form::label('edited_by', 'Edited By:') !!}
-    <p>{{ $konfigurasi->edited_by }}</p>
+    <input type="text" name="edited_by" class="form-control" value="@if(isset($konfigurasi->edited_by)){{ $konfigurasi->edited_by }}@endif" disabled>  
 </div>
 
 <!-- Edited At Field -->
-<div class="col-sm-12">
+<div class="col-sm-6">
     {!! Form::label('edited_at', 'Edited At:') !!}
-    <p>{{ $konfigurasi->edited_at }}</p>
+    <input type="text" name="edited_at" class="form-control" value="@if(isset($konfigurasi->edited_at)){{ $konfigurasi->edited_at }}@endif" disabled>  
 </div>
 
