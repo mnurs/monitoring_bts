@@ -91,14 +91,16 @@ class MonitoringController extends AppBaseController
     public function show($id)
     {
         $monitoring = $this->monitoringRepository->find($id);
-
+        $kuesioner = $this->kuesionerRepository->all();
         if (empty($monitoring)) {
             Flash::error('Monitoring not found');
 
             return redirect(route('monitorings.index'));
         }
 
-        return view('monitorings.show')->with('monitoring', $monitoring);
+        return view('monitorings.show')
+        ->with('monitoring', $monitoring)
+        ->with('kuesioner', $kuesioner);
     }
 
     /**
