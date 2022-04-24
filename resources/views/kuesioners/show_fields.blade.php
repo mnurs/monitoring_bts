@@ -1,6 +1,6 @@
 <!-- Jawaban Field -->
 <div class="col-sm-12">
-    {!! Form::label('jawaban', 'Jawaban:') !!}
+    {!! Form::label('pertanyaan', 'pertanyaan:') !!}
     <p>{{ $kuesioner->jawaban }}</p>
 </div>
 
