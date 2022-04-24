@@ -1,24 +1,24 @@
 <!-- Jawaban Field -->
 <div class="col-sm-12">
     {!! Form::label('pertanyaan', 'pertanyaan:') !!}
-    <p>{{ $kuesioner->jawaban }}</p>
+    <input type="text" name="nama" class="form-control" value="{{ $kuestioner->jawaban }}" readonly>
 </div>
 
 <!-- Created By Field -->
 <div class="col-sm-12">
     {!! Form::label('created_by', 'Created By:') !!}
-    <p>{{ $kuesioner->created_by }}</p>
+    <input type="text" name="nama" class="form-control" value="{{ $kuestioner->created_by }}" readonly>
 </div>
 
 <!-- Edited By Field -->
 <div class="col-sm-12">
     {!! Form::label('edited_by', 'Edited By:') !!}
-    <p>{{ $kuesioner->edited_by }}</p>
+    <input type="text" name="nama" class="form-control" value="{{ $kuestioner->edited_by }}" readonly>
 </div>
 
 <!-- Edited At Field -->
 <div class="col-sm-12">
     {!! Form::label('edited_at', 'Edited At:') !!}
-    <p>{{ $kuesioner->edited_at }}</p>
+    <input type="text" name="nama" class="form-control" value="{{ $kuestioner->edited_at }}" readonly>
 </div>
 
