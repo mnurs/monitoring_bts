@@ -7,7 +7,7 @@
 <!-- Path Foto Field -->
 <div class="col-sm-6">
     {!! Form::label('path_foto', 'Path Foto:') !!}
-    <input type="text" name="pertanyaan" class="form-control" value="@if(isset($foto->idBts->nama)){{ $foto->idBts->nama }}@endif" disabled> 
+    <input type="text" name="pertanyaan" class="form-control" value="@if(isset($foto->path_foto)){{ $foto->path_foto }}@endif" disabled> 
 </div>
 
 <!-- Created By Field -->
