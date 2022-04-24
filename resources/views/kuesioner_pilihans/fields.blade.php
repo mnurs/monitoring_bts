@@ -1,6 +1,6 @@
 <!-- Id Kuesioner Field -->
 <div class="form-group col-sm-6">
-{!! Form::label('id_kuesioner', 'Kuesioner:') !!}
+{!! Form::label('kuesioner', 'Kuesioner:') !!}
     <input type="text" name="Kuesioner" class="form-control" value="@if(isset($kuesioner_pilihan->kuesioner)){{ $kuesioner_pilihan->kuesioner }}@endif" disabled>
 </div>
 
