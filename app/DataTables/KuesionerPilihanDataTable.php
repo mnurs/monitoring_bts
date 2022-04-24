@@ -76,7 +76,7 @@ class KuesionerPilihanDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'kuesioner' => ['name' => 'id_kuesioner', 'data' => 'id_kuesioner'],
+            'kuesioner' => ['name' => 'kuesioner', 'data' => 'kuesioner'],
             'pilihan_jawaban',
             'created_by',
             'edited_by',
