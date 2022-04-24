@@ -14,7 +14,7 @@
                     </a>
                     <a class="btn btn-primary float-right"
                        href="#">
-                        Generate Kunjungan
+                        Generate Survey
                     </a>
                 </div>
             </div>

@@ -68,13 +68,13 @@
 <!-- Ada Genset Field -->
 <div class="form-group  col-sm-3">
 {!! Form::label('ada_genset', 'Ada Genset:') !!}
-        <input type="checkbox" name="nama" class="form-control" value="{{ $bts->ada_genset }}" readonly> 
+        <input type="checkbox" name="nama" class="form-control" value="{{ $bts->ada_genset }}" disabled> 
     </div>
 
 <!-- Ada Tembok Batas Field -->
 <div class="form-group  col-sm-3">
 {!! Form::label('ada_tembok_batas', 'Ada Tembok Batas:') !!}
-        <input type="checkbox" name="nama" class="form-control" value="{{ $bts->ada_tembok_batas }}" readonly> 
+        <input type="checkbox" name="nama" class="form-control" value="{{ $bts->ada_tembok_batas }}" disabled> 
     </div>
 
 <!-- Created By Field -->
@@ -90,8 +90,16 @@
     </div>
 
 <!-- Edited At Field -->
-<div class="col-sm-12">
+<div class="form-group col-sm-6">
     {!! Form::label('edited_at', 'Edited At:') !!}
-    <p>{{ $bts->edited_at }}</p>
+        <input type="text" name="nama" class="form-control" value="{{ $bts->edited_at }}" readonly>  
 </div>
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.3498586014!2d106.94055531485441!3d-6.217509995499168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698c9c16c45925%3A0xfe61b1a03d0cde66!2sBTS%20TELKOMSEL%20BULAK%20JAYA!5e0!3m2!1sen!2sid!4v1650791236229!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<div class="form-group col-sm-6"> 
+</div>
+<div class="form-group col-sm-6">
+    {!! Form::label('edited_at', 'Foto') !!}
+     <img src="https://via.placeholder.com/200x200.png" width="200" height="200"> 
+</div>
+<div class="col-sm-12">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.3498586014!2d106.94055531485441!3d-6.217509995499168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698c9c16c45925%3A0xfe61b1a03d0cde66!2sBTS%20TELKOMSEL%20BULAK%20JAYA!5e0!3m2!1sen!2sid!4v1650791236229!5m2!1sen!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
