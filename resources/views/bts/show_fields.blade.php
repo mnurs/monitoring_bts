@@ -1,96 +1,97 @@
+<div class="row">
 <!-- Id User Pic Field -->
-<div class="col-sm-12">
-    {!! Form::label('id_user_pic', 'User Pic:') !!}
-    <p>{{ $bts->id_user_pic }}</p>
-</div>
+<div class="form-group  col-sm-6">
+        {!! Form::label('id_user_pic', 'User Pic:') !!}
+        <input type="text" name="nama" class="form-control" value="{{ $bts->idUserPic->name }}" readonly> 
+    </div>
 
 <!-- Id Pemilik Field -->
-<div class="col-sm-12">
-    {!! Form::label('id_pemilik', 'Pemilik:') !!}
-    <p>{{ $bts->id_pemilik }}</p>
-</div>
+<div class="form-group  col-sm-6">
+        {!! Form::label('id_pemilik', 'Pemilik:') !!}
+        <input type="text" name="nama" class="form-control" value="{{ $bts->idPemilik->nama }}" readonly> 
+    </div>
 
 <!-- Id Wilayah Field -->
-<div class="col-sm-12">
-    {!! Form::label('id_wilayah', 'Wilayah:') !!}
-    <p>{{ $bts->id_wilayah }}</p>
-</div>
+<div class="form-group  col-sm-6">
+        {!! Form::label('id_wilayah', 'Wilayah:') !!}
+        <input type="text" name="nama" class="form-control" value="{{ $bts->idWilayah->nama }}" readonly> 
+    </div>
 
-<!-- Id Jenis Bts Field -->
-<div class="col-sm-12">
-    {!! Form::label('id_jenis_bts', 'Jenis Bts:') !!}
-    <p>{{ $bts->id_jenis_bts }}</p>
-</div>
+<!-- Id Jenis Bts Field --> 
+<div class="form-group  col-sm-6">
+        {!! Form::label('id_jenis_bts', 'Jenis Bts:') !!}
+        <input type="text" name="nama" class="form-control" value="{{ $bts->idJenisBts->nama }}" readonly> 
+    </div>
 
 <!-- Nama Field -->
-<div class="col-sm-12">
-    {!! Form::label('nama', 'Nama:') !!}
-    <p>{{ $bts->nama }}</p>
-</div>
+<div class="form-group  col-sm-6">
+        {!! Form::label('nama', 'Nama:') !!}
+        <input type="text" name="nama" class="form-control" value="{{ $bts->nama }}" readonly> 
+    </div>
 
 <!-- Alamat Field -->
-<div class="col-sm-12">
-    {!! Form::label('alamat', 'Alamat:') !!}
-    <p>{{ $bts->alamat }}</p>
-</div>
+<div class="form-group  col-sm-6">
+        {!! Form::label('alamat', 'Alamat:') !!}
+        <input type="text" name="nama" class="form-control" value="{{ $bts->alamat }}" readonly> 
+    </div>
 
 <!-- Latitude Field -->
-<div class="col-sm-12">
-    {!! Form::label('latitude', 'Latitude:') !!}
-    <p>{{ $bts->latitude }}</p>
-</div>
+<div class="form-group  col-sm-6">
+        {!! Form::label('latitude', 'Latitude:') !!}
+        <input type="text" name="nama" class="form-control" value="{{ $bts->latitude }}" readonly> 
+    </div>
 
 <!-- Longitude Field -->
-<div class="col-sm-12">
-    {!! Form::label('longitude', 'Longitude:') !!}
-    <p>{{ $bts->longitude }}</p>
-</div>
+<div class="form-group  col-sm-6">
+        {!! Form::label('longitude', 'Longitude:') !!}
+        <input type="text" name="nama" class="form-control" value="{{ $bts->longitude }}" readonly> 
+    </div>
 
 <!-- Tinggi Tower Field -->
-<div class="col-sm-12">
-    {!! Form::label('tinggi_tower', 'Tinggi Tower:') !!}
-    <p>{{ $bts->tinggi_tower }}</p>
-</div>
+<div class="form-group  col-sm-6">
+        {!! Form::label('tinggi_tower', 'Tinggi Tower:') !!}
+        <input type="text" name="nama" class="form-control" value="{{ $bts->tinggi_tower }}" readonly> 
+    </div>
 
 <!-- Panjang Tanah Field -->
-<div class="col-sm-12">
-    {!! Form::label('panjang_tanah', 'Panjang Tanah:') !!}
-    <p>{{ $bts->panjang_tanah }}</p>
-</div>
+<div class="form-group  col-sm-6">
+{!! Form::label('panjang_tanah', 'Panjang Tanah:') !!}
+        <input type="text" name="nama" class="form-control" value="{{ $bts->panjang_tanah }}" readonly> 
+    </div>
 
 <!-- Lebar Tanah Field -->
-<div class="col-sm-12">
-    {!! Form::label('lebar_tanah', 'Lebar Tanah:') !!}
-    <p>{{ $bts->lebar_tanah }}</p>
-</div>
+<div class="form-group  col-sm-6">
+{!! Form::label('lebar_tanah', 'Lebar Tanah:') !!}
+        <input type="text" name="nama" class="form-control" value="{{ $bts->lebar_tanah }}" readonly> 
+    </div>
 
 <!-- Ada Genset Field -->
-<div class="col-sm-12">
-    {!! Form::label('ada_genset', 'Ada Genset:') !!}
-    <p>{{ $bts->ada_genset }}</p>
-</div>
+<div class="form-group  col-sm-3">
+{!! Form::label('ada_genset', 'Ada Genset:') !!}
+        <input type="checkbox" name="nama" class="form-control" value="{{ $bts->ada_genset }}" readonly> 
+    </div>
 
 <!-- Ada Tembok Batas Field -->
-<div class="col-sm-12">
-    {!! Form::label('ada_tembok_batas', 'Ada Tembok Batas:') !!}
-    <p>{{ $bts->ada_tembok_batas }}</p>
-</div>
+<div class="form-group  col-sm-3">
+{!! Form::label('ada_tembok_batas', 'Ada Tembok Batas:') !!}
+        <input type="checkbox" name="nama" class="form-control" value="{{ $bts->ada_tembok_batas }}" readonly> 
+    </div>
 
 <!-- Created By Field -->
-<div class="col-sm-12">
-    {!! Form::label('created_by', 'Created By:') !!}
-    <p>{{ $bts->created_by }}</p>
-</div>
+<div class="form-group  col-sm-6">
+{!! Form::label('created_by', 'Created By:') !!}
+        <input type="text" name="nama" class="form-control" value="{{ $bts->created_by }}" readonly> 
+    </div>
 
 <!-- Edited By Field -->
-<div class="col-sm-12">
-    {!! Form::label('edited_by', 'Edited By:') !!}
-    <p>{{ $bts->edited_by }}</p>
-</div>
+<div class="form-group  col-sm-6">
+{!! Form::label('edited_by', 'Edited By:') !!}
+        <input type="text" name="nama" class="form-control" value="{{ $bts->edited_by }}" readonly> 
+    </div>
 
 <!-- Edited At Field -->
 <div class="col-sm-12">
     {!! Form::label('edited_at', 'Edited At:') !!}
     <p>{{ $bts->edited_at }}</p>
 </div>
-
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.3498586014!2d106.94055531485441!3d-6.217509995499168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698c9c16c45925%3A0xfe61b1a03d0cde66!2sBTS%20TELKOMSEL%20BULAK%20JAYA!5e0!3m2!1sen!2sid!4v1650791236229!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>

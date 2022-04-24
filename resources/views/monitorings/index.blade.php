@@ -12,6 +12,10 @@
                        href="{{ route('monitorings.create') }}">
                         Add New
                     </a>
+                    <a class="btn btn-primary float-right"
+                       href="#">
+                        Generate Kunjungan
+                    </a>
                 </div>
             </div>
         </div>
