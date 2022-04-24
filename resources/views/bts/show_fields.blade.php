@@ -1,24 +1,24 @@
 <!-- Id User Pic Field -->
 <div class="col-sm-12">
-    {!! Form::label('id_user_pic', 'Id User Pic:') !!}
+    {!! Form::label('id_user_pic', 'User Pic:') !!}
     <p>{{ $bts->id_user_pic }}</p>
 </div>
 
 <!-- Id Pemilik Field -->
 <div class="col-sm-12">
-    {!! Form::label('id_pemilik', 'Id Pemilik:') !!}
+    {!! Form::label('id_pemilik', 'Pemilik:') !!}
     <p>{{ $bts->id_pemilik }}</p>
 </div>
 
 <!-- Id Wilayah Field -->
 <div class="col-sm-12">
-    {!! Form::label('id_wilayah', 'Id Wilayah:') !!}
+    {!! Form::label('id_wilayah', 'Wilayah:') !!}
     <p>{{ $bts->id_wilayah }}</p>
 </div>
 
 <!-- Id Jenis Bts Field -->
 <div class="col-sm-12">
-    {!! Form::label('id_jenis_bts', 'Id Jenis Bts:') !!}
+    {!! Form::label('id_jenis_bts', 'Jenis Bts:') !!}
     <p>{{ $bts->id_jenis_bts }}</p>
 </div>
 
