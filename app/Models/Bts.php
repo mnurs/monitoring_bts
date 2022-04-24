@@ -125,7 +125,7 @@ class Bts extends Model
      **/
     public function idJenisBts()
     {
-        return $this->belongsTo(\App\Models\Jeni::class, 'id_jenis_bts');
+        return $this->belongsTo(\App\Models\Jenis::class, 'id_jenis_bts');
     }
 
     /**
