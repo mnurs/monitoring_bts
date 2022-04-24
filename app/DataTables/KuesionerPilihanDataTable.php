@@ -19,7 +19,12 @@ class KuesionerPilihanDataTable extends DataTable
         $dataTable = new EloquentDataTable($query);
 
         return $dataTable
-        ->addColumn('action', 'konfigurasis.datatables_actions')
+        ->addColumn('action', 'kuesioner_pilihans.datatables_actions')
+        ->editColumn('id_kuesioner', function ($data) 
+        { 
+            if(isset($data->idKuesioner->pertanyaan)) return $data->idKuesioner->pertanyaan;
+            else return "";
+        })
         ->editColumn('edited_at', function ($data) 
         {   
             if(isset($data->edited_at)) return date('d-m-Y', strtotime($data->edited_at) );
@@ -71,7 +76,7 @@ class KuesionerPilihanDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'kuesioner' => ['name' => 'kuesioner', 'data' => 'pertanyaan'],
+            'kuesioner' => ['name' => 'id_kuesioner', 'data' => 'id_kuesioner'],
             'pilihan_jawaban',
             'created_by',
             'edited_by',
