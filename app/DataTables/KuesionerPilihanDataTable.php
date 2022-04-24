@@ -18,7 +18,13 @@ class KuesionerPilihanDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'kuesioner_pilihans.datatables_actions');
+        return $dataTable
+        ->addColumn('action', 'konfigurasis.datatables_actions')
+        ->editColumn('edited_at', function ($data) 
+        {   
+            if(isset($data->edited_at)) return date('d-m-Y', strtotime($data->edited_at) );
+            else return "";
+        });
     }
 
     /**
