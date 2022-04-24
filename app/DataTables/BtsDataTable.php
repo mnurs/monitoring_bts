@@ -18,7 +18,32 @@ class BtsDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'bts.datatables_actions');
+        return $dataTable->addColumn('action', 'bts.datatables_actions')
+        ->editColumn('edited_at', function ($data) 
+        {   
+            if(isset($data->edited_at)) return date('d-m-Y', strtotime($data->edited_at) );
+            else return "";
+        })
+        ->editColumn('id_user_pic', function ($data) 
+        { 
+            if(isset($data->idUserPic->name)) return $data->idUserPic->name;
+            else return  "";
+        })
+        ->editColumn('id_pemilik', function ($data) 
+        { 
+            if(isset($data->idPemilik->nama)) return $data->idPemilik->nama;
+            else return  "";
+        })
+        ->editColumn('id_wilayah', function ($data) 
+        { 
+            if(isset($data->idWilayah->nama)) return $data->idWilayah->nama;
+            else return  "";
+        })
+        ->editColumn('id_jenis_bts', function ($data) 
+        { 
+            if(isset($data->idJenisBts->nama)) return $data->idJenisBts->nama;
+            else return  "";
+        });
     }
 
     /**
@@ -64,20 +89,20 @@ class BtsDataTable extends DataTable
      */
     protected function getColumns()
     {
-        return [
-            'id_user_pic',
-            'id_pemilik',
-            'id_wilayah',
-            'id_jenis_bts',
+        return [ 
+            'user_pic' => ['name' => 'id_user_pic', 'data' => 'id_user_pic'],
+            'pemilik' => ['name' => 'id_pemilik', 'data' => 'id_pemilik'],
+            'wilayah' => ['name' => 'id_wilayah', 'data' => 'id_wilayah'],
+            'jenis_bts' => ['name' => 'id_jenis_bts', 'data' => 'id_jenis_bts'], 
             'nama',
-            'alamat',
-            'latitude',
-            'longitude',
-            'tinggi_tower',
-            'panjang_tanah',
-            'lebar_tanah',
-            'ada_genset',
-            'ada_tembok_batas',
+            // 'alamat',
+            // 'latitude',
+            // 'longitude',
+            // 'tinggi_tower',
+            // 'panjang_tanah',
+            // 'lebar_tanah',
+            // 'ada_genset',
+            // 'ada_tembok_batas',
             'created_by',
             'edited_by',
             'edited_at'

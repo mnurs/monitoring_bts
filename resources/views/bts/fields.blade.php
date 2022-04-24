@@ -65,7 +65,7 @@
 </div>
 
 <!-- Ada Genset Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-3">
     <div class="form-check">
         {!! Form::hidden('ada_genset', 0, ['class' => 'form-check-input']) !!}
         {!! Form::checkbox('ada_genset', '1', null, ['class' => 'form-check-input']) !!}
@@ -75,7 +75,7 @@
 
 
 <!-- Ada Tembok Batas Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-3">
     <div class="form-check">
         {!! Form::hidden('ada_tembok_batas', 0, ['class' => 'form-check-input']) !!}
         {!! Form::checkbox('ada_tembok_batas', '1', null, ['class' => 'form-check-input']) !!}
@@ -84,24 +84,29 @@
 </div>
 
 
-<!-- Created By Field -->
 <div class="form-group col-sm-6">
+    {!! Form::label('foto', 'Foto:') !!}
+    <br>
+    <img src="https://via.placeholder.com/200x200.png" width="200" height="200"> 
+</div>
+<!-- Created By Field -->
+<!-- <div class="form-group col-sm-6">
     {!! Form::label('created_by', 'Created By:') !!}
     {!! Form::text('created_by', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255,'maxlength' => 255]) !!}
-</div>
+</div> -->
 
 <!-- Edited By Field -->
-<div class="form-group col-sm-6">
+<!-- <div class="form-group col-sm-6">
     {!! Form::label('edited_by', 'Edited By:') !!}
     {!! Form::text('edited_by', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255,'maxlength' => 255]) !!}
-</div>
+</div> -->
 
 <!-- Edited At Field -->
-<div class="form-group col-sm-6">
+<!-- <div class="form-group col-sm-6">
     {!! Form::label('edited_at', 'Edited At:') !!}
     {!! Form::text('edited_at', null, ['class' => 'form-control','id'=>'edited_at']) !!}
 </div>
-
+ -->
 @push('page_scripts')
     <script type="text/javascript">
         $('#edited_at').datetimepicker({

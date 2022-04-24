@@ -98,6 +98,7 @@
 </div>
 <div class="form-group col-sm-6">
     {!! Form::label('edited_at', 'Foto') !!}
+    <br>
      <img src="https://via.placeholder.com/200x200.png" width="200" height="200"> 
 </div>
 <div class="col-sm-12">
