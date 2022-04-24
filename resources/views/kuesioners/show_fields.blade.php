@@ -7,7 +7,7 @@
 <!-- Jawaban Field -->
 <div class="col-sm-12">
     {!! Form::label('jawaban', 'jawaban:') !!}
-    <input type="text" name="jawaban" class="form-control" value="@if(isset($kuesioner->jawaban)){{ $kuesioner->jawaban }}@endif" disabled>
+    <input type="text" name="jawaban" class="form-control" value="{{ $kuesioner->jawaban }}" readonly> 
 </div>
 
 <!-- Created By Field -->
