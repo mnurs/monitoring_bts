@@ -1,24 +1,24 @@
 <!-- Id User Pic Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('id_user_pic', 'Id User Pic:') !!}
+    {!! Form::label('id_user_pic', 'User Pic:') !!}
     {!! Form::number('id_user_pic', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Id Pemilik Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('id_pemilik', 'Id Pemilik:') !!}
+    {!! Form::label('id_pemilik', 'Pemilik:') !!}
     {!! Form::number('id_pemilik', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Id Wilayah Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('id_wilayah', 'Id Wilayah:') !!}
+    {!! Form::label('id_wilayah', 'Wilayah:') !!}
     {!! Form::number('id_wilayah', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Id Jenis Bts Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('id_jenis_bts', 'Id Jenis Bts:') !!}
+    {!! Form::label('id_jenis_bts', 'Jenis Bts:') !!}
     {!! Form::number('id_jenis_bts', null, ['class' => 'form-control']) !!}
 </div>
 
