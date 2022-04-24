@@ -1,6 +1,6 @@
 <!-- Id Kuesioner Field -->
 <div class="col-sm-12">
-    {!! Form::label('id_kuesioner', 'Id Kuesioner:') !!}
+    {!! Form::label('Kuesioner', 'Kuesioner:') !!}
     <p>{{ $kuesionerPilihan->id_kuesioner }}</p>
 </div>
 
