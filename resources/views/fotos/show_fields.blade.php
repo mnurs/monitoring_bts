@@ -1,7 +1,7 @@
 <!-- Id Bts Field -->
 <div class="col-sm-12">
-    {!! Form::label('id_bts', 'Id Bts:') !!}
-    <p>{{ $foto->id_bts }}</p>
+    {!! Form::label('id_bts', 'Bts:') !!}
+    <p>{{ $foto->id_bts->nama }}</p>
 </div>
 
 <!-- Path Foto Field -->

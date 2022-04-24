@@ -18,7 +18,13 @@ class FotoDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'fotos.datatables_actions');
+        return $dataTable
+        ->addColumn('action', 'fotos.datatables_actions')
+        ->editColumn('edited_at', function ($data) 
+        {   
+            if(isset($data->edited_at)) return date('d-m-Y', strtotime($data->edited_at) );
+            else return "";
+        });
     }
 
     /**
@@ -65,7 +71,7 @@ class FotoDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id_bts',
+            'bts' => ['name' => 'id_bts', 'data' => 'id_bts'],
             'path_foto',
             'created_by',
             'edited_by',
