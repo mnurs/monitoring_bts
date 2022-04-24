@@ -1,7 +1,13 @@
+<!-- Pertanyaan Field -->
+<div class="form-group col-sm-12 col-lg-12">
+    {!! Form::label('pertanyaan', 'pertanyaan:') !!}
+    {!! Form::textarea('Pertanyaan', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Jawaban Field -->
 <div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('jawaban', 'Jawaban:') !!}
-    {!! Form::textarea('jawaban', null, ['class' => 'form-control']) !!}
+    {!! Form::label('jawaban', 'jawaban:') !!}
+    {!! Form::textarea('Jawaban', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Created By Field -->

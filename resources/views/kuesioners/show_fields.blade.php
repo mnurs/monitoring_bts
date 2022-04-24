@@ -1,6 +1,12 @@
-<!-- Jawaban Field -->
+<!-- pertanyaan Field -->
 <div class="col-sm-12">
     {!! Form::label('pertanyaan', 'pertanyaan:') !!}
+    <input type="text" name="pertanyaan" class="form-control" value="@if(isset($kuesioner->pertanyaan)){{ $kuesioner->pertanyaan }}@endif" disabled>
+</div>
+
+<!-- Jawaban Field -->
+<div class="col-sm-12">
+    {!! Form::label('jawaban', 'jawaban:') !!}
     <input type="text" name="jawaban" class="form-control" value="@if(isset($kuesioner->jawaban)){{ $kuesioner->jawaban }}@endif" disabled>
 </div>
 
