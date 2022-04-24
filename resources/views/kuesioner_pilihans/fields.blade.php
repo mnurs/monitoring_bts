@@ -1,7 +1,7 @@
 <!-- Id Kuesioner Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('kuesioner', 'kuesioner:') !!}
-    <input type="text" name="kuesioner" class="form-control" value="@if(isset($kuesioner_pilihan->kuesioner)){{ $kuesioner_pilihan->kuesioner }}@endif" disabled>
+{!! Form::label('id_kuesioner', 'Kuesioner:') !!}
+    <input type="text" name="Kuesioner" class="form-control" value="@if(isset($kuesioner_pilihan->kuesioner)){{ $kuesioner_pilihan->kuesioner }}@endif" disabled>
 </div>
 
 <!-- Pilihan Jawaban Field -->
