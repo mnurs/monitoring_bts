@@ -76,6 +76,6 @@ class Foto extends Model
      **/
     public function idBts()
     {
-        return $this->belongsTo(\App\Models\Bt::class, 'id_bts');
+        return $this->belongsTo(\App\Models\Bts::class, 'id_bts');
     }
 }
