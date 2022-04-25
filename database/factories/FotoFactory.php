@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Foto;
+use App\Models\Bts;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class FotoFactory extends Factory
@@ -21,8 +22,9 @@ class FotoFactory extends Factory
      */
     public function definition()
     {
+        $bts = Bts::select('id')->inRandomOrder()->first();
         return [
-            'id_bts' => $this->faker->randomDigitNotNull,
+            'id_bts' => $bts->id,
             'path_foto' => $this->faker->text,
             'created_by' => $this->faker->word,
             'created_at' => $this->faker->date('Y-m-d H:i:s'),
