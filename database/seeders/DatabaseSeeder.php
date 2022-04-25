@@ -11,6 +11,7 @@ use App\Models\Jenis;
 use App\Models\Bts;
 use App\Models\Kondisi;
 use App\Models\Monitoring;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -31,5 +32,15 @@ class DatabaseSeeder extends Seeder
         // KuesionerPilihan::factory(25)->create();
         // Kuesioner::factory(5)->create();
          KuesionerJawaban::factory(10)->create();
+
+         $this->call([
+            PermissionsTableSeeder::class,
+            RolesTableSeeder::class,
+            PermissionRoleTableSeeder::class,
+            UsersTableSeeder::class,
+            RoleUserTableSeeder::class,
+            UsersTableSeed::class,
+        ]);
     }
+
 }

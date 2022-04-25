@@ -1,28 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
+use App\User;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
-use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class HomeController
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $number_blocks = [
@@ -69,9 +53,8 @@ class HomeController extends Controller
             'column_class'       => 'col-md-12',
             'entries_number'     => '5',
         ];
-        // $chart = new LaravelChart($chart_settings);
-        // , 'chart'
-        return view('home', compact('number_blocks', 'list_blocks'));
-      
+        $chart = new LaravelChart($chart_settings);
+
+        return view('home', compact('number_blocks', 'list_blocks', 'chart'));
     }
 }
