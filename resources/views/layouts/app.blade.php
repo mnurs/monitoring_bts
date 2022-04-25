@@ -70,13 +70,7 @@
                     </li>
                     <!-- Menu Footer-->
                     <li class="user-footer">
-                        <a href="#" class="btn btn-default btn-flat"
-                            onclick="event.preventDefault(); document.getElementById('change-pass').submit();">Profile
-                        </a>
-                        <form id="change-pass" action="{{ route('change.password') }}" method="POST" class="d-none">
-                        @csrf
-                        </form>
-
+                        <a href="{{ url('change-password') }}#" class="btn btn-default btn-flat">Profile</a>
                         <a href="#" class="btn btn-default btn-flat float-right"
                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             Sign out
