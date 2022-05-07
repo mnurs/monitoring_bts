@@ -8,20 +8,29 @@ use App\Http\Requests\CreateMonitoringRequest;
 use App\Http\Requests\UpdateMonitoringRequest;
 use App\Repositories\MonitoringRepository;
 use App\Repositories\KuesionerRepository;
+use App\Repositories\BtsRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use App\Models\User;
+use App\Models\Monitoring;
 
 class MonitoringController extends AppBaseController
 {
     /** @var MonitoringRepository $monitoringRepository*/
     private $monitoringRepository;
     private $kuesionerRepository;
+    private $btsRepository;
 
-    public function __construct(MonitoringRepository $monitoringRepo,KuesionerRepository $kuesionerRepo)
+    public function __construct(
+        MonitoringRepository $monitoringRepo,
+        KuesionerRepository $kuesionerRepo,
+        BtsRepository $btsRepo
+    )
     {
         $this->monitoringRepository = $monitoringRepo;
         $this->kuesionerRepository = $kuesionerRepo;
+        $this->btsRepository = $btsRepo;
     }
 
     /**
@@ -61,6 +70,33 @@ class MonitoringController extends AppBaseController
         ->with('monitoring', $monitoring)
         ->with('kuesioner', $kuesioner)
         ->with('flag', true);
+    }
+
+    public function generateKunjungan(){
+        $bts = $this->btsRepository->all();
+        foreach ($bts as $key => $data) {
+            $cek = Monitoring::
+                        where('id_bts',$data->id)->
+                        where('tgl_generate',date('Y-m-d'))->
+                        first();
+
+            if(empty($cek)){
+                $users = User::inRandomOrder()->first();
+                $input = [
+                    'id_bts' => $data->id,
+                    'id_user_surveyor' => $users->id,
+                    'tgl_generate' => date('Y-m-d'),
+                    'tahun' => date('Y'),
+                    'created_by' => "admin"
+                ];
+                $monitoring = $this->monitoringRepository->create($input);
+            }
+            
+        }
+
+         Flash::success('Generate Monitoring successfully.');
+
+        return redirect(route('monitorings.index'));
     }
 
     /**

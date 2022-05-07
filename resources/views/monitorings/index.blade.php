@@ -12,10 +12,12 @@
                        href="{{ route('monitorings.create') }}">
                         Add New
                     </a>
-                    <a class="btn btn-primary float-right"
-                       href="#">
-                        Generate Survey
+                    <a href="#" class="btn btn-primary float-right" onclick="event.preventDefault(); document.getElementById('generate-form').submit();">
+                             Generate Survey
                     </a>
+                    <form id="generate-form" action="{{ url('monitoring/generate') }}" method="POST" class="d-none">
+                        @csrf
+                    </form> 
                 </div>
             </div>
         </div>

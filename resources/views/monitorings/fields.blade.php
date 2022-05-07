@@ -5,12 +5,6 @@
     {!! Form::hidden('id_bts', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Id Kondisi Bts Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('id_kondisi_bts', 'Kondisi Bts:') !!}
-    <input type="text" name="kondisi" class="form-control" value="@if(isset($monitoring->idKondisiBts->nama)){{$monitoring->idKondisiBts->nama}}@endif" @if(isset($flag)) disabled @endif>
-    {!! Form::hidden('id_kondisi_bts', null, ['class' => 'form-control']) !!}
-</div>
 
 <!-- Id User Surveyor Field -->
 <div class="form-group col-sm-6">
@@ -24,6 +18,21 @@
     {!! Form::label('tgl_generate', 'Tgl Generate:') !!} 
     <input type="text" name="tgl_generate" class="form-control" id="tgl_generate" value="@if(isset($monitoring->tgl_generate)){{$monitoring->tgl_generate}}@endif" @if(isset($flag)) disabled @endif>
     <!-- {!! Form::text('tgl_generate', null, ['class' => 'form-control','id'=>'tgl_generate']) !!} -->
+</div>
+
+
+<!-- Tahun Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('tahun', 'Tahun:') !!}
+    <input type="text" name="tahun" class="form-control" id="tahun" value="@if(isset($monitoring->tahun)){{$monitoring->tahun}}@endif" @if(isset($flag)) disabled @endif> 
+</div>
+
+
+<!-- Id Kondisi Bts Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('id_kondisi_bts', 'Kondisi Bts:') !!}
+    <input type="text" name="kondisi" class="form-control" value="@if(isset($monitoring->idKondisiBts->nama)){{$monitoring->idKondisiBts->nama}}@endif" >
+    {!! Form::hidden('id_kondisi_bts', null, ['class' => 'form-control']) !!}
 </div>
 
 @push('page_scripts')
@@ -51,12 +60,6 @@
         })
     </script>
 @endpush
-
-<!-- Tahun Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('tahun', 'Tahun:') !!}
-    {!! Form::number('tahun', null, ['class' => 'form-control']) !!}
-</div>
 
 <!-- Created By Field -->
 <!-- <div class="form-group col-sm-6">
