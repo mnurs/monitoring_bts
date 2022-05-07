@@ -6,5 +6,14 @@
 
 @push('third_party_scripts')
     @include('layouts.datatables_js')
+    <script type="text/javascript">
+		$(document).ready(function () {
+		    // Setup - add a text input to each footer cell
+		    $('#dataTableBuilder thead tr')
+		        .clone(true)
+		        .addClass('filters')
+		        .appendTo('#dataTableBuilder thead');
+		});
+	</script>
     {!! $dataTable->scripts() !!}
 @endpush

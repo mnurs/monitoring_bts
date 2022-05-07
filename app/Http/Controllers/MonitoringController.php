@@ -42,6 +42,8 @@ class MonitoringController extends AppBaseController
      */
     public function index(MonitoringDataTable $monitoringDataTable)
     {
+        // $monitoring = $this->monitoringRepository->all();
+        //  return view('monitorings.index')->with('monitoring', $monitoring);
         return $monitoringDataTable->render('monitorings.index');
     }
 

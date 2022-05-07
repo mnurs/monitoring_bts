@@ -22,12 +22,12 @@ class MonitoringDataTable extends DataTable
         ->addColumn('action', 'monitorings.datatables_actions')
         ->editColumn('tgl_generate', function ($data) 
         { 
-            if(isset($data->tgl_generate)) return date('d-m-Y', strtotime($data->tgl_generate) );
+            if(isset($data->tgl_generate)) return date('Y-m-d', strtotime($data->tgl_generate) );
             else return "";
         })
         ->editColumn('edited_at', function ($data) 
         {   
-            if(isset($data->edited_at)) return date('d-m-Y', strtotime($data->edited_at) );
+            if(isset($data->edited_at)) return date('Y-m-d', strtotime($data->edited_at) );
             else return "";
         })
 
@@ -56,7 +56,13 @@ class MonitoringDataTable extends DataTable
      */
     public function query(Monitoring $model)
     {
-        return $model->newQuery();
+        // return $model->newQuery();
+        $monitorting = $model
+        ->leftjoin('bts','bts.id','monitoring.id_bts')
+        ->leftjoin('kondisi','kondisi.id','monitoring.id_kondisi_bts')
+        ->leftjoin('users','users.id','monitoring.id_user_surveyor')
+        ->select('monitoring.id','monitoring.tgl_generate','monitoring.tgl_kunjungan','monitoring.tahun','monitoring.created_by','monitoring.edited_by','monitoring.edited_at','bts.nama as nama_bts','kondisi.nama as nama_kondisi','users.name as nama_user');
+        return $this->applyScopes($monitorting);
     }
 
     /**
@@ -73,6 +79,8 @@ class MonitoringDataTable extends DataTable
             ->parameters([
                 'dom'       => 'Bfrtip',
                 'stateSave' => true,
+                'orderCellsTop'=> true,
+                'fixedHeader'=> true,
                 'order'     => [[0, 'desc']],
                 'buttons'   => [
                     ['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
@@ -80,7 +88,33 @@ class MonitoringDataTable extends DataTable
                     ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'reset', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'reload', 'className' => 'btn btn-default btn-sm no-corner',],
-                ],
+                ], 
+                'initComplete' => 'function () {
+                    var api = this.api(); 
+                    api
+                        .columns()
+                        .eq(0)
+                        .each(function (colIdx) {
+                            // Set the header cell to contain the input element
+                            var cell = $(".filters th").eq(
+                                $(api.column(colIdx).header()).index()
+                            );
+                            var title = $(cell).text();
+                            $(cell).html("<input type=text placeholder=" + title + " />");
+         
+                            // On every keypress in this input 
+                            var that = this;
+             
+                            $( "input", cell ).on( "keyup change clear", function () {
+                                if ( that.search() !== this.value ) {
+                                    that
+                                        .search( this.value )
+                                        .draw();
+                                }   
+                            } ); 
+                            
+                        });
+                }'
             ]);
     }
 
@@ -92,9 +126,9 @@ class MonitoringDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'bts' => ['name' => 'id_bts', 'data' => 'id_bts'], 
-            'kondisi_bts' => ['name' => 'id_kondisi_bts', 'data' => 'id_kondisi_bts'], 
-            'user_surveyor' => ['name' => 'id_user_surveyor', 'data' => 'id_user_surveyor'],  
+            'bts' => ['name' => 'bts.nama', 'data' => 'nama_bts'], 
+            'kondisi_bts' => ['name' => 'kondisi.nama', 'data' => 'nama_kondisi'], 
+            'user_surveyor' => ['name' => 'users.name', 'data' => 'nama_user'],  
             'tgl_generate',
             'tgl_kunjungan',
             'tahun',
