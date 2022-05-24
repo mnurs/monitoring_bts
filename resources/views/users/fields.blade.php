@@ -44,9 +44,9 @@
         <!-- {!! Form::hidden('role', 0, ['class' => 'form-check-input']) !!}
         {!! Form::checkbox('role', '1', null, ['class' => 'form-check-input']) !!} -->
         {!! Form::label('role', 'Role', ['class' => 'form-check-label']) !!}
-        <select name="level" class="form-control">
-            <option value="1">Admin</option>
-            <option value="2">Surveyor</option> 
+        <select name="role" class="form-control">
+            <option value="1" @if(isset($user->role)) @if($user->role == 1) selected @endif @endif>Admin</option>
+            <option value="2" @if(isset($user->role)) @if($user->role == 2) selected @endif @endif>Surveyor</option> 
         </select>
     </div>
 </div>
