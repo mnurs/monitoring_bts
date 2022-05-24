@@ -114,7 +114,7 @@ class Bts extends Model
         'ada_genset' => 'required|boolean',
         'ada_tembok_batas' => 'required|boolean',
         'created_by' => 'nullable|string|max:255',
-        'created_at' => 'required',
+        'created_at' => 'nullable',
         'edited_by' => 'nullable|string|max:255',
         'edited_at' => 'nullable',
         'deleted_at' => 'nullable'

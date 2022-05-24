@@ -1,16 +1,22 @@
 <!-- Id Bts Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('id_bts', 'Bts:') !!}
-    <input type="text" name="bts" class="form-control" value="@if(isset($monitoring->idBts->nama)){{$monitoring->idBts->nama}}@endif" @if(isset($flag)) disabled @endif>
-    {!! Form::hidden('id_bts', null, ['class' => 'form-control']) !!}
+    {!! Form::label('id_bts', 'Bts:') !!} 
+    <select class="form-control" name="id_bts"  @if(isset($flag)) disabled @endif>
+        @foreach($bts as $nama => $id)
+            <option value = "{{ $id }}" @if(isset($monitoring->id_bts)) @if($monitoring->id_bts  == $id ) selected @endif @endif >{{ $nama }}</option>
+        @endforeach
+    </select> 
 </div>
 
 
 <!-- Id User Surveyor Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('id_user_surveyor', 'User Surveyor:') !!}
-    <input type="text" name="user_surveyor" class="form-control" value="@if(isset($monitoring->idUserSurveyor->name)){{$monitoring->idUserSurveyor->name}}@endif" @if(isset($flag)) disabled @endif>
-    {!! Form::hidden('id_user_surveyor', null, ['class' => 'form-control']) !!}
+    <select class="form-control" name="id_user_surveyor"  @if(isset($flag)) disabled @endif>
+        @foreach($users as $nama => $id)
+            <option value = "{{ $id }}" @if(isset($monitoring->id_user_surveyor)) @if($monitoring->id_user_surveyor  == $id ) selected @endif @endif >{{ $nama }}</option>
+        @endforeach
+    </select> 
 </div>
 
 <!-- Tgl Generate Field -->
@@ -31,14 +37,17 @@
 <!-- Id Kondisi Bts Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('id_kondisi_bts', 'Kondisi Bts:') !!}
-    <input type="text" name="kondisi" class="form-control" value="@if(isset($monitoring->idKondisiBts->nama)){{$monitoring->idKondisiBts->nama}}@endif" >
-    {!! Form::hidden('id_kondisi_bts', null, ['class' => 'form-control']) !!}
+    <select class="form-control" name="id_kondisi_bts">
+        @foreach($kondisi as $nama => $id)
+            <option value = "{{ $id }}" @if(isset($monitoring->id_kondisi_bts)) @if($monitoring->id_kondisi_bts == $id ) selected @endif @endif >{{ $nama }}</option>
+        @endforeach
+    </select> 
 </div>
 
 @push('page_scripts')
     <script type="text/javascript">
         $('#tgl_generate').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
+            format: 'YYYY-MM-DD',
             useCurrent: true,
             sideBySide: true
         })
@@ -54,7 +63,7 @@
 @push('page_scripts')
     <script type="text/javascript">
         $('#tgl_kunjungan').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
+            format: 'YYYY-MM-DD',
             useCurrent: true,
             sideBySide: true
         })
@@ -82,7 +91,7 @@
 @push('page_scripts')
     <script type="text/javascript">
         $('#edited_at').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
+            format: 'YYYY-MM-DD',
             useCurrent: true,
             sideBySide: true
         })

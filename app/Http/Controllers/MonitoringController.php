@@ -4,16 +4,23 @@ namespace App\Http\Controllers;
 
 use App\DataTables\MonitoringDataTable;
 use App\Http\Requests;
+use Illuminate\Http\Request;
 use App\Http\Requests\CreateMonitoringRequest;
 use App\Http\Requests\UpdateMonitoringRequest;
 use App\Repositories\MonitoringRepository;
 use App\Repositories\KuesionerRepository;
 use App\Repositories\BtsRepository;
+use App\Repositories\KondisiRepository;
+use App\Repositories\KuesionerJawabanRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use App\Models\Bts;
 use App\Models\User;
 use App\Models\Monitoring;
+use App\Models\Kondisi;
+use App\Models\KuesionerJawaban;
+use App\Models\Helper;
 
 class MonitoringController extends AppBaseController
 {
@@ -21,16 +28,22 @@ class MonitoringController extends AppBaseController
     private $monitoringRepository;
     private $kuesionerRepository;
     private $btsRepository;
+    private $kuesionerJawabanRepository;
+    private $kondisiRepository;
 
     public function __construct(
         MonitoringRepository $monitoringRepo,
         KuesionerRepository $kuesionerRepo,
-        BtsRepository $btsRepo
+        BtsRepository $btsRepo,
+        KuesionerJawabanRepository $kuesionerJawabanRepo,
+        KondisiRepository $kondisiRepo
     )
     {
         $this->monitoringRepository = $monitoringRepo;
         $this->kuesionerRepository = $kuesionerRepo;
         $this->btsRepository = $btsRepo;
+        $this->kuesionerJawabanRepository = $kuesionerJawabanRepo;
+        $this->kondisiRepository = $kondisiRepo;
     }
 
     /**
@@ -54,14 +67,23 @@ class MonitoringController extends AppBaseController
      */
     public function create()
     {
-        return view('monitorings.create');
+        $kondisi =  Kondisi::pluck('id','nama');
+        $users =  User::pluck('id','name');
+        $bts =  Bts::pluck('id','nama');
+        return view('monitorings.create')
+                ->with('kondisi', $kondisi)
+                ->with('users', $users)
+                ->with('bts', $bts);
     }
 
     public function createSurvey($id)
     {
         $monitoring = $this->monitoringRepository->find($id);
-        $kuesioner = $this->kuesionerRepository->all();
-
+        $kuesioner = $this->kuesionerRepository->all(); 
+        $kondisi =  Kondisi::pluck('id','nama');
+        $users =  User::pluck('id','name');
+        $bts =  Bts::pluck('id','nama');
+        $helper = new Helper;
         if (empty($monitoring)) {
             Flash::error('Monitoring not found');
 
@@ -71,6 +93,10 @@ class MonitoringController extends AppBaseController
         return view('monitorings.survey')
         ->with('monitoring', $monitoring)
         ->with('kuesioner', $kuesioner)
+        ->with('kondisi', $kondisi)
+        ->with('helper', $helper)
+        ->with('users', $users)
+        ->with('bts', $bts)
         ->with('flag', true);
     }
 
@@ -119,6 +145,47 @@ class MonitoringController extends AppBaseController
         return redirect(route('monitorings.index'));
     }
 
+
+    public function storeSurvey(Request $request){
+        // dd($request->all());
+        $monitoring = $this->monitoringRepository->find($request->id_monitoring);
+
+        if (empty($monitoring)) {
+            Flash::error('Monitoring not found');
+
+            return redirect(route('monitorings.index'));
+        }
+
+        $this->monitoringRepository->update([
+            'id_kondisi_bts' => $request->id_kondisi_bts,
+            'tgl_kunjungan' => $request->tgl_kunjungan,
+        ], $request->id_monitoring);
+
+        $kuesioner = $request->kuesioner;
+        $jawaban = $request->jawaban;
+        foreach ($kuesioner as $key => $value) {
+            $kuesionerJawabanQuery = KuesionerJawaban::
+                                where('id_monitoring',$request->id_monitoring)->
+                                where('id_kuesioner',$value);
+            $kuesionerJawaban =  $kuesionerJawabanQuery->first();              
+            if (empty($kuesionerJawaban)) {
+                $this->kuesionerJawabanRepository->create([
+                    'id_monitoring'=>$request->id_monitoring,
+                    'id_kuesioner'=>$value,
+                    'jawaban'=>$jawaban[$key],
+                ]);
+            }else{
+                $kuesionerJawaban = $kuesionerJawabanQuery->update([
+                    'jawaban'=>$jawaban[$key],
+                ]);
+            } 
+        } 
+
+        Flash::success('Monitoring updated successfully.');
+
+        return redirect(route('monitorings.index'));
+
+    }
     /**
      * Display the specified Monitoring.
      *
@@ -129,7 +196,8 @@ class MonitoringController extends AppBaseController
     public function show($id)
     {
         $monitoring = $this->monitoringRepository->find($id);
-        $kuesioner = $this->kuesionerRepository->all();
+        $kuesioner = $this->kuesionerRepository->all(); 
+        $helper = new Helper;
         if (empty($monitoring)) {
             Flash::error('Monitoring not found');
 
@@ -138,7 +206,8 @@ class MonitoringController extends AppBaseController
 
         return view('monitorings.show')
         ->with('monitoring', $monitoring)
-        ->with('kuesioner', $kuesioner);
+        ->with('kuesioner', $kuesioner)
+        ->with('helper', $helper);
     }
 
     /**
@@ -151,6 +220,9 @@ class MonitoringController extends AppBaseController
     public function edit($id)
     {
         $monitoring = $this->monitoringRepository->find($id);
+        $kondisi =  Kondisi::pluck('id','nama');
+        $users =  User::pluck('id','name');
+        $bts =  Bts::pluck('id','nama');
 
         if (empty($monitoring)) {
             Flash::error('Monitoring not found');
@@ -158,7 +230,11 @@ class MonitoringController extends AppBaseController
             return redirect(route('monitorings.index'));
         }
 
-        return view('monitorings.edit')->with('monitoring', $monitoring);
+        return view('monitorings.edit')
+        ->with('monitoring', $monitoring)
+        ->with('kondisi', $kondisi)
+        ->with('users', $users)
+        ->with('bts', $bts);
     }
 
     /**

@@ -65,7 +65,7 @@ class KuesionerPilihan extends Model
         'id_kuesioner' => 'required|integer',
         'pilihan_jawaban' => 'required|string',
         'created_by' => 'nullable|string|max:255',
-        'created_at' => 'required',
+        'created_at' => 'nullable',
         'edited_by' => 'nullable|string|max:255',
         'edited_at' => 'nullable',
         'deleted_at' => 'nullable'

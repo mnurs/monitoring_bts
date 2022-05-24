@@ -64,7 +64,7 @@ class Konfigurasi extends Model
         'name' => 'required|string|max:255',
         'value' => 'required|string|max:255',
         'created_by' => 'nullable|string|max:255',
-        'created_at' => 'required',
+        'created_at' => 'nullable',
         'edited_by' => 'nullable|string|max:255',
         'edited_at' => 'nullable',
         'deleted_at' => 'nullable'

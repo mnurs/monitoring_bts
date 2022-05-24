@@ -69,7 +69,7 @@ class Pemilik extends Model
         'alamat' => 'required|string',
         'telepon' => 'nullable|string|max:15',
         'created_by' => 'nullable|string|max:255',
-        'created_at' => 'required',
+        'created_at' => 'nullable',
         'edited_by' => 'nullable|string|max:255',
         'edited_at' => 'nullable',
         'deleted_at' => 'nullable'

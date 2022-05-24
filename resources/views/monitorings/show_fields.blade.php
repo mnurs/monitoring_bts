@@ -15,19 +15,19 @@
     <!-- Id User Surveyor Field -->
     <div class="col-sm-6">
         {!! Form::label('id_user_surveyor', 'User Surveyor:') !!}
-        <input type="text" name="id_user_surveyor" class="form-control" value="@if(isset($monitoring->idUserSurveyor->nama)){{ $monitoring->idUserSurveyor->nama }}@endif" disabled>  
+        <input type="text" name="id_user_surveyor" class="form-control" value="@if(isset($monitoring->idUserSurveyor->name)){{ $monitoring->idUserSurveyor->name }}@endif" disabled>  
     </div>
 
     <!-- Tgl Generate Field -->
     <div class="col-sm-6">
         {!! Form::label('tgl_generate', 'Tgl Generate:') !!}
-        <input type="text" name="tgl_generate" class="form-control" value="@if(isset($monitoring->tgl_generate)){{ $monitoring->tgl_generate }}@endif" disabled>  
+        <input type="text" name="tgl_generate" class="form-control" value="@if(isset($monitoring->tgl_generate)){{date('Y-m-d', strtotime($monitoring->tgl_generate))}}@endif" disabled>  
     </div>
 
     <!-- Tgl Kunjungan Field -->
     <div class="col-sm-6">
         {!! Form::label('tgl_kunjungan', 'Tgl Kunjungan:') !!}
-        <input type="text" name="tgl_kunjungan" class="form-control" value="@if(isset($monitoring->tgl_kunjungan)){{ $monitoring->tgl_kunjungan }}@endif" disabled> 
+        <input type="text" name="tgl_kunjungan" class="form-control" value="@if(isset($monitoring->tgl_kunjungan)){{date('Y-m-d', strtotime($monitoring->tgl_kunjungan))}}@endif" disabled> 
     </div>
 
     <!-- Tahun Field -->
@@ -52,7 +52,7 @@
     <!-- Edited At Field -->
     <div class="col-sm-6">
         {!! Form::label('edited_at', 'Edited At:') !!}
-         <input type="text" name="edited_at" class="form-control" value="@if(isset($monitoring->edited_at)){{ $monitoring->edited_at }}@endif" disabled>  
+         <input type="text" name="edited_at" class="form-control" value="@if(isset($monitoring->edited_at)){{date('Y-m-d', strtotime($monitoring->edited_at))}} @endif" disabled>  
     </div>
     <div class="col-sm-6">
     </div>
@@ -75,7 +75,7 @@
             @foreach($kuesioner->kuesionerPilihans as $jawaban)
                 <div class="col-sm-12">
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="jawaban[{{$kuesioner->id}}]" id="jawaban{{$jawaban->id}}" disabled>
+                      <input class="form-check-input" type="radio" name="jawaban[{{$kuesioner->id}}]" id="jawaban{{$jawaban->id}}"  @if(isset($helper->getJawaban($monitoring->id,$kuesioner->id)->jawaban)) @if($jawaban->id == $helper->getJawaban($monitoring->id,$kuesioner->id)->jawaban) checked @endif @endif  disabled>
                       <label class="form-check-label" for="jawaban{{$jawaban->id}}">
                         {{ $jawaban->pilihan_jawaban }}
                       </label>

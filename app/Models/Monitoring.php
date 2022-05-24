@@ -84,7 +84,7 @@ class Monitoring extends Model
         'tgl_kunjungan' => 'nullable',
         'tahun' => 'nullable|integer',
         'created_by' => 'nullable|string|max:255',
-        'created_at' => 'required',
+        'created_at' => 'nullable',
         'edited_by' => 'nullable|string|max:255',
         'edited_at' => 'nullable',
         'deleted_at' => 'nullable'

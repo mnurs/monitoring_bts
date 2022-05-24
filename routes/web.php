@@ -47,6 +47,7 @@ Route::resource('kuesionerJawabans', KuesionerJawabanController::class);
 
 Route::resource('kuesionerPilihans', KuesionerPilihanController::class);
 
+Route::post('/monitoring/survey', [App\Http\Controllers\MonitoringController::class, 'storeSurvey']);
 Route::post('/monitoring/generate', [App\Http\Controllers\MonitoringController::class, 'generateKunjungan']);
 Route::get('/monitoring/survey/{id}', [App\Http\Controllers\MonitoringController::class, 'createSurvey']);
 Route::resource('monitorings', MonitoringController::class);

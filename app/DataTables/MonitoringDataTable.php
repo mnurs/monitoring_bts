@@ -30,6 +30,11 @@ class MonitoringDataTable extends DataTable
             if(isset($data->edited_at)) return date('Y-m-d', strtotime($data->edited_at) );
             else return "";
         })
+        ->editColumn('tgl_kunjungan', function ($data) 
+        {   
+            if(isset($data->tgl_kunjungan)) return date('Y-m-d', strtotime($data->tgl_kunjungan) );
+            else return "";
+        })
 
         ->editColumn('id_bts', function ($data) 
         { 
