@@ -145,6 +145,8 @@ class MonitoringController extends AppBaseController
     {
         $input = $request->all();
 
+        $nameUser = $request->session()->get('name'); 
+        $input['created_by'] = $nameUser; 
         $monitoring = $this->monitoringRepository->create($input);
 
         Flash::success('Monitoring saved successfully.');
@@ -260,6 +262,7 @@ class MonitoringController extends AppBaseController
      */
     public function update($id, UpdateMonitoringRequest $request)
     {
+        $input = $request->all();
         $monitoring = $this->monitoringRepository->find($id);
 
         if (empty($monitoring)) {
@@ -268,7 +271,11 @@ class MonitoringController extends AppBaseController
             return redirect(route('monitorings.index'));
         }
 
-        $monitoring = $this->monitoringRepository->update($request->all(), $id);
+        $nameUser = $request->session()->get('name'); 
+        $now = new DateTime(); 
+        $input['edited_by'] = $nameUser;
+        $input['edited_at'] = $now;
+        $monitoring = $this->monitoringRepository->update($input, $id);
 
         Flash::success('Monitoring updated successfully.');
 
