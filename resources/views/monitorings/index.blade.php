@@ -8,6 +8,7 @@
                     <h1>Monitoring</h1>
                 </div>
                 <div class="col-sm-6">
+                  @if(Session::get('role') == 1)
                     <a class="btn btn-primary float-right"
                        href="{{ route('monitorings.create') }}">
                         Add New
@@ -18,6 +19,8 @@
                     <form id="generate-form" action="{{ url('monitoring/generate') }}" method="POST" class="d-none">
                         @csrf
                     </form> 
+                  @endif
+                    
                 </div>
             </div>
         </div>

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{{ config('app.name') }}</title>
+    <title>BTS</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
     <!-- Font Awesome -->
@@ -53,14 +53,14 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown user-menu">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                    <img src="https://assets.infyom.com/logo/blue_logo_150x150.png"
+                    <img src="{{ asset('img/logo.jpg') }}"
                          class="user-image img-circle elevation-2" alt="User Image">
                     <span class="d-none d-md-inline"> @if(isset(Auth::user()->name)){{ Auth::user()->name }}@endif</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                     <!-- User image -->
                     <li class="user-header bg-primary">
-                        <img src="https://assets.infyom.com/logo/blue_logo_150x150.png"
+                        <img src="{{ asset('img/logo.jpg') }}"
                              class="img-circle elevation-2"
                              alt="User Image">
                         <p>
@@ -100,7 +100,7 @@
             <b>Version</b> 3.1.0
         </div>
         <strong>
-           Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.
+           Copyright &copy; {{date('Y')}} <a href="https://adminlte.io">KELOMPOK 3</a>.
         </strong>
         All rights reserved.
     </footer>

@@ -14,6 +14,7 @@ use App\Repositories\KondisiRepository;
 use App\Repositories\KuesionerJawabanRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
+use DateTime;
 use Response;
 use App\Models\Bts;
 use App\Models\User;
@@ -53,11 +54,16 @@ class MonitoringController extends AppBaseController
      *
      * @return Response
      */
-    public function index(MonitoringDataTable $monitoringDataTable)
+    public function index(MonitoringDataTable $monitoringDataTable,Request $request)
     {
         // $monitoring = $this->monitoringRepository->all();
         //  return view('monitorings.index')->with('monitoring', $monitoring);
-        return $monitoringDataTable->render('monitorings.index');
+        $role = $request->session()->get('role');
+        $id = $request->session()->get('id');
+        return $monitoringDataTable->
+               with('role', $role)->
+               with('id', $id)->
+               render('monitorings.index');
     }
 
     /**
@@ -100,8 +106,9 @@ class MonitoringController extends AppBaseController
         ->with('flag', true);
     }
 
-    public function generateKunjungan(){
+    public function generateKunjungan(Request $request){
         $bts = $this->btsRepository->all();
+        $nameUser = $request->session()->get('name');
         foreach ($bts as $key => $data) {
             $cek = Monitoring::
                         where('id_bts',$data->id)->
@@ -115,7 +122,7 @@ class MonitoringController extends AppBaseController
                     'id_user_surveyor' => $users->id,
                     'tgl_generate' => date('Y-m-d'),
                     'tahun' => date('Y'),
-                    'created_by' => "admin"
+                    'created_by' => $nameUser
                 ];
                 $monitoring = $this->monitoringRepository->create($input);
             }
@@ -149,7 +156,8 @@ class MonitoringController extends AppBaseController
     public function storeSurvey(Request $request){
         // dd($request->all());
         $monitoring = $this->monitoringRepository->find($request->id_monitoring);
-
+        $nameUser = $request->session()->get('name');
+        $now = new DateTime(); 
         if (empty($monitoring)) {
             Flash::error('Monitoring not found');
 
@@ -159,6 +167,8 @@ class MonitoringController extends AppBaseController
         $this->monitoringRepository->update([
             'id_kondisi_bts' => $request->id_kondisi_bts,
             'tgl_kunjungan' => $request->tgl_kunjungan,
+            'edited_by'=>$nameUser ,
+            'edited_at'=>$now
         ], $request->id_monitoring);
 
         $kuesioner = $request->kuesioner;
@@ -173,10 +183,13 @@ class MonitoringController extends AppBaseController
                     'id_monitoring'=>$request->id_monitoring,
                     'id_kuesioner'=>$value,
                     'jawaban'=>$jawaban[$key],
+                    'created_by'=>$nameUser 
                 ]);
             }else{
                 $kuesionerJawaban = $kuesionerJawabanQuery->update([
                     'jawaban'=>$jawaban[$key],
+                    'edited_by'=>$nameUser ,
+                    'edited_at'=>$now
                 ]);
             } 
         } 

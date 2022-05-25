@@ -45,10 +45,13 @@ class AuthController extends Controller
    
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) { 
-            $users = User::where('email',$request->email)-> 
-            update([
-                'last_login_at' => now(), 
-            ]); 
+            $query = User::where('email',$request->email);
+            $update = $query->update(['last_login_at' => now()]); 
+            $data = $query->first(); 
+            Session::put('id',$data->id);
+            Session::put('name',$data->name);
+            Session::put('email ',$data->email);
+            Session::put('role',$data->role);
             return redirect()->intended('home')
                         ->withSuccess('You have Successfully loggedin');
         }
@@ -110,6 +113,10 @@ class AuthController extends Controller
      */
     public function logout() {
         Session::flush();
+        Session()->forget('id');
+        Session()->forget('name');
+        Session()->forget('email');
+        Session()->forget('role');
         Auth::logout();
   
         return Redirect('login');
