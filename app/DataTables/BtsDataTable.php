@@ -64,22 +64,41 @@ class BtsDataTable extends DataTable
      */
     public function html()
     {
-        return $this->builder()
-            ->columns($this->getColumns())
-            ->minifiedAjax()
-            ->addAction(['width' => '120px', 'printable' => false])
-            ->parameters([
-                'dom'       => 'Bfrtip',
-                'stateSave' => true,
-                'order'     => [[0, 'desc']],
-                'buttons'   => [
-                    ['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'reset', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'reload', 'className' => 'btn btn-default btn-sm no-corner',],
-                ],
-            ]);
+        if($this->role == 1){
+            return $this->builder()
+                ->columns($this->getColumns())
+                ->minifiedAjax()
+                ->addAction(['width' => '120px', 'printable' => false])
+                ->parameters([
+                    'dom'       => 'Bfrtip',
+                    'stateSave' => true,
+                    'order'     => [[0, 'desc']],
+                    'buttons'   => [
+                        ['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
+                        ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
+                        ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
+                        ['extend' => 'reset', 'className' => 'btn btn-default btn-sm no-corner',],
+                        ['extend' => 'reload', 'className' => 'btn btn-default btn-sm no-corner',],
+                    ],
+                ]);
+            }else{
+                return $this->builder()
+                    ->columns($this->getColumns())
+                    ->minifiedAjax()
+                    ->addAction(['width' => '120px', 'printable' => false])
+                    ->parameters([
+                        'dom'       => 'Bfrtip',
+                        'stateSave' => true,
+                        'order'     => [[0, 'desc']],
+                        'buttons'   => [ 
+                            ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
+                            ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
+                            ['extend' => 'reset', 'className' => 'btn btn-default btn-sm no-corner',],
+                            ['extend' => 'reload', 'className' => 'btn btn-default btn-sm no-corner',],
+                        ],
+                    ]);
+            }
+        
     }
 
     /**

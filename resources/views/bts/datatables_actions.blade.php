@@ -3,6 +3,7 @@
     <a href="{{ route('bts.show', $id) }}" class='btn btn-default btn-xs'>
         <i class="fa fa-eye"></i>
     </a>
+     @if(Session::get('role') == 1)
     <a href="{{ route('bts.edit', $id) }}" class='btn btn-default btn-xs'>
         <i class="fa fa-edit"></i>
     </a>
@@ -11,5 +12,6 @@
         'class' => 'btn btn-danger btn-xs',
         'onclick' => "return confirm('Are you sure?')"
     ]) !!}
+    @endif
 </div>
 {!! Form::close() !!}

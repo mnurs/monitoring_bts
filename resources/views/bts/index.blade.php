@@ -8,10 +8,12 @@
                     <h1>Bts</h1>
                 </div>
                 <div class="col-sm-6">
+                     @if(Session::get('role') == 1)
                     <a class="btn btn-primary float-right"
                        href="{{ route('bts.create') }}">
                         Add New
                     </a>
+                    @endif
                 </div>
             </div>
         </div>

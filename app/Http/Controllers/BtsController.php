@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\BtsDataTable;
 use App\Http\Requests;
+use Illuminate\Http\Request;
 use App\Http\Requests\CreateBtsRequest;
 use App\Http\Requests\UpdateBtsRequest;
 use App\Repositories\BtsRepository;
@@ -28,9 +29,12 @@ class BtsController extends AppBaseController
      *
      * @return Response
      */
-    public function index(BtsDataTable $btsDataTable)
+    public function index(BtsDataTable $btsDataTable,Request $request)
     {
-        return $btsDataTable->render('bts.index');
+          $role = $request->session()->get('role'); 
+        return $btsDataTable->
+               with('role', $role)-> 
+               render('bts.index'); 
     }
 
     /**

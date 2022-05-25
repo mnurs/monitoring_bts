@@ -15,16 +15,14 @@ use App\Http\Controllers\Auth\AuthController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [AuthController::class, 'index'])->name('login');
 
 // Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware(['role'])->group(function () {
-    Route::resource('bts', BtsController::class);
+    Route::resource('bts', BtsController::class, ['only' => ['create','edit']]);
 	Route::resource('fotos', FotoController::class);
 	Route::resource('jenis', JenisController::class);
 	Route::resource('kondisis', KondisiController::class);
@@ -39,6 +37,7 @@ Route::middleware(['role'])->group(function () {
 	Route::resource('monitorings', MonitoringController::class, ['only' => ['create','edit']]);
 });
 
+    Route::resource('bts', BtsController::class, ['except' => ['create','edit']]);
 	Route::post('/monitoring/survey', [App\Http\Controllers\MonitoringController::class, 'storeSurvey']);
 	Route::get('/monitoring/survey/{id}', [App\Http\Controllers\MonitoringController::class, 'createSurvey']);
 	Route::resource('monitorings', MonitoringController::class, ['except' => ['create','edit']]);
