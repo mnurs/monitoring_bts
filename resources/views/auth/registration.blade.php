@@ -1,67 +1,98 @@
-@extends('layout')
-  
-@section('content')
-<main class="login-form">
-  <div class="cotainer">
-      <div class="row justify-content-center">
-          <div class="col-md-8">
-              <div class="card">
-                  <div class="card-header">Register</div>
-                  <div class="card-body">
-  
-                      <form action="{{ route('register.post') }}" method="POST">
-                          @csrf
-                          <div class="form-group row">
-                              <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
-                              <div class="col-md-6">
-                                  <input type="text" id="name" class="form-control" name="name" required autofocus>
-                                  @if ($errors->has('name'))
-                                      <span class="text-danger">{{ $errors->first('name') }}</span>
-                                  @endif
-                              </div>
-                          </div>
-  
-                          <div class="form-group row">
-                              <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
-                              <div class="col-md-6">
-                                  <input type="text" id="email_address" class="form-control" name="email" required autofocus>
-                                  @if ($errors->has('email'))
-                                      <span class="text-danger">{{ $errors->first('email') }}</span>
-                                  @endif
-                              </div>
-                          </div>
-  
-                          <div class="form-group row">
-                              <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-                              <div class="col-md-6">
-                                  <input type="password" id="password" class="form-control" name="password" required>
-                                  @if ($errors->has('password'))
-                                      <span class="text-danger">{{ $errors->first('password') }}</span>
-                                  @endif
-                              </div>
-                          </div>
-  
-                          <div class="form-group row">
-                              <div class="col-md-6 offset-md-4">
-                                  <div class="checkbox">
-                                      <label>
-                                          <input type="checkbox" name="remember"> Remember Me
-                                      </label>
-                                  </div>
-                              </div>
-                          </div>
-  
-                          <div class="col-md-6 offset-md-4">
-                              <button type="submit" class="btn btn-primary">
-                                  Register
-                              </button>
-                          </div>
-                      </form>
-                        
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-</main>
-@endsection
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="#">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    
+    <title>HTML BoilerPlate Sign Up</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+    
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{asset ('/css/login_register.css')}}" type="text/css" media="all" /> <!-- Style-CSS --> 
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>    
+</head>
+<style>
+body{
+    background-image: url('background.png');
+    background-size: 100%;
+    
+}
+    </style>
+<body>
+    <nav class="navbar navbar-ct-transparent navbar-fixed-top" role="navigation-demo" id="register-navbar">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a class="navbar-brand" href="javascript:void(0)">HTML BoilerPlate</a>
+        </div>
+    
+      </div><!-- /.container-->
+    </nav> 
+    
+    <div class="wrapper">
+        <div class="register-background"> 
+            <div class="filter-black"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1 ">
+                            <div class="register-card">
+                                <h3 class="title">Sign Up Page</h3>
+                                <form action="{{ route('register.post') }}" method="POST">
+                                {{ csrf_field() }}
+                                    <label>Name</label>
+                                    <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                    @if ($errors->has('name'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('name') }}</strong>
+                                        </span>
+                                    @endif
+
+                                    <label>E-Mail Address</label>
+                                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+
+                                    @if ($errors->has('email'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    @endif
+
+                                    <label>Password</label>
+                                    <input id="password" type="password" class="form-control" name="password" required>
+
+                                    @if ($errors->has('password'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
+                                    @endif
+
+                                    <label>Confirm Password</label>
+                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                    
+                                    <input type="submit" class="btn btn-primary btn-block" value="Sign Up" />
+                                </form>
+                                <div class="forgot">
+
+                                    <a href="{{ route('login') }}" class="btn btn-simple btn-danger">Already have an account ? Login</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>     
+            <div class="footer register-footer text-center">
+                    
+            </div>
+        </div>
+    </div>      
+
+</body>
+
+<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+
+</html>
