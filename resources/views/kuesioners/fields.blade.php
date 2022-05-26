@@ -2,6 +2,12 @@
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('pertanyaan', 'pertanyaan:') !!}
     {!! Form::textarea('Pertanyaan', null, ['class' => 'form-control']) !!}
+        <div class="form-group">
+            <label>Select Box</label>
+            <select id="pertanyaan" name="pertanyaan" class="form-control">
+                <option value=""></option>
+            </select>
+        </div>
 </div>
 
 <!-- Jawaban Field -->
