@@ -71,8 +71,10 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
         ]);
+        // dd($request->all());
            
         $data = $request->all();
+        $data['role'] = 2;
         $check = $this->create($data);
          
         return redirect("home")->withSuccess('Great! You have Successfully loggedin');
@@ -102,6 +104,7 @@ class AuthController extends Controller
       return User::create([
         'name' => $data['name'],
         'email' => $data['email'],
+        'role' => $data['role'],
         'password' => Hash::make($data['password'])
       ]);
     }

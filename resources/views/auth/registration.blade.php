@@ -29,7 +29,7 @@ body{
       <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <a class="navbar-brand" href="javascript:void(0)">HTML BoilerPlate</a>
+          <a class="navbar-brand" href="javascript:void(0)">BTS Towers</a>
         </div>
     
       </div><!-- /.container-->
