@@ -16,10 +16,9 @@ class MonitoringDataTable extends DataTable
      */
     public function dataTable($query)
     {
-        $dataTable = new EloquentDataTable($query);
-
+        $dataTable = new EloquentDataTable($query); 
         return $dataTable
-        ->addColumn('action', 'monitorings.datatables_actions')
+        ->addColumn('action', 'monitorings.datatables_actions') 
         ->editColumn('tgl_generate', function ($data) 
         { 
             if(isset($data->tgl_generate)) return date('Y-m-d', strtotime($data->tgl_generate) );
@@ -68,9 +67,33 @@ class MonitoringDataTable extends DataTable
         ->leftjoin('kondisi','kondisi.id','monitoring.id_kondisi_bts')
         ->leftjoin('users','users.id','monitoring.id_user_surveyor')
         ->select('monitoring.id','monitoring.tgl_generate','monitoring.tgl_kunjungan','monitoring.tahun','monitoring.created_by','monitoring.edited_by','monitoring.edited_at','bts.nama as nama_bts','kondisi.nama as nama_kondisi','users.name as nama_user');
-
+ 
         if($this->role == 2){
              $monitorting->where('monitoring.id_user_surveyor',$this->id);
+        }
+
+        if($this->id_bts != ""){
+             $monitorting->where('monitoring.id_bts',$this->id_bts);
+        }
+        if($this->id_kondisi_bts != ""){
+        // dd($this->id_kondisi_bts);
+             $monitorting->where('monitoring.id_kondisi_bts',$this->id_kondisi_bts);
+        }
+
+        if($this->id_user_surveyor != ""){
+             $monitorting->where('monitoring.id_user_surveyor',$this->id_user_surveyor);
+        }
+
+        if(($this->generate_mulai != "") && ($this->generate_selesai != "")){
+             $monitorting->whereBetween('monitoring.tgl_generate', [$this->generate_mulai, $this->generate_selesai]);
+        } 
+
+        if(($this->kunjungan_mulai != "") && ($this->Kunjungan_selesai != "")){
+             $monitorting->whereBetween('monitoring.tgl_kunjungan', [$this->kunjungan_mulai, $this->Kunjungan_selesai]);
+        }
+
+        if(isset($this->tahun)){
+             $monitorting->where('monitoring.tahun',$this->tahun);
         }
         return $this->applyScopes($monitorting);
     }
@@ -100,32 +123,32 @@ class MonitoringDataTable extends DataTable
                         ['extend' => 'reset', 'className' => 'btn btn-default btn-sm no-corner',],
                         ['extend' => 'reload', 'className' => 'btn btn-default btn-sm no-corner',],
                     ], 
-                    'initComplete' => 'function () {
-                        var api = this.api(); 
-                        api
-                            .columns()
-                            .eq(0)
-                            .each(function (colIdx) {
-                                // Set the header cell to contain the input element
-                                var cell = $(".filters th").eq(
-                                    $(api.column(colIdx).header()).index()
-                                );
-                                var title = $(cell).text();
-                                $(cell).html("<input type=text placeholder=" + title + " />");
+                    // 'initComplete' => 'function () {
+                    //     var api = this.api(); 
+                    //     api
+                    //         .columns()
+                    //         .eq(0)
+                    //         .each(function (colIdx) {
+                    //             // Set the header cell to contain the input element
+                    //             var cell = $(".filters th").eq(
+                    //                 $(api.column(colIdx).header()).index()
+                    //             );
+                    //             var title = $(cell).text();
+                    //             $(cell).html("<input type=text placeholder=" + title + " />");
              
-                                // On every keypress in this input 
-                                var that = this;
+                    //             // On every keypress in this input 
+                    //             var that = this;
                  
-                                $( "input", cell ).on( "keyup change clear", function () {
-                                    if ( that.search() !== this.value ) {
-                                        that
-                                            .search( this.value )
-                                            .draw();
-                                    }   
-                                } ); 
+                    //             $( "input", cell ).on( "keyup change clear", function () {
+                    //                 if ( that.search() !== this.value ) {
+                    //                     that
+                    //                         .search( this.value )
+                    //                         .draw();
+                    //                 }   
+                    //             } ); 
                                 
-                            });
-                    }'
+                    //         });
+                    // }'
                 ]);
         }else{
              return $this->builder()
@@ -144,32 +167,32 @@ class MonitoringDataTable extends DataTable
                         ['extend' => 'reset', 'className' => 'btn btn-default btn-sm no-corner',],
                         ['extend' => 'reload', 'className' => 'btn btn-default btn-sm no-corner',],
                     ], 
-                    'initComplete' => 'function () {
-                        var api = this.api(); 
-                        api
-                            .columns()
-                            .eq(0)
-                            .each(function (colIdx) {
-                                // Set the header cell to contain the input element
-                                var cell = $(".filters th").eq(
-                                    $(api.column(colIdx).header()).index()
-                                );
-                                var title = $(cell).text();
-                                $(cell).html("<input type=text placeholder=" + title + " />");
+                    // 'initComplete' => 'function () {
+                    //     var api = this.api(); 
+                    //     api
+                    //         .columns()
+                    //         .eq(0)
+                    //         .each(function (colIdx) {
+                    //             // Set the header cell to contain the input element
+                    //             var cell = $(".filters th").eq(
+                    //                 $(api.column(colIdx).header()).index()
+                    //             );
+                    //             var title = $(cell).text();
+                    //             $(cell).html("<input type=text placeholder=" + title + " />");
              
-                                // On every keypress in this input 
-                                var that = this;
+                    //             // On every keypress in this input 
+                    //             var that = this;
                  
-                                $( "input", cell ).on( "keyup change clear", function () {
-                                    if ( that.search() !== this.value ) {
-                                        that
-                                            .search( this.value )
-                                            .draw();
-                                    }   
-                                } ); 
+                    //             $( "input", cell ).on( "keyup change clear", function () {
+                    //                 if ( that.search() !== this.value ) {
+                    //                     that
+                    //                         .search( this.value )
+                    //                         .draw();
+                    //                 }   
+                    //             } ); 
                                 
-                            });
-                    }'
+                    //         });
+                    // }'
                 ]);
         }
        

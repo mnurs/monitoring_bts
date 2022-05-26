@@ -60,10 +60,30 @@ class MonitoringController extends AppBaseController
         //  return view('monitorings.index')->with('monitoring', $monitoring);
         $role = $request->session()->get('role');
         $id = $request->session()->get('id');
+        $kondisi =  Kondisi::pluck('id','nama');
+        $users =  User::pluck('id','name');
+        $bts =  Bts::pluck('id','nama');
+        $id_bts = $request->id_bts;
+        $id_kondisi_bts = $request->id_kondisi_bts; 
+        $id_user_surveyor = $request->id_user_surveyor;
+        $generate_mulai = $request->generate_mulai;
+        $generate_selesai = $request->generate_selesai;
+        $kunjungan_mulai = $request->kunjungan_mulai;
+        $Kunjungan_selesai = $request->Kunjungan_selesai;
+        $tahun = $request->tahun;
+        // dd($id_bts);
         return $monitoringDataTable->
                with('role', $role)->
                with('id', $id)->
-               render('monitorings.index');
+               with('id_bts', $id_bts)->
+               with('id_kondisi_bts', $id_kondisi_bts)->
+               with('id_user_surveyor', $id_user_surveyor)->
+               with('generate_mulai', $generate_mulai)->
+               with('generate_selesai', $generate_selesai)->
+               with('kunjungan_mulai', $kunjungan_mulai)->
+               with('Kunjungan_selesai', $Kunjungan_selesai)->
+               with('tahun', $tahun)->
+               render('monitorings.index',compact(['bts','users','kondisi','id_bts','id_kondisi_bts','id_user_surveyor','generate_mulai','generate_selesai','kunjungan_mulai','Kunjungan_selesai','tahun']));
     }
 
     /**
