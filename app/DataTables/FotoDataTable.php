@@ -24,6 +24,11 @@ class FotoDataTable extends DataTable
         {   
             if(isset($data->edited_at)) return date('d-m-Y', strtotime($data->edited_at) );
             else return "";
+        })
+        ->editColumn('id_bts', function ($data)
+        {
+            if(isset($data->idBts->nama)) return $data->idBts->nama;
+            else return "";
         });
     }
 
@@ -35,7 +40,13 @@ class FotoDataTable extends DataTable
      */
     public function query(Foto $model)
     {
-        return $model->newQuery();
+        $foto =
+        $model
+        ->leftjoin('bts', 'bts.id', 'foto.id_bts')
+        ->select('foto.id', 'foto.path_foto', 'foto.created_by', 'foto.created_at', 
+        'foto.edited_by', 'foto.edited_at', 'bts.nama as nama_bts');
+        //return $model->newQuery();
+        return $this->applyScopes($foto);
     }
 
     /**
@@ -54,7 +65,6 @@ class FotoDataTable extends DataTable
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
                 'buttons'   => [
-                    ['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'reset', 'className' => 'btn btn-default btn-sm no-corner',],
@@ -71,7 +81,7 @@ class FotoDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'bts' => ['name' => 'id_bts', 'data' => 'id_bts'],
+            'bts' => ['name' => 'bts.nama', 'data' => 'nama_bts'],
             'path_foto',
             'created_by',
             'edited_by',
