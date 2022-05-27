@@ -7,7 +7,10 @@
 <!-- Pilihan Jawaban Field -->
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('pilihan_jawaban', 'Pilihan Jawaban:') !!}
-    {!! Form::textarea('pilihan_jawaban', null, ['class' => 'form-control']) !!}
+        <label>Pilihan Jawaban</label>
+        <select id="pilihan_jawaban" name="Pilihan Jawaban" class="form-control">
+                <option value=""></option>
+        </select>
 </div>
 
 <!-- Created By Field -->
