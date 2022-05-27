@@ -59,7 +59,7 @@ class Kuesioner extends Model
      * @var array
      */
     public static $rules = [
-        'jawaban' => 'required|string',
+        'pertanyaan' => 'required|string',
         'created_by' => 'nullable|string|max:255',
         'created_at' => 'nullable',
         'edited_by' => 'nullable|string|max:255',

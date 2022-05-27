@@ -54,6 +54,8 @@ class JenisController extends AppBaseController
     {
         $input = $request->all();
 
+        $nameUser = $request->session()->get('name'); 
+        $input['created_by'] = $nameUser;
         $jenis = $this->jenisRepository->create($input);
 
         Flash::success('Jenis saved successfully.');
@@ -119,6 +121,10 @@ class JenisController extends AppBaseController
             return redirect(route('jenis.index'));
         }
 
+        $nameUser = $request->session()->get('name'); 
+        $now = new DateTime(); 
+        $input['edited_by'] = $nameUser;
+        $input['edited_at'] = $now;
         $jenis = $this->jenisRepository->update($request->all(), $id);
 
         Flash::success('Jenis updated successfully.');

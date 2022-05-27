@@ -1,7 +1,7 @@
 <!-- Pertanyaan Field -->
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('pertanyaan', 'pertanyaan:') !!}
-    {!! Form::textarea('Pertanyaan', null, ['class' => 'form-control']) !!}
+    {!! Form::textarea('pertanyaan', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Jawaban Field -->
@@ -28,8 +28,6 @@
     {!! Form::text('edited_at', null, ['class' => 'form-control','id'=>'edited_at']) !!}
 </div>
  -->
-
-
 @push('page_scripts')
     <script type="text/javascript">
         $('#edited_at').datetimepicker({

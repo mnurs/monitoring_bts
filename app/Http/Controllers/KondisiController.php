@@ -54,6 +54,8 @@ class KondisiController extends AppBaseController
     {
         $input = $request->all();
 
+        $nameUser = $request->session()->get('name'); 
+        $input['created_by'] = $nameUser;
         $kondisi = $this->kondisiRepository->create($input);
 
         Flash::success('Kondisi saved successfully.');
@@ -119,6 +121,10 @@ class KondisiController extends AppBaseController
             return redirect(route('kondisis.index'));
         }
 
+        $nameUser = $request->session()->get('name'); 
+        $now = new DateTime(); 
+        $input['edited_by'] = $nameUser;
+        $input['edited_at'] = $now;
         $kondisi = $this->kondisiRepository->update($request->all(), $id);
 
         Flash::success('Kondisi updated successfully.');
