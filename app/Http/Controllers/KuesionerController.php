@@ -41,6 +41,9 @@ class KuesionerController extends AppBaseController
      */
     public function create()
     {
+        $kuesioner =  kuesioner::pluck('id','nama');
+        return view('monitorings.create')
+                ->with('kuesioner', $kuesioner);
         return view('kuesioners.create');
     }
 
@@ -122,12 +125,15 @@ class KuesionerController extends AppBaseController
             return redirect(route('kuesioners.index'));
         }
 
-
         $nameUser = $request->session()->get('name'); 
         $now = new DateTime(); 
         $input['edited_by'] = $nameUser;
         $input['edited_at'] = $now;
         $kuesioner = $this->kuesionerRepository->update($input, $id); 
+
+        $kuesioner =  kuesioner::pluck('id','nama');
+        return view('monitorings.create')
+                ->with('kuesioner', $kuesioner);
 
         Flash::success('Kuesioner updated successfully.');
 
@@ -157,4 +163,6 @@ class KuesionerController extends AppBaseController
 
         return redirect(route('kuesioners.index'));
     }
+    
+        
 }
