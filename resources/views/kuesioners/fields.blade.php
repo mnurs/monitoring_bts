@@ -28,7 +28,6 @@
     {!! Form::text('edited_at', null, ['class' => 'form-control','id'=>'edited_at']) !!}
 </div>
  -->
-
 @push('page_scripts')
     <script type="text/javascript">
         $('#edited_at').datetimepicker({
