@@ -31,19 +31,6 @@
     <input type="text" name="edited_at" class="form-control" value="@if(isset($kuesioner_pilihan->edited_at)){{ $kuesioner_pilihan->edited_at }}@endif" disabled>
 </div> -->
 
-<!-- Role Field -->
-<div class="form-group col-sm-6">
-    <div class="form-check">
-        <!-- {!! Form::hidden('role', 0, ['class' => 'form-check-input']) !!}
-        {!! Form::checkbox('role', '1', null, ['class' => 'form-check-input']) !!} -->
-        {!! Form::label('role', 'Role', ['class' => 'form-check-label']) !!}
-        <select name="role" class="form-control">
-            <option value="1" @if(isset($user->role)) @if($user->role == 1) selected @endif @endif>Admin</option>
-            <option value="2" @if(isset($user->role)) @if($user->role == 2) selected @endif @endif>Surveyor</option> 
-        </select>
-    </div>
-</div>
-
 @push('page_scripts')
     <script type="text/javascript">
         $('#edited_at').datetimepicker({
