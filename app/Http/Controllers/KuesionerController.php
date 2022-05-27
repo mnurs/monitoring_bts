@@ -8,6 +8,7 @@ use App\Http\Requests\CreateKuesionerRequest;
 use App\Http\Requests\UpdateKuesionerRequest;
 use App\Repositories\KuesionerRepository;
 use Flash;
+use DateTime;
 use App\Http\Controllers\AppBaseController;
 use Response;
 
@@ -54,11 +55,9 @@ class KuesionerController extends AppBaseController
     {
         $input = $request->all();
 
-        $kuesioner = $this->kuesionerRepository->create($input);
-
         $nameUser = $request->session()->get('name'); 
         $input['created_by'] = $nameUser; 
-        $monitoring = $this->monitoringRepository->create($input);
+        $kuesioner = $this->kuesionerRepository->create($input);
 
         Flash::success('Kuesioner saved successfully.');
 
@@ -116,20 +115,19 @@ class KuesionerController extends AppBaseController
     public function update($id, UpdateKuesionerRequest $request)
     {
         $kuesioner = $this->kuesionerRepository->find($id);
-
+        $input = $request->all();
         if (empty($kuesioner)) {
             Flash::error('Kuesioner not found');
 
             return redirect(route('kuesioners.index'));
         }
 
-        $kuesioner = $this->kuesionerRepository->update($request->all(), $id);
 
         $nameUser = $request->session()->get('name'); 
         $now = new DateTime(); 
         $input['edited_by'] = $nameUser;
         $input['edited_at'] = $now;
-        $monitoring = $this->monitoringRepository->update($input, $id);
+        $kuesioner = $this->kuesionerRepository->update($input, $id); 
 
         Flash::success('Kuesioner updated successfully.');
 

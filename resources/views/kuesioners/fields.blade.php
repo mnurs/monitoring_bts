@@ -1,7 +1,7 @@
 <!-- Pertanyaan Field -->
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('pertanyaan', 'pertanyaan:') !!}
-    {!! Form::textarea('Pertanyaan', null, ['class' => 'form-control']) !!}
+    {!! Form::textarea('pertanyaan', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Jawaban Field -->
@@ -28,43 +28,6 @@
     {!! Form::text('edited_at', null, ['class' => 'form-control','id'=>'edited_at']) !!}
 </div>
  -->
-
-    public function store(CreateMonitoringRequest $request)
-    {
-        $input = $request->all();
-
-        $nameUser = $request->session()->get('name'); 
-        $input['created_by'] = $nameUser; 
-        $monitoring = $this->monitoringRepository->create($input);
-
-        Flash::success('Monitoring saved successfully.');
-
-        return redirect(route('monitorings.index'));
-    }
-
-    public function update($id, UpdateMonitoringRequest $request)
-    {
-        $input = $request->all();
-        $monitoring = $this->monitoringRepository->find($id);
-
-        if (empty($monitoring)) {
-            Flash::error('Monitoring not found');
-
-            return redirect(route('monitorings.index'));
-        }
-
-        $nameUser = $request->session()->get('name'); 
-        $now = new DateTime(); 
-        $input['edited_by'] = $nameUser;
-        $input['edited_at'] = $now;
-        $monitoring = $this->monitoringRepository->update($input, $id);
-
-        Flash::success('Monitoring updated successfully.');
-
-        return redirect(route('monitorings.index'));
-    }
-
-
 
 @push('page_scripts')
     <script type="text/javascript">
