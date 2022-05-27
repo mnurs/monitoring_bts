@@ -56,6 +56,10 @@ class KuesionerController extends AppBaseController
 
         $kuesioner = $this->kuesionerRepository->create($input);
 
+        $nameUser = $request->session()->get('name'); 
+        $input['created_by'] = $nameUser; 
+        $monitoring = $this->monitoringRepository->create($input);
+
         Flash::success('Kuesioner saved successfully.');
 
         return redirect(route('kuesioners.index'));
@@ -120,6 +124,12 @@ class KuesionerController extends AppBaseController
         }
 
         $kuesioner = $this->kuesionerRepository->update($request->all(), $id);
+
+        $nameUser = $request->session()->get('name'); 
+        $now = new DateTime(); 
+        $input['edited_by'] = $nameUser;
+        $input['edited_at'] = $now;
+        $monitoring = $this->monitoringRepository->update($input, $id);
 
         Flash::success('Kuesioner updated successfully.');
 
