@@ -29,42 +29,6 @@
 </div>
  -->
 
-    public function store(CreateMonitoringRequest $request)
-    {
-        $input = $request->all();
-
-        $nameUser = $request->session()->get('name'); 
-        $input['created_by'] = $nameUser; 
-        $monitoring = $this->monitoringRepository->create($input);
-
-        Flash::success('Monitoring saved successfully.');
-
-        return redirect(route('monitorings.index'));
-    }
-
-    public function update($id, UpdateMonitoringRequest $request)
-    {
-        $input = $request->all();
-        $monitoring = $this->monitoringRepository->find($id);
-
-        if (empty($monitoring)) {
-            Flash::error('Monitoring not found');
-
-            return redirect(route('monitorings.index'));
-        }
-
-        $nameUser = $request->session()->get('name'); 
-        $now = new DateTime(); 
-        $input['edited_by'] = $nameUser;
-        $input['edited_at'] = $now;
-        $monitoring = $this->monitoringRepository->update($input, $id);
-
-        Flash::success('Monitoring updated successfully.');
-
-        return redirect(route('monitorings.index'));
-    }
-
-
 
 @push('page_scripts')
     <script type="text/javascript">
