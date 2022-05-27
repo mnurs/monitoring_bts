@@ -8,6 +8,7 @@ use App\Http\Requests\CreateKondisiRequest;
 use App\Http\Requests\UpdateKondisiRequest;
 use App\Repositories\KondisiRepository;
 use Flash;
+use DateTime;
 use App\Http\Controllers\AppBaseController;
 use Response;
 
@@ -113,6 +114,7 @@ class KondisiController extends AppBaseController
      */
     public function update($id, UpdateKondisiRequest $request)
     {
+        $input = $request->all();
         $kondisi = $this->kondisiRepository->find($id);
 
         if (empty($kondisi)) {
@@ -125,7 +127,7 @@ class KondisiController extends AppBaseController
         $now = new DateTime(); 
         $input['edited_by'] = $nameUser;
         $input['edited_at'] = $now;
-        $kondisi = $this->kondisiRepository->update($request->all(), $id);
+        $kondisi = $this->kondisiRepository->update($input, $id);
 
         Flash::success('Kondisi updated successfully.');
 

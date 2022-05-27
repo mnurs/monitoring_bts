@@ -8,6 +8,7 @@ use App\Http\Requests\CreateJenisRequest;
 use App\Http\Requests\UpdateJenisRequest;
 use App\Repositories\JenisRepository;
 use Flash;
+use DateTime;
 use App\Http\Controllers\AppBaseController;
 use Response;
 
@@ -113,6 +114,7 @@ class JenisController extends AppBaseController
      */
     public function update($id, UpdateJenisRequest $request)
     {
+        $input = $request->all();
         $jenis = $this->jenisRepository->find($id);
 
         if (empty($jenis)) {
@@ -125,7 +127,7 @@ class JenisController extends AppBaseController
         $now = new DateTime(); 
         $input['edited_by'] = $nameUser;
         $input['edited_at'] = $now;
-        $jenis = $this->jenisRepository->update($request->all(), $id);
+        $jenis = $this->jenisRepository->update($input, $id);
 
         Flash::success('Jenis updated successfully.');
 
