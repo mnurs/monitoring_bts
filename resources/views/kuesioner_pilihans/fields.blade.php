@@ -2,7 +2,7 @@
 <div class="form-group col-sm-6">
     {!! Form::label('id_kuesioner', 'Kuesioner:') !!}
     <select class="form-control" name="Kuesioner"  @if(isset($flag)) disabled @endif>
-        @foreach($users as $nama => $id)
+        @foreach($kuesioner as $nama => $id)
             <option value = "{{ $id }}" @if(isset($monitoring->kuesioner)) @if($monitoring->kuesioner  == $id ) selected @endif @endif >{{ $nama }}</option>
         @endforeach
     </select> 
