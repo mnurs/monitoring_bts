@@ -9,7 +9,9 @@ use App\Http\Requests\CreateBtsRequest;
 use App\Http\Requests\UpdateBtsRequest;
 use App\Repositories\BtsRepository;
 use Flash;
+use DateTime;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Foto;
 use Response;
 
 class BtsController extends AppBaseController
@@ -58,6 +60,8 @@ class BtsController extends AppBaseController
     {
         $input = $request->all();
 
+        $nameUser = $request->session()->get('name'); 
+        $input['created_by'] = $nameUser;
         $bts = $this->btsRepository->create($input);
 
         Flash::success('Bts saved successfully.');
@@ -75,6 +79,7 @@ class BtsController extends AppBaseController
     public function show($id)
     {
         $bts = $this->btsRepository->find($id);
+        $foto = Foto::where('id_bts',$id)->first();
 
         if (empty($bts)) {
             Flash::error('Bts not found');
@@ -82,7 +87,9 @@ class BtsController extends AppBaseController
             return redirect(route('bts.index'));
         }
 
-        return view('bts.show')->with('bts', $bts);
+        return view('bts.show')
+        ->with('bts', $bts)
+        ->with('foto', $foto);
     }
 
     /**
@@ -115,6 +122,7 @@ class BtsController extends AppBaseController
      */
     public function update($id, UpdateBtsRequest $request)
     {
+        $input = $request->all();
         $bts = $this->btsRepository->find($id);
 
         if (empty($bts)) {
@@ -123,7 +131,11 @@ class BtsController extends AppBaseController
             return redirect(route('bts.index'));
         }
 
-        $bts = $this->btsRepository->update($request->all(), $id);
+        $nameUser = $request->session()->get('name'); 
+        $now = new DateTime(); 
+        $input['edited_by'] = $nameUser;
+        $input['edited_at'] = $now;
+        $bts = $this->btsRepository->update($input, $id);
 
         Flash::success('Bts updated successfully.');
 
