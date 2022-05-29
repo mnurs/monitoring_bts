@@ -92,7 +92,7 @@ class MonitoringDataTable extends DataTable
              $monitorting->whereBetween('monitoring.tgl_kunjungan', [$this->kunjungan_mulai, $this->Kunjungan_selesai]);
         }
 
-        if(isset($this->tahun)){
+        if($this->tahun != ""){
              $monitorting->where('monitoring.tahun',$this->tahun);
         }
         return $this->applyScopes($monitorting);

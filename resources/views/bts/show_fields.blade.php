@@ -99,7 +99,7 @@
 <div class="form-group col-sm-6">
     {!! Form::label('edited_at', 'Foto') !!}
     <br>
-     <img src="{{ URL::to('/img/' . $foto->path_foto) }}" alt="{{ $foto->idBts->nama }}" width="200" height="200"> 
+     <img src="@if(isset($foto->path_foto)){{ URL::to('/img/' . $foto->path_foto) }}@endif " alt=" @if(isset($foto->path_foto)){{ $foto->idBts->nama }}@endif" width="200" height="200"> 
 </div>
 <div class="col-sm-12">
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.3498586014!2d106.94055531485441!3d-6.217509995499168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698c9c16c45925%3A0xfe61b1a03d0cde66!2sBTS%20TELKOMSEL%20BULAK%20JAYA!5e0!3m2!1sen!2sid!4v1650791236229!5m2!1sen!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
