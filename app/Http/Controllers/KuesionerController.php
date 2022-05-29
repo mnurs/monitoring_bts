@@ -40,10 +40,7 @@ class KuesionerController extends AppBaseController
      * @return Response
      */
     public function create()
-    {
-        $kuesioner =  kuesioner::pluck('id','nama');
-        return view('monitorings.create')
-                ->with('kuesioner', $kuesioner);
+    {  
         return view('kuesioners.create');
     }
 
@@ -130,10 +127,6 @@ class KuesionerController extends AppBaseController
         $input['edited_by'] = $nameUser;
         $input['edited_at'] = $now;
         $kuesioner = $this->kuesionerRepository->update($input, $id); 
-
-        $kuesioner =  kuesioner::pluck('id','nama');
-        return view('monitorings.create')
-                ->with('kuesioner', $kuesioner);
 
         Flash::success('Kuesioner updated successfully.');
 

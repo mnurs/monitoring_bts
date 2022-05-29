@@ -10,6 +10,8 @@ use App\Repositories\KuesionerPilihanRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use App\Models\Kuesioner;
+use DateTime;
 
 class KuesionerPilihanController extends AppBaseController
 {
@@ -40,7 +42,9 @@ class KuesionerPilihanController extends AppBaseController
      */
     public function create()
     {
-        return view('kuesioner_pilihans.create');
+        $kuesioner =  Kuesioner::pluck('id','pertanyaan');
+        return view('kuesioner_pilihans.create')->
+               with('kuesioner', $kuesioner);
     }
 
     /**
@@ -52,8 +56,10 @@ class KuesionerPilihanController extends AppBaseController
      */
     public function store(CreateKuesionerPilihanRequest $request)
     {
-        $input = $request->all();
+        $input = $request->all(); 
 
+        $nameUser = $request->session()->get('name'); 
+        $input['created_by'] = $nameUser; 
         $kuesionerPilihan = $this->kuesionerPilihanRepository->create($input);
 
         Flash::success('Kuesioner Pilihan saved successfully.');
@@ -98,7 +104,10 @@ class KuesionerPilihanController extends AppBaseController
             return redirect(route('kuesionerPilihans.index'));
         }
 
-        return view('kuesioner_pilihans.edit')->with('kuesionerPilihan', $kuesionerPilihan);
+        $kuesioner =  Kuesioner::pluck('id','pertanyaan');
+        return view('kuesioner_pilihans.edit')->
+               with('kuesioner', $kuesioner)->
+                with('kuesionerPilihan', $kuesionerPilihan); 
     }
 
     /**
@@ -112,14 +121,18 @@ class KuesionerPilihanController extends AppBaseController
     public function update($id, UpdateKuesionerPilihanRequest $request)
     {
         $kuesionerPilihan = $this->kuesionerPilihanRepository->find($id);
-
+        $input = $request->all();
         if (empty($kuesionerPilihan)) {
             Flash::error('Kuesioner Pilihan not found');
 
             return redirect(route('kuesionerPilihans.index'));
         }
+        $nameUser = $request->session()->get('name'); 
+        $now = new DateTime(); 
+        $input['edited_by'] = $nameUser;
+        $input['edited_at'] = $now;
 
-        $kuesionerPilihan = $this->kuesionerPilihanRepository->update($request->all(), $id);
+        $kuesionerPilihan = $this->kuesionerPilihanRepository->update($input, $id);
 
         Flash::success('Kuesioner Pilihan updated successfully.');
 
