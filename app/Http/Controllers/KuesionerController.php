@@ -157,5 +157,14 @@ class KuesionerController extends AppBaseController
         return redirect(route('kuesioners.index'));
     }
     
-        
+    public function addpilihan($id){
+        //memasukkan ke array
+        $pilihan_jawaban       = $_POST['pilihan_jawaban'];
+
+        //melakukan perulangan input
+        for($i=0; $i<$total; $i++){
+            mysqli_query($con, "insert into pilihan_jawaban    = '$pilihan_jawaban[$i]',
+            ");
+        }; 
+    }
 }
