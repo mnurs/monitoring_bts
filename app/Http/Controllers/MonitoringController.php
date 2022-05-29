@@ -129,25 +129,60 @@ class MonitoringController extends AppBaseController
     public function generateKunjungan(Request $request){
         $bts = $this->btsRepository->all();
         $nameUser = $request->session()->get('name');
-        foreach ($bts as $key => $data) {
-            $cek = Monitoring::
-                        where('id_bts',$data->id)->
-                        where('tgl_generate',date('Y-m-d'))->
-                        first();
-
-            if(empty($cek)){
-                $users = User::inRandomOrder()->first();
-                $input = [
-                    'id_bts' => $data->id,
-                    'id_user_surveyor' => $users->id,
-                    'tgl_generate' => date('Y-m-d'),
-                    'tahun' => date('Y'),
-                    'created_by' => $nameUser
-                ];
-                $monitoring = $this->monitoringRepository->create($input);
-            }
-            
+        $users = User::select('id')->where('role','2')->get();
+        $dataNama = [];
+        foreach ($bts as $key => $value) { 
+            array_push($dataNama,$value->id);
         }
+        // shuffle($dataNama);
+        $jml = $users->count();
+        for ($i=0; $i < (int)$jml; $i++) {  
+            foreach($dataNama as $j => $key) { 
+                switch ($i) {
+                    case $j % (int)$jml:
+                        $cek = Monitoring::
+                                where('id_bts',$key)->
+                                where('id_user_surveyor', $users[$i]->id)->
+                                where('tgl_generate',date('Y-m-d'))->
+                                first();
+
+                        if(empty($cek)){
+                            // $users = User::inRandomOrder()->where('role','2')->first();
+                            $input = [
+                                'id_bts' => $key,
+                                'id_user_surveyor' => $users[$i]->id,
+                                'tgl_generate' => date('Y-m-d'),
+                                'tahun' => date('Y'),
+                                'created_by' => $nameUser
+                            ];
+                            $monitoring = $this->monitoringRepository->create($input);
+                        }
+                         
+                        break; 
+                }  
+            } 
+        } 
+        //     dd($dataNama);
+
+        // foreach ($bts as $key => $data) {
+        //     $cek = Monitoring::
+        //                 where('id_bts',$data->id)->
+        //                 where('tgl_generate',date('Y-m-d'))->
+        //                 first();
+
+        //     if(empty($cek)){
+        //         $users = User::inRandomOrder()->where('role','2')->first();
+        //         $input = [
+        //             'id_bts' => $data->id,
+        //             'id_user_surveyor' => $users->id,
+        //             'tgl_generate' => date('Y-m-d'),
+        //             'tahun' => date('Y'),
+        //             'created_by' => $nameUser
+        //         ];
+        //         $monitoring = $this->monitoringRepository->create($input);
+        //     }
+            
+        // }
 
          Flash::success('Generate Monitoring successfully.');
 
