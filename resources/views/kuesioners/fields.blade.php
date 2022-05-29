@@ -5,7 +5,7 @@
 </div>
 
 <!-- Pilihan Jawaban Field-->
-<div class="Panel Body">
+<div class="Panel Body  col-sm-12 ">
     <form action="KuesionerController.php" method="POST">
         <div class="control-group after-add-more">
             <label>Pilihan Jawaban</label>
