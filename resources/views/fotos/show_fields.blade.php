@@ -7,7 +7,8 @@
 <!-- Path Foto Field -->
 <div class="col-sm-6">
     {!! Form::label('path_foto', 'Path Foto:') !!}
-    <input type="text" name="pertanyaan" class="form-control" value="@if(isset($foto->path_foto)){{ $foto->path_foto }}@endif" disabled> 
+    <br>
+    <img src="{{ URL::to('/img/' . $foto->path_foto) }}" alt="{{ $foto->idBts->nama }}" width="200" height="200"/>
 </div>
 
 <!-- Created By Field -->
