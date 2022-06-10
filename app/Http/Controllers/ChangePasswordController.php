@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
-use App\User;
+use App\Models\User;
   
 class ChangePasswordController extends Controller
 {
