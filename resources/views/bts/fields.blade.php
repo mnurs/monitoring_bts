@@ -1,13 +1,23 @@
 <!-- Id User Pic Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('id_user_pic', 'User Pic:') !!}
-    {!! Form::number('id_user_pic', null, ['class' => 'form-control']) !!}
+    <!--{!! Form::number('id_user_pic', null, ['class' => 'form-control']) !!}-->
+    <select class="form-control" name="id_user_pic"  @if(isset($flag)) disabled @endif>
+        @foreach($users as $nama => $id)
+            <option value = "{{ $id }}" @if(isset($bts->id_user_pic)) @if($bts->id_user_pic  == $id ) selected @endif @endif >{{ $nama }}</option>
+        @endforeach
+    </select>
 </div>
 
 <!-- Id Pemilik Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('id_pemilik', 'Pemilik:') !!}
-    {!! Form::number('id_pemilik', null, ['class' => 'form-control']) !!}
+    <!--{!! Form::number('id_pemilik', null, ['class' => 'form-control']) !!}-->
+    <select class="form-control" name="id_pemilik"  @if(isset($flag)) disabled @endif>
+        @foreach($pemilik as $nama => $id)
+            <option value = "{{ $id }}" @if(isset($bts->id_pemilik)) @if($bts->id_pemilik  == $id ) selected @endif @endif >{{ $nama }}</option>
+        @endforeach
+    </select>
 </div>
 
 <!-- Id Wilayah Field -->
@@ -19,7 +29,12 @@
 <!-- Id Jenis Bts Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('id_jenis_bts', 'Jenis Bts:') !!}
-    {!! Form::number('id_jenis_bts', null, ['class' => 'form-control']) !!}
+    <!--{!! Form::number('id_jenis_bts', null, ['class' => 'form-control']) !!}-->
+    <select class="form-control" name="id_jenis_bts"  @if(isset($flag)) disabled @endif>
+        @foreach($jenis as $nama => $id)
+            <option value = "{{ $id }}" @if(isset($bts->id_jenis_bts)) @if($bts->id_jenis_bts  == $id ) selected @endif @endif >{{ $nama }}</option>
+        @endforeach
+    </select>
 </div>
 
 <!-- Nama Field -->

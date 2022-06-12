@@ -11,6 +11,9 @@ use App\Repositories\BtsRepository;
 use Flash;
 use DateTime;
 use App\Http\Controllers\AppBaseController;
+use App\Models\User;
+use App\Models\Pemilik;
+use App\Models\Jenis;
 use App\Models\Foto;
 use Response;
 
@@ -33,10 +36,19 @@ class BtsController extends AppBaseController
      */
     public function index(BtsDataTable $btsDataTable,Request $request)
     {
-          $role = $request->session()->get('role'); 
+          $role = $request->session()->get('role');
+          $users =  User::pluck('id','name');
+          $pemilik =  Pemilik::pluck('id','nama');
+          $jenis =  Jenis::pluck('id','nama');
+          $id_user_pic = $request->id_user_pic;
+          $id_pemilik = $request->id_pemilik;
+          $id_jenis_bts = $request->id_jenis_bts;
         return $btsDataTable->
-               with('role', $role)-> 
-               render('bts.index'); 
+               with('role', $role)->
+               with('id_user_pic', $id_user_pic)->
+               with('id_pemilik', $id_pemilik)->
+               with('id_jenis_bts', $id_jenis_bts)-> 
+               render('bts.index', compact(['users', 'pemilik', 'jenis'])); 
     }
 
     /**
@@ -46,7 +58,13 @@ class BtsController extends AppBaseController
      */
     public function create()
     {
-        return view('bts.create');
+        $users =  User::pluck('id','name');
+        $pemilik =  Pemilik::pluck('id','nama');
+        $jenis =  Jenis::pluck('id','nama');
+        return view('bts.create')
+                ->with('users', $users)
+                ->with('pemilik', $pemilik)
+                ->with('jenis', $jenis);
     }
 
     /**
@@ -102,6 +120,9 @@ class BtsController extends AppBaseController
     public function edit($id)
     {
         $bts = $this->btsRepository->find($id);
+        $users =  User::pluck('id','name');
+        $pemilik =  Pemilik::pluck('id','nama');
+        $jenis =  Jenis::pluck('id','nama');
 
         if (empty($bts)) {
             Flash::error('Bts not found');
@@ -109,7 +130,11 @@ class BtsController extends AppBaseController
             return redirect(route('bts.index'));
         }
 
-        return view('bts.edit')->with('bts', $bts);
+        return view('bts.edit')
+                ->with('bts', $bts)
+                ->with('users', $users)
+                ->with('pemilik', $pemilik)
+                ->with('jenis', $jenis);
     }
 
     /**
