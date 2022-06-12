@@ -10,6 +10,7 @@ use App\Repositories\UserRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends AppBaseController
@@ -55,6 +56,12 @@ class UserController extends AppBaseController
     {
         $input = $request->all();
         $input["password"] = Hash::make($request->password);
+        $cekUser = User::where('email',$request->email)->first();
+        if (!empty($cekUser)) {
+            Flash::error('User Already Exists');
+
+            return redirect(route('users.index'));
+        }
         $user = $this->userRepository->create($input);
 
         Flash::success('User saved successfully.');
