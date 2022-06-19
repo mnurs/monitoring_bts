@@ -41,6 +41,11 @@ class WilayahDataTable extends DataTable
             //change over here
             if(isset($data->parent->nama)) return $data->parent->nama; 
             else return "";
+        })
+        ->editColumn('edited_at', function ($data) 
+        {   
+            if(isset($data->edited_at)) return date('d-m-Y', strtotime($data->edited_at) );
+            else return "";
         });
     }
 
