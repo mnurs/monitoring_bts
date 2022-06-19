@@ -31,6 +31,7 @@ Route::middleware(['role'])->group(function () {
 	Route::resource('kuesionerJawabans', KuesionerJawabanController::class);
 	Route::resource('kuesionerPilihans', KuesionerPilihanController::class);
 	Route::resource('pemiliks', PemilikController::class);
+	Route::get('wilayah/autocomplete', [App\Http\Controllers\WilayahController::class, 'autocomplete']); 
 	Route::resource('wilayahs', WilayahController::class);
 	Route::resource('users', UserController::class);
 	Route::post('/monitoring/generate', [App\Http\Controllers\MonitoringController::class, 'generateKunjungan']);

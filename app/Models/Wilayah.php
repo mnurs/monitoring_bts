@@ -36,6 +36,7 @@ class Wilayah extends Model
 
 
     public $fillable = [
+        'id',
         'nama',
         'level',
         'id_parent',

@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\DataTables\WilayahDataTable;
 use App\Http\Requests;
+use Illuminate\Http\Request;
 use App\Http\Requests\CreateWilayahRequest;
 use App\Http\Requests\UpdateWilayahRequest;
 use App\Repositories\WilayahRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use DateTime;
+use App\Models\Wilayah;
 
 class WilayahController extends AppBaseController
 {
@@ -39,8 +42,8 @@ class WilayahController extends AppBaseController
      * @return Response
      */
     public function create()
-    {
-        return view('wilayahs.create');
+    { 
+        return view('wilayahs.create') ;
     }
 
     /**
@@ -53,6 +56,10 @@ class WilayahController extends AppBaseController
     public function store(CreateWilayahRequest $request)
     {
         $input = $request->all();
+        $value = Wilayah::select('id')->orderBy('id','DESC')->first();
+        $nameUser = $request->session()->get('name'); 
+        $input['created_by'] = $nameUser;
+        $input['id'] = $value->id + 1;
 
         $wilayah = $this->wilayahRepository->create($input);
 
@@ -97,8 +104,8 @@ class WilayahController extends AppBaseController
 
             return redirect(route('wilayahs.index'));
         }
-
-        return view('wilayahs.edit')->with('wilayah', $wilayah);
+ 
+        return view('wilayahs.edit')->with('wilayah', $wilayah) ;
     }
 
     /**
@@ -111,6 +118,7 @@ class WilayahController extends AppBaseController
      */
     public function update($id, UpdateWilayahRequest $request)
     {
+        $input = $request->all();
         $wilayah = $this->wilayahRepository->find($id);
 
         if (empty($wilayah)) {
@@ -118,8 +126,11 @@ class WilayahController extends AppBaseController
 
             return redirect(route('wilayahs.index'));
         }
-
-        $wilayah = $this->wilayahRepository->update($request->all(), $id);
+        $nameUser = $request->session()->get('name'); 
+        $now = new DateTime(); 
+        $input['edited_by'] = $nameUser;
+        $input['edited_at'] = $now;
+        $wilayah = $this->wilayahRepository->update($input, $id);
 
         Flash::success('Wilayah updated successfully.');
 
@@ -148,5 +159,19 @@ class WilayahController extends AppBaseController
         Flash::success('Wilayah deleted successfully.');
 
         return redirect(route('wilayahs.index'));
+    }
+
+     public function autocomplete(Request $request)
+    {
+        $query = ""; 
+        if ($request->has('query')) {
+            $query = $request->input('query');
+        }
+ 
+        $data = Wilayah::select("nama","id")
+                ->where("nama","LIKE","%".$query."%")
+                ->get();
+   
+        return response()->json($data);
     }
 }

@@ -17,6 +17,7 @@ class WilayahRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
+        'id',
         'nama',
         'level',
         'id_parent',
