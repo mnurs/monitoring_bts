@@ -10,6 +10,7 @@ use App\Repositories\PemilikRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use DateTime;
 
 class PemilikController extends AppBaseController
 {
@@ -54,6 +55,8 @@ class PemilikController extends AppBaseController
     {
         $input = $request->all();
 
+        $nameUser = $request->session()->get('name'); 
+        $input['created_by'] = $nameUser;
         $pemilik = $this->pemilikRepository->create($input);
 
         Flash::success('Pemilik saved successfully.');
@@ -111,6 +114,7 @@ class PemilikController extends AppBaseController
      */
     public function update($id, UpdatePemilikRequest $request)
     {
+        $input = $request->all();
         $pemilik = $this->pemilikRepository->find($id);
 
         if (empty($pemilik)) {
@@ -119,7 +123,11 @@ class PemilikController extends AppBaseController
             return redirect(route('pemiliks.index'));
         }
 
-        $pemilik = $this->pemilikRepository->update($request->all(), $id);
+        $nameUser = $request->session()->get('name'); 
+        $now = new DateTime(); 
+        $input['edited_by'] = $nameUser;
+        $input['edited_at'] = $now;
+        $pemilik = $this->pemilikRepository->update($input, $id);
 
         Flash::success('Pemilik updated successfully.');
 
