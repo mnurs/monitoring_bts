@@ -7,19 +7,24 @@ use App\Http\Requests;
 use App\Http\Requests\CreateKuesionerRequest;
 use App\Http\Requests\UpdateKuesionerRequest;
 use App\Repositories\KuesionerRepository;
+use App\Repositories\KuesionerPilihanRepository;
 use Flash;
 use DateTime;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use App\Models\Kuesioner;
+use App\Models\KuesionerPilihan;
 
 class KuesionerController extends AppBaseController
 {
     /** @var KuesionerRepository $kuesionerRepository*/
     private $kuesionerRepository;
+    private $kuesionerPilihanRepository;
 
-    public function __construct(KuesionerRepository $kuesionerRepo)
+    public function __construct(KuesionerRepository $kuesionerRepo,KuesionerPilihanRepository $kuesionerPilihanRepo)
     {
         $this->kuesionerRepository = $kuesionerRepo;
+        $this->kuesionerPilihanRepository = $kuesionerPilihanRepo;
     }
 
     /**
@@ -56,8 +61,22 @@ class KuesionerController extends AppBaseController
         $input = $request->all();
 
         $nameUser = $request->session()->get('name'); 
-        $input['created_by'] = $nameUser; 
+        $input['created_by'] = $nameUser;   
+
         $kuesioner = $this->kuesionerRepository->create($input);
+
+        $id_kuesioner = Kuesioner::latest()->first()->id;
+
+        $pilihan = $request->pilihan_jawaban;
+        foreach ($pilihan as $key => $value) {
+            if(isset($value)){
+                $data = [
+                    "id_kuesioner" => $id_kuesioner,
+                    "pilihan_jawaban"=> $value
+                ];
+                $this->kuesionerPilihanRepository->create($data);
+            } 
+        }
 
         Flash::success('Kuesioner saved successfully.');
 
@@ -74,6 +93,7 @@ class KuesionerController extends AppBaseController
     public function show($id)
     {
         $kuesioner = $this->kuesionerRepository->find($id);
+        $pilihan = KuesionerPilihan::where("id_kuesioner",$id)->get();
 
         if (empty($kuesioner)) {
             Flash::error('Kuesioner not found');
@@ -81,7 +101,7 @@ class KuesionerController extends AppBaseController
             return redirect(route('kuesioners.index'));
         }
 
-        return view('kuesioners.show')->with('kuesioner', $kuesioner);
+        return view('kuesioners.show')->with('kuesioner', $kuesioner)->with('pilihan', $pilihan);
     }
 
     /**
@@ -94,14 +114,15 @@ class KuesionerController extends AppBaseController
     public function edit($id)
     {
         $kuesioner = $this->kuesionerRepository->find($id);
-
+        $pilihan = KuesionerPilihan::where("id_kuesioner",$id)->get();
         if (empty($kuesioner)) {
             Flash::error('Kuesioner not found');
 
             return redirect(route('kuesioners.index'));
         }
 
-        return view('kuesioners.edit')->with('kuesioner', $kuesioner);
+
+        return view('kuesioners.edit')->with('kuesioner', $kuesioner)->with('pilihan', $pilihan);
     }
 
     /**
@@ -127,6 +148,18 @@ class KuesionerController extends AppBaseController
         $input['edited_by'] = $nameUser;
         $input['edited_at'] = $now;
         $kuesioner = $this->kuesionerRepository->update($input, $id); 
+
+        $deletePilihan = KuesionerPilihan::where('id_kuesioner',$id)->delete();
+        $pilihan = $request->pilihan_jawaban;
+        foreach ($pilihan as $key => $value) {
+            if(isset($value)){
+                $data = [
+                    "id_kuesioner" =>  $id,
+                    "pilihan_jawaban"=> $value
+                ];
+                $this->kuesionerPilihanRepository->create($data);
+            } 
+        }
 
         Flash::success('Kuesioner updated successfully.');
 
@@ -155,16 +188,5 @@ class KuesionerController extends AppBaseController
         Flash::success('Kuesioner deleted successfully.');
 
         return redirect(route('kuesioners.index'));
-    }
-    
-    public function addpilihan($id){
-        //memasukkan ke array
-        $pilihan_jawaban       = $_POST['pilihan_jawaban'];
-
-        //melakukan perulangan input
-        for($i=0; $i<$total; $i++){
-            mysqli_query($con, "insert into pilihan_jawaban    = '$pilihan_jawaban[$i]',
-            ");
-        }; 
-    }
+    } 
 }

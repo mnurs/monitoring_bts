@@ -27,4 +27,3 @@
     {!! Form::label('edited_at', 'Edited At:') !!}
     <input type="text" name="edited_at" class="form-control" value="@if(isset($kuesioner->edited_at)){{ $kuesioner->edited_at }}@endif" disabled>
 </div>
-

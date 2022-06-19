@@ -16,20 +16,44 @@
             <i class="glyphicon glyphicon-plus"></i> Add</button>
             
             <hr>
-        </div>
+        </div> 
     </form>
+        @if(isset($pilihan)) 
+            @foreach($pilihan as $pilih) 
+                <div class="copy_data">
+                    <div class="hapus_grup">
+                    <label>Pilihan Jawaban</label>
+                    <input type="text" name="pilihan_jawaban[]" class="form-control" value="{{$pilih->pilihan_jawaban}}">
+                    <br>
+
+                    <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                    <hr>
+                </div>
+            @endforeach
+            <div class="copy invisible">
+                <div class="hapus_grup">
+                <label>Pilihan Jawaban</label>
+                <input type="text" name="pilihan_jawaban[]" class="form-control">
+                <br>
+
+                <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                <hr>
+            </div>
+        @else
+          <div class="copy invisible">
+                <div class="hapus_grup">
+                <label>Pilihan Jawaban</label>
+                <input type="text" name="pilihan_jawaban[]" class="form-control">
+                <br>
+
+                <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                <hr>
+            </div>
+        @endif
         
-        <div class="copy invisible">
-            <div class="hapus_grup">
-            <label>Pilihan Jawaban</label>
-            <input type="text" name="pilihan_jawaban[]" class="form-control">
-            <br>
+      
 
-            <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
-            <hr>
-        </div>
 </div>
-
 <!-- <div class="form-group col-sm-10"> 
      <p><a href="javascript:action();">Tambah</a></p>
 
