@@ -15,6 +15,7 @@ use App\Models\User;
 use App\Models\Pemilik;
 use App\Models\Jenis;
 use App\Models\Foto;
+use App\Models\Wilayah;
 use Response;
 
 class BtsController extends AppBaseController
@@ -39,16 +40,19 @@ class BtsController extends AppBaseController
           $role = $request->session()->get('role');
           $users =  User::pluck('id','name');
           $pemilik =  Pemilik::pluck('id','nama');
+          $wilayah =  Wilayah::pluck('id','nama');
           $jenis =  Jenis::pluck('id','nama');
           $id_user_pic = $request->id_user_pic;
           $id_pemilik = $request->id_pemilik;
+          $id_wilayah = $request->id_wilayah;
           $id_jenis_bts = $request->id_jenis_bts;
         return $btsDataTable->
                with('role', $role)->
                with('id_user_pic', $id_user_pic)->
                with('id_pemilik', $id_pemilik)->
+               with('id_wilayah', $id_wilayah)->
                with('id_jenis_bts', $id_jenis_bts)-> 
-               render('bts.index', compact(['users', 'pemilik', 'jenis'])); 
+               render('bts.index', compact(['users', 'pemilik', 'wilayah', 'jenis'])); 
     }
 
     /**
@@ -60,10 +64,12 @@ class BtsController extends AppBaseController
     {
         $users =  User::pluck('id','name');
         $pemilik =  Pemilik::pluck('id','nama');
+        $wilayah =  Wilayah::where('level', 3)->pluck('id','nama');
         $jenis =  Jenis::pluck('id','nama');
         return view('bts.create')
                 ->with('users', $users)
                 ->with('pemilik', $pemilik)
+                ->with('wilayah', $wilayah)
                 ->with('jenis', $jenis);
     }
 
@@ -122,6 +128,7 @@ class BtsController extends AppBaseController
         $bts = $this->btsRepository->find($id);
         $users =  User::pluck('id','name');
         $pemilik =  Pemilik::pluck('id','nama');
+        $wilayah =  Wilayah::pluck('id','nama');
         $jenis =  Jenis::pluck('id','nama');
 
         if (empty($bts)) {
@@ -134,6 +141,7 @@ class BtsController extends AppBaseController
                 ->with('bts', $bts)
                 ->with('users', $users)
                 ->with('pemilik', $pemilik)
+                ->with('wilayah', $wilayah)
                 ->with('jenis', $jenis);
     }
 

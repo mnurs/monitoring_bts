@@ -1,3 +1,4 @@
+
 <!-- Id User Pic Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('id_user_pic', 'User Pic:') !!}
@@ -23,7 +24,11 @@
 <!-- Id Wilayah Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('id_wilayah', 'Wilayah:') !!}
-    {!! Form::number('id_wilayah', null, ['class' => 'form-control']) !!}
+    <select id="form-control" name="id_wilayah" style="width: 100%"  @if(isset($flag)) disabled @endif>
+        @foreach($wilayah as $nama => $id)
+            <option value = "{{ $id }}" @if(isset($bts->id_wilayah)) @if($bts->id_wilayah  == $id ) selected @endif @endif >{{ $nama }}</option>
+        @endforeach
+    </select>
 </div>
 
 <!-- Id Jenis Bts Field -->
@@ -129,5 +134,10 @@
             useCurrent: true,
             sideBySide: true
         })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#form-control').select2();
+        });
     </script>
 @endpush
