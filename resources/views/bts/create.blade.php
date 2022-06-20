@@ -17,7 +17,7 @@
 
         <div class="card">
 
-            {!! Form::open(['route' => 'bts.store']) !!}
+            {!! Form::open(['route' => 'bts.store', 'enctype' => 'multipart/form-data']) !!}
 
             <div class="card-body">
 

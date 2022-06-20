@@ -17,6 +17,7 @@ use App\Models\Pemilik;
 use App\Models\Jenis;
 use App\Models\Foto;
 use App\Models\Wilayah;
+use App\Models\Bts;
 use Response;
 
 class BtsController extends AppBaseController
@@ -83,13 +84,12 @@ class BtsController extends AppBaseController
      */
     public function store(CreateBtsRequest $request)
     {
-        $input = $request->all();
-
+        $input = $request->all(); 
         $nameUser = $request->session()->get('name'); 
         $input['created_by'] = $nameUser;
         $bts = $this->btsRepository->create($input);
-        $path = Storage::putFile('foto', $request->file('foto'));
-        $value = Wilayah::select('id')->orderBy('id','DESC')->first();
+        $path = Storage::disk('public')->putFile('foto', $request->file('foto'));
+        $value = Bts::select('id')->orderBy('id','DESC')->first();
         $foto = Foto::create([
             "id_bts" => $value->id,
             "path_foto" => $path
@@ -137,6 +137,7 @@ class BtsController extends AppBaseController
         $pemilik =  Pemilik::pluck('id','nama');
         $wilayah =  Wilayah::pluck('id','nama');
         $jenis =  Jenis::pluck('id','nama');
+        $foto = Foto::where('id_bts',$id)->orderBy('id','DESC')->first();
 
         if (empty($bts)) {
             Flash::error('Bts not found');
@@ -149,7 +150,8 @@ class BtsController extends AppBaseController
                 ->with('users', $users)
                 ->with('pemilik', $pemilik)
                 ->with('wilayah', $wilayah)
-                ->with('jenis', $jenis);
+                ->with('jenis', $jenis)
+                ->with('foto', $foto);
     }
 
     /**
@@ -177,6 +179,15 @@ class BtsController extends AppBaseController
         $input['edited_at'] = $now;
         $bts = $this->btsRepository->update($input, $id);
 
+        $path = Storage::disk('public')->putFile('foto', $request->file('foto'));
+        if($request->has('foto')){   
+            Foto::where('id_bts',$id)->delete();
+            $foto = Foto::create([
+                "id_bts" => $id,
+                "path_foto" => $path
+            ]); 
+        } 
+        
         Flash::success('Bts updated successfully.');
 
         return redirect(route('bts.index'));

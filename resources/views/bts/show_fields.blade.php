@@ -99,7 +99,9 @@
 <div class="form-group col-sm-6">
     {!! Form::label('edited_at', 'Foto') !!}
     <br>
-     <img src="@if(isset($foto->path_foto)){{ URL::to('/img/' . $foto->path_foto) }}@endif " alt=" @if(isset($foto->path_foto)){{ $foto->idBts->nama }}@endif" width="200" height="200"> 
+    @if(isset($foto->path_foto))
+        <img src="{{Storage::url($foto->path_foto)}}" alt="foto"  width="200" height="200">
+    @endif 
 </div>
 
 <!-- Map -->

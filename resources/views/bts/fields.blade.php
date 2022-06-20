@@ -107,8 +107,10 @@
 <div class="form-group col-sm-6">
     {!! Form::label('foto', 'Foto:') !!}
     <input type="file" class="form-control" name="foto">
-    <br>
-    <img src="https://via.placeholder.com/200x200.png" width="200" height="200"> 
+    <br> 
+    @if(isset($foto->path_foto))
+        <img src="{{Storage::url($foto->path_foto)}}" alt="foto"  width="200" height="200">
+    @endif 
 </div>
 <!-- Created By Field -->
 <!-- <div class="form-group col-sm-6">
