@@ -165,7 +165,7 @@ class BtsController extends AppBaseController
     public function update($id, UpdateBtsRequest $request)
     {
         $input = $request->all();
-        $bts = $this->btsRepository->find($id);
+        $bts = $this->btsRepository->find($id); 
 
         if (empty($bts)) {
             Flash::error('Bts not found');
@@ -179,8 +179,8 @@ class BtsController extends AppBaseController
         $input['edited_at'] = $now;
         $bts = $this->btsRepository->update($input, $id);
 
-        $path = Storage::disk('public')->putFile('foto', $request->file('foto'));
         if($request->has('foto')){   
+            $path = Storage::disk('public')->putFile('foto', $request->file('foto'));
             Foto::where('id_bts',$id)->delete();
             $foto = Foto::create([
                 "id_bts" => $id,

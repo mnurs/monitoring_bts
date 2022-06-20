@@ -106,11 +106,9 @@
 
 <div class="form-group col-sm-6">
     {!! Form::label('foto', 'Foto:') !!}
-    <input type="file" class="form-control" name="foto">
+    <input type="file" class="form-control" name="foto"  onchange="readURL(this);">
     <br> 
-    @if(isset($foto->path_foto))
-        <img src="{{Storage::url($foto->path_foto)}}" alt="foto"  width="200" height="200">
-    @endif 
+    <img src="@if(isset($foto->path_foto)) {{Storage::url($foto->path_foto)}} @else  https://via.placeholder.com/200x200.png @endif" width="200" height="200"  id="blah"> 
 </div>
 <!-- Created By Field -->
 <!-- <div class="form-group col-sm-6">
@@ -142,5 +140,17 @@
         $(document).ready(function() {
             $('#form-control').select2();
         });
+
+        function readURL(input) {
+          if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+              $('#blah').attr('src', e.target.result).width(150).height(200);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+          }
+        }
     </script>
 @endpush
