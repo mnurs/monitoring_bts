@@ -106,6 +106,7 @@
 
 <div class="form-group col-sm-6">
     {!! Form::label('foto', 'Foto:') !!}
+    <input type="file" class="form-control" name="foto">
     <br>
     <img src="https://via.placeholder.com/200x200.png" width="200" height="200"> 
 </div>

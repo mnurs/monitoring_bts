@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DataTables\BtsDataTable;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\CreateBtsRequest;
 use App\Http\Requests\UpdateBtsRequest;
 use App\Repositories\BtsRepository;
@@ -87,6 +88,12 @@ class BtsController extends AppBaseController
         $nameUser = $request->session()->get('name'); 
         $input['created_by'] = $nameUser;
         $bts = $this->btsRepository->create($input);
+        $path = Storage::putFile('foto', $request->file('foto'));
+        $value = Wilayah::select('id')->orderBy('id','DESC')->first();
+        $foto = Foto::create([
+            "id_bts" => $value->id,
+            "path_foto" => $path
+        ]);
 
         Flash::success('Bts saved successfully.');
 
