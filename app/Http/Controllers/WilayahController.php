@@ -56,11 +56,10 @@ class WilayahController extends AppBaseController
     public function store(CreateWilayahRequest $request)
     {
         $input = $request->all();
-        $value = Wilayah::select('id')->orderBy('id','DESC')->first();
+        $value = Wilayah::max('id');
         $nameUser = $request->session()->get('name'); 
         $input['created_by'] = $nameUser;
-        $input['id'] = $value->id + 1;
-
+        $input['id'] = $value + 5;  
         $wilayah = $this->wilayahRepository->create($input);
 
         Flash::success('Wilayah saved successfully.');
