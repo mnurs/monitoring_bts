@@ -11,11 +11,11 @@
         {!! Form::checkbox('level', '1', null, ['class' => 'form-check-input']) !!} -->
         {!! Form::label('level', 'Level', ['class' => 'form-check-label']) !!}
         <select name="level" class="form-control">
-            <option value="1" @if($wilayah->level == 1) selected @endif>Negara</option>
-            <option value="2" @if($wilayah->level == 2) selected @endif>Provinsi</option>
-            <option value="3"@if($wilayah->level == 3) selected @endif>Kabupaten/Kota</option>
-            <option value="4" @if($wilayah->level == 4) selected @endif>Kecamatan</option>
-            <option value="5" @if($wilayah->level == 5) selected @endif>Kelurahan</option>
+            <option value="1" @if(isset($wilayah->level)) @if($wilayah->level == 1) selected @endif @endif>Negara</option>
+            <option value="2" @if(isset($wilayah->level))  @if($wilayah->level == 2) selected @endif @endif>Provinsi</option>
+            <option value="3" @if(isset($wilayah->level)) @if($wilayah->level == 3) selected @endif @endif>Kabupaten/Kota</option>
+            <option value="4" @if(isset($wilayah->level)) @if($wilayah->level == 4) selected @endif @endif>Kecamatan</option>
+            <option value="5" @if(isset($wilayah->level)) @if($wilayah->level == 5) selected @endif @endif>Kelurahan</option>
         </select>
     </div>
 </div>
@@ -25,7 +25,7 @@
 <div class="form-group col-sm-6">
     {!! Form::label('id_parent', 'Parent:') !!} 
     <input class="form-control" type="text" name="parent" id="parent" value="@if(isset($wilayah->parent->nama)){{$wilayah->parent->nama}}@endif"> 
-    <input class="form-control" type="hidden" name="id_parent" id="id_parent" value="{{$wilayah->id_parent}}"> 
+    <input class="form-control" type="hidden" name="id_parent" id="id_parent" value="@if(isset($wilayah->id_parent)){{$wilayah->id_parent}}@endif"> 
 </div>
 
 <!-- Created By Field -->
