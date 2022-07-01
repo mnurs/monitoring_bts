@@ -256,7 +256,7 @@ class MonitoringController extends AppBaseController
 
         Flash::success('Monitoring updated successfully.');
 
-        return redirect(url('monitorings.index'));
+        return redirect(route('monitorings.index'));
 
     }
     /**
