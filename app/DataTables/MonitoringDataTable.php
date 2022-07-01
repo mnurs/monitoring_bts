@@ -72,6 +72,14 @@ class MonitoringDataTable extends DataTable
              $monitorting->where('monitoring.id_user_surveyor',$this->id);
         }
 
+        if($this->status == "belum"){ 
+             $monitorting->whereNull('monitoring.tgl_kunjungan');
+        }
+
+        if($this->status == "sudah"){
+             $monitorting->whereNotNull('monitoring.tgl_kunjungan');
+        }
+
         if($this->id_bts != ""){
              $monitorting->where('monitoring.id_bts',$this->id_bts);
         }

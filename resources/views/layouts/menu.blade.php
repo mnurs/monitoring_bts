@@ -21,7 +21,7 @@
             <p>Jenis</p>
         </a>
     </li>
-
+ 
 
     <li class="nav-item">
         <a href="{{ route('kondisis.index') }}"
@@ -62,13 +62,19 @@
         </a>
     </li> -->
 
-
-    <li class="nav-item">
-        <a href="{{ route('monitorings.index') }}"
-           class="nav-link {{ Request::is('monitorings*') ? 'active' : '' }}">
-            <p>Monitoring</p>
-        </a>
-    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Monitoring</a>
+        <div class="dropdown-menu">
+          <a href="{{ url('monitoring?status=sudah') }}"
+             class="nav-link {{ Request::is('monitoring?status=sudah') ? 'active' : '' }}">
+              <p>Sudah</p>
+          </a> 
+          <a href="{{ url('monitoring?status=belum') }}"
+             class="nav-link {{ Request::is('monitoring?status=belum') ? 'active' : '' }}">
+              <p>Belum</p>
+          </a>  
+        </div>
+      </li>
 
 
     <li class="nav-item">
@@ -101,12 +107,19 @@
         </a>
     </li>
 
-     <li class="nav-item">
-        <a href="{{ route('monitorings.index') }}"
-           class="nav-link {{ Request::is('monitorings*') ? 'active' : '' }}">
-            <p>Monitoring</p>
-        </a>
-    </li> 
+     <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Monitoring</a>
+        <div class="dropdown-menu">
+          <a href="{{ url('monitoring?status=sudah') }}"
+             class="nav-link {{ Request::is('monitoring?status=sudah') ? 'active' : '' }}">
+              <p>Sudah</p>
+          </a> 
+          <a href="{{ url('monitoring?status=belum') }}"
+             class="nav-link {{ Request::is('monitoring?status=belum') ? 'active' : '' }}">
+              <p>Belum</p>
+          </a>  
+        </div>
+      </li>
   @endif
 @endif
 

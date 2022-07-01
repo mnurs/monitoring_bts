@@ -39,6 +39,7 @@ Route::middleware(['role'])->group(function () {
 });
 
     Route::resource('bts', BtsController::class, ['except' => ['create','edit']]);
+	Route::get('/monitoring', [App\Http\Controllers\MonitoringController::class, 'index']); 
 
 	Route::get('/monitoring/cari', [App\Http\Controllers\MonitoringController::class, 'index']);
 	Route::post('/monitoring/survey', [App\Http\Controllers\MonitoringController::class, 'storeSurvey']);

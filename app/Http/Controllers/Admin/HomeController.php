@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\User;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
+use App\Models\Monitoring;
 
 class HomeController
 {
-    public function index()
+    public function index(Request $request)
     {
         $number_blocks = [
             [
@@ -54,7 +55,6 @@ class HomeController
             'entries_number'     => '5',
         ];
         $chart = new LaravelChart($chart_settings);
-
-        return view('home', compact('number_blocks', 'list_blocks', 'chart'));
+        return view('home', compact('number_blocks', 'list_blocks', 'chart', 'sudahBTS', 'belumBTS'));
     }
 }

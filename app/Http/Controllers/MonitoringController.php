@@ -71,6 +71,8 @@ class MonitoringController extends AppBaseController
         $kunjungan_mulai = $request->kunjungan_mulai;
         $Kunjungan_selesai = $request->Kunjungan_selesai;
         $tahun = $request->tahun;
+        $status = $request->status;
+        // dd($request->status);
         // dd($id_bts);
         return $monitoringDataTable->
                with('role', $role)->
@@ -83,7 +85,8 @@ class MonitoringController extends AppBaseController
                with('kunjungan_mulai', $kunjungan_mulai)->
                with('Kunjungan_selesai', $Kunjungan_selesai)->
                with('tahun', $tahun)->
-               render('monitorings.index',compact(['bts','users','kondisi','id_bts','id_kondisi_bts','id_user_surveyor','generate_mulai','generate_selesai','kunjungan_mulai','Kunjungan_selesai','tahun']));
+               with('status', $status)->
+               render('monitorings.index',compact(['bts','users','kondisi','id_bts','id_kondisi_bts','id_user_surveyor','generate_mulai','generate_selesai','kunjungan_mulai','Kunjungan_selesai','tahun','status']));
     }
 
     /**
@@ -253,7 +256,7 @@ class MonitoringController extends AppBaseController
 
         Flash::success('Monitoring updated successfully.');
 
-        return redirect(route('monitorings.index'));
+        return redirect(url('monitorings.index'));
 
     }
     /**

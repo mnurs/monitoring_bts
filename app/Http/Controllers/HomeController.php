@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 use Illuminate\Http\Request;
+use App\Models\Monitoring;
 
 class HomeController extends Controller
 {
@@ -23,7 +24,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $number_blocks = [
             [
@@ -71,7 +72,19 @@ class HomeController extends Controller
         ];
         // $chart = new LaravelChart($chart_settings);
         // , 'chart'
-        return view('home', compact('number_blocks', 'list_blocks'));
+
+
+        $role = $request->session()->get('role'); 
+        $id = $request->session()->get('id');
+        if($role == 2){
+            $sudahBTS = Monitoring::where('id_user_surveyor',$id)->whereNotNull('tgl_kunjungan')->get()->count();
+            $belumBTS = Monitoring::where('id_user_surveyor',$id)->whereNull('tgl_kunjungan')->get()->count();
+        }else{ 
+            $sudahBTS = Monitoring::whereNotNull('tgl_kunjungan')->get()->count();
+            $belumBTS = Monitoring::whereNull('tgl_kunjungan')->get()->count();
+        } 
+
+        return view('home', compact('number_blocks', 'list_blocks', 'sudahBTS', 'belumBTS'));
       
     }
 }

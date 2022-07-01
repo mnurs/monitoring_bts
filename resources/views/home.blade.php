@@ -18,6 +18,34 @@
             </div>
             @endforeach
         </div>
+         <div class="row"> 
+            <div class="col-md-4 ">
+                <div class="info-box">
+                        <span class="info-box-icon bg-red"
+                              style="display:flex; flex-direction: column; justify-content: center;">
+                            <i class="fa fa-chart-line"></i>
+                        </span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Jumlah Survey Sudah Terisi </span>
+                        <span class="info-box-number">@if(isset($sudahBTS)){{ $sudahBTS }}@endif</span>
+                    </div>
+                </div>
+            </div> 
+             <div class="col-md-4 ">
+                <div class="info-box">
+                        <span class="info-box-icon bg-red"
+                              style="display:flex; flex-direction: column; justify-content: center;">
+                            <i class="fa fa-chart-line"></i>
+                        </span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Jumlah Survey Belum Terisi</span>
+                        <span class="info-box-number">@if(isset($belumBTS)){{ $belumBTS }}@endif</span>
+                    </div>
+                </div>
+            </div> 
+        </div>
 
         <div class="row">
             @foreach ($list_blocks as $block)
