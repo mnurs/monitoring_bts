@@ -62,6 +62,12 @@ class BtsController extends AppBaseController
      *
      * @return Response
      */
+     public function showMaps()
+    { 
+        $bts = Bts::get();
+        return view('bts.maps',compact('bts'));
+    }
+
     public function create()
     {
         $users =  User::pluck('id','name');

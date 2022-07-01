@@ -5,6 +5,13 @@
            class="nav-link {{ Request::is('bts*') ? 'active' : '' }}">
             <p>Bts</p>
         </a>
+    </li> 
+
+    <li class="nav-item">
+        <a href="{{ url('maps') }}"
+           class="nav-link {{ Request::is('maps') ? 'active' : '' }}">
+            <p>Maps BTS</p>
+        </a>
     </li>
 
     <li class="nav-item">
@@ -106,6 +113,13 @@
             <p>Bts</p>
         </a>
     </li>
+    
+    <li class="nav-item">
+        <a href="{{ url('maps') }}"
+           class="nav-link {{ Request::is('maps') ? 'active' : '' }}">
+            <p>Maps BTS</p>
+        </a>
+    </li>
 
      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Monitoring</a>
@@ -120,6 +134,8 @@
           </a>  
         </div>
       </li>
+
+
   @endif
 @endif
 
