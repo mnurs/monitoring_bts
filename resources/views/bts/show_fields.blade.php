@@ -99,9 +99,11 @@
 <div class="form-group col-sm-6">
     {!! Form::label('edited_at', 'Foto') !!}
     <br>
-    @if(isset($foto->path_foto))
-        <img src="{{Storage::url($foto->path_foto)}}" alt="foto"  width="200" height="200">
-    @endif 
+    @foreach($fotos as $foto)
+        @if(isset($foto->path_foto))
+            <img src="{{Storage::url($foto->path_foto)}}" alt="foto"  width="200" height="200">
+        @endif 
+    @endforeach
 </div>
 
 <!-- Map -->

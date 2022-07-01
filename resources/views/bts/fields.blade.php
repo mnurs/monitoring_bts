@@ -103,31 +103,61 @@
     </div>
 </div>
 
-
-<div class="form-group col-sm-6">
-    {!! Form::label('foto', 'Foto:') !!}
-    <input type="file" class="form-control" name="foto"  onchange="readURL(this);">
-    <br> 
-    <img src="@if(isset($foto->path_foto)) {{Storage::url($foto->path_foto)}} @else  https://via.placeholder.com/200x200.png @endif" width="200" height="200"  id="blah"> 
-</div>
-<!-- Created By Field -->
-<!-- <div class="form-group col-sm-6">
-    {!! Form::label('created_by', 'Created By:') !!}
-    {!! Form::text('created_by', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255,'maxlength' => 255]) !!}
-</div> -->
-
-<!-- Edited By Field -->
-<!-- <div class="form-group col-sm-6">
-    {!! Form::label('edited_by', 'Edited By:') !!}
-    {!! Form::text('edited_by', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255,'maxlength' => 255]) !!}
-</div> -->
-
-<!-- Edited At Field -->
-<!-- <div class="form-group col-sm-6">
-    {!! Form::label('edited_at', 'Edited At:') !!}
-    {!! Form::text('edited_at', null, ['class' => 'form-control','id'=>'edited_at']) !!}
-</div>
- -->
+<div class="Panel Body  col-sm-12 ">
+    <form action="KuesionerController.php" method="POST">
+        <div class="control-group after-add-more">
+            <label>Upload Foto</label>
+            <input type="file" class="form-control" name="foto[]"  onchange="readURL(this,'blah','blah');">
+            <br>
+            <img src="@if(isset($foto->path_foto)) {{Storage::url($foto->path_foto)}} @else   @endif" width="200" height="200"  id="blah">
+            <br>
+            <br>
+            <button class="btn btn-success add-more" type="button">
+            <i class="glyphicon glyphicon-plus"></i> Add</button>
+            
+            <hr>
+        </div> 
+    </form>
+        @if(isset($fotos)) 
+            @foreach($fotos as $foto) 
+                <div class="copy_data">
+                    <div class="hapus_grup">
+                    <label>Upload Foto</label>
+                    <input type="file" class="form-control" name="foto[]"  onchange="readURL(this,{{$foto->id}},'path{{$foto->id}}');">
+                    <br>
+                    <img src="@if(isset($foto->path_foto)) {{Storage::url($foto->path_foto)}} @else  https://via.placeholder.com/200x200.png @endif" width="200" height="200"  id="{{$foto->id}}">
+                    <input type="hidden" name="fotoPath[]" value="@if(isset($foto->path_foto)){{$foto->path_foto}}@endif" id="path{{$foto->id}}">
+                    <br>
+                    <br>
+                    <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                    <hr>
+                </div>
+            @endforeach
+            <div class="copy invisible">
+                <div class="hapus_grup">
+                <label>Upload Foto</label>
+                <input type="file" class="form-control" name="foto[]"  onchange="readURL(this,1,1);">
+                <br>
+                <img src="https://via.placeholder.com/200x200.png" width="200" height="200"  id="1">
+                <br>
+                <br>
+                <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                <hr>
+            </div>
+        @else
+          <div class="copy invisible">
+                <div class="hapus_grup">
+                <label>Upload Foto</label>
+                <input type="file" class="form-control" name="foto[]"  onchange="readURL(this,2,2);">
+                <br>
+                <img src="https://via.placeholder.com/200x200.png" width="200" height="200"  id="2">
+                <br> 
+                <br>
+                <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                <hr>
+            </div>
+        @endif 
+</div> 
 @push('page_scripts')
     <script type="text/javascript">
         $('#edited_at').datetimepicker({
@@ -139,18 +169,28 @@
     <script>
         $(document).ready(function() {
             $('#form-control').select2();
+             $(".add-more").click(function(){ 
+                  var html = $(".copy").html();
+                  $(".after-add-more").after(html);
+              });
+
+              // saat tombol remove dklik hapus_grup akan dihapus 
+              $("body").on("click",".remove",function(){ 
+                  $(this).parents(".hapus_grup").remove();
+              });
         });
 
-        function readURL(input) {
+        function readURL(input,id,pathId) {
           if (input.files && input.files[0]) {
             var reader = new FileReader();
 
             reader.onload = function (e) {
-              $('#blah').attr('src', e.target.result).width(150).height(200);
+              $('#'+id).attr('src', e.target.result).width(150).height(200);
+              $("#"+pathId).val('');
             };
 
             reader.readAsDataURL(input.files[0]);
           }
         }
-    </script>
+    </script> 
 @endpush

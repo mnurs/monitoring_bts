@@ -94,12 +94,18 @@ class BtsController extends AppBaseController
         $nameUser = $request->session()->get('name'); 
         $input['created_by'] = $nameUser;
         $bts = $this->btsRepository->create($input);
-        $path = Storage::disk('public')->putFile('foto', $request->file('foto'));
-        $value = Bts::select('id')->orderBy('id','DESC')->first();
-        $foto = Foto::create([
-            "id_bts" => $value->id,
-            "path_foto" => $path
-        ]);
+
+        $foto = $request->file('foto');
+        foreach ($foto as $dataFoto) {
+            $path = Storage::disk('public')->putFile('foto', $dataFoto);
+            $value = Bts::select('id')->orderBy('id','DESC')->first();
+            $Createfoto = Foto::create([
+                "id_bts" => $value->id,
+                "path_foto" => $path
+            ]);
+        }
+
+       
 
         Flash::success('Bts saved successfully.');
 
@@ -116,7 +122,7 @@ class BtsController extends AppBaseController
     public function show($id)
     {
         $bts = $this->btsRepository->find($id);
-        $foto = Foto::where('id_bts',$id)->first();
+        $fotos = Foto::where('id_bts',$id)->get();
 
         if (empty($bts)) {
             Flash::error('Bts not found');
@@ -126,7 +132,7 @@ class BtsController extends AppBaseController
 
         return view('bts.show')
         ->with('bts', $bts)
-        ->with('foto', $foto);
+        ->with('fotos', $fotos);
     }
 
     /**
@@ -143,7 +149,7 @@ class BtsController extends AppBaseController
         $pemilik =  Pemilik::pluck('id','nama');
         $wilayah =  Wilayah::pluck('id','nama');
         $jenis =  Jenis::pluck('id','nama');
-        $foto = Foto::where('id_bts',$id)->orderBy('id','DESC')->first();
+        $fotos = Foto::where('id_bts',$id)->orderBy('id','DESC')->get();
 
         if (empty($bts)) {
             Flash::error('Bts not found');
@@ -157,7 +163,7 @@ class BtsController extends AppBaseController
                 ->with('pemilik', $pemilik)
                 ->with('wilayah', $wilayah)
                 ->with('jenis', $jenis)
-                ->with('foto', $foto);
+                ->with('fotos', $fotos);
     }
 
     /**
@@ -185,14 +191,29 @@ class BtsController extends AppBaseController
         $input['edited_at'] = $now;
         $bts = $this->btsRepository->update($input, $id);
 
+        
+
+         Foto::where('id_bts',$id)->delete();
         if($request->has('foto')){   
-            $path = Storage::disk('public')->putFile('foto', $request->file('foto'));
-            Foto::where('id_bts',$id)->delete();
-            $foto = Foto::create([
-                "id_bts" => $id,
-                "path_foto" => $path
-            ]); 
+             $foto = $request->file('foto');
+            foreach ($foto as $dataFoto) {
+                $path = Storage::disk('public')->putFile('foto', $dataFoto); 
+                $Createfoto = Foto::create([
+                    "id_bts" => $id,
+                    "path_foto" => $path
+                ]);
+            }
         } 
+
+        $pathFoto = $request->fotoPath;
+        foreach ($pathFoto as $key => $value) {
+            if(isset($value)){
+                $Createfoto = Foto::create([
+                    "id_bts" => $id,
+                    "path_foto" => $value
+                ]);
+            } 
+        }
         
         Flash::success('Bts updated successfully.');
 
